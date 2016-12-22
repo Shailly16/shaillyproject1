@@ -1,0 +1,42 @@
+.Site_footer
+{
+background color:#222222;
+color:#ffffff;
+margin-top:5px;
+padding-top:5px;
+}
+.bottom_footer
+{
+	border-top:6px solid #ffffff;
+	margin-top:10px;
+	padding-top:10px;
+	color:#b2b2b2;
+}
+
+.footer_nav
+{
+	text-align:right;
+	list-style:none;
+	
+}
+.footer_nav li
+{ 
+	
+	display:inline;
+	padding:0px 10px;
+	
+}
+.footer li:before
+{
+	content:'|';
+	padding:0px 10px;
+}
+
+.footer-nav a
+{
+	color:#b2b2b2;}
+	
+.footer-nav a:hover
+{ color:#ffffff;
+text-decoration:none;	
+}
