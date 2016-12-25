@@ -9,20 +9,20 @@
 </head>
 <body>
 <a href="login1">Login</a>
+
 <br>
-<a href="register">register</a>
+<a href="Registeration">Register</a>
 ${successMsg}
-<c:if test="${showRegisterationPage}">
-<jsp:include page="register.jsp"></jsp:include>
-</c:if>
-<c:if test="${ not empty errorMsg}">
+
+<c:if test="${not empty errorMsg}">
     ${errorMsg}
 <jsp:include page="login1.jsp"></jsp:include>
 </c:if>
-
-
 <c:if test="${showLoginPage}">
 <jsp:include page="login1.jsp"></jsp:include>
+</c:if>
+<c:if test="${showRegisterPage}">
+<jsp:include page="Registeration.jsp"></jsp:include>
 </c:if>
 </body>
 </html>

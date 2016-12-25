@@ -17,30 +17,31 @@ public class HomeController
 		return "home";
 	}
 	@RequestMapping("/login1")
-	public ModelAndView showSLoginPage()
+	public ModelAndView showLoginPage()
 	{
 		ModelAndView mv=new ModelAndView("home");
-		mv.addObject("msg", "This is login page");;
 		mv.addObject("msg", "This is login page");
+		mv.addObject("showLoginPage", "true");
 		return mv;
 	}
-	@RequestMapping("/register")
-	public ModelAndView showRegisterationPage()
+	@RequestMapping("/Registeration")
+	public ModelAndView showRegisterPage()
 	{
 		ModelAndView mv=new ModelAndView("home");
-		mv.addObject("msg", "This is registerstion page");
-		mv.addObject("showRegisterationPage", "true");
+		mv.addObject("msg", "This is registeration page");
+		mv.addObject("showRegisterPage", "true");
 		return mv;
 	}
+	
 	@RequestMapping("/validate")
 	public ModelAndView validate(@RequestParam("id")String id,@RequestParam("password")String pwd)
 	{
-		System.out.println("sIn validate Method");
+		System.out.println("In validate Method");
 		System.out.println("Id"+id);
 		System.out.println("password"+pwd);
 		ModelAndView mv=new ModelAndView("home");
 		// need to validate-need to write DAO-get value from tables
-		// temporaraly id:niit and password:niit@123
+		// Temporarily id:niit and password:niit@123
 		// if credentials are valid- "welcome to shopping cart"
 		// else show"invalid credentials"+ login Page
 		// both displayed on home page
