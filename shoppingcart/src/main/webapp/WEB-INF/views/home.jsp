@@ -8,10 +8,31 @@
 <title>shopping cart</title>
 </head>
 <body>
-<a href="login1">Login</a>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bellezza</a>
+    </div>
+    <div class="collapse navbar-collapse" id="MyNavbar">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">100% Genuine</a></li>
+      <li class="dropdown"><a href="#">Easy Returns</a>
+       
+      </li>
+      <li><a href="#">Best Brands</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+  
+      <li><a href="login1"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+      <li><a href="Registeration"><span class="glyphicon glyphicon-registration-mark"></span>Register</a></li>
+    </ul>
+   
+    </div>
+    </div>
+    </nav>
 
-<br>
-<a href="Registeration">Register</a>
+
+
 ${successMsg}
 
 <c:if test="${not empty errorMsg}">

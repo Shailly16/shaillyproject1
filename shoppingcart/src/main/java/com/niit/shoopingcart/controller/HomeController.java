@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.shoppingcart.dao.temp.UserDAO;
+import com.niit.shoppingCartBackend.dao.UserDAO;
+import com.niit.shoppingCartBackend.daoimpl.UserDAOImpl;
 
 @Controller
 public class HomeController
@@ -45,7 +46,7 @@ public class HomeController
 		// if credentials are valid- "welcome to shopping cart"
 		// else show"invalid credentials"+ login Page
 		// both displayed on home page
-		UserDAO userDao=new UserDAO();
+		UserDAO userDao=new UserDAOImpl();
 		
 		if (userDao.isValidCredentials(id,pwd)== true)
 		{mv.addObject("successMsg", "You logged in successfully");
