@@ -81,29 +81,29 @@ ${msg}
 	<div class="row">
 	<div class="col-sm-6">
 	<label>First Name</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="First Name">
 	</div>
 	<div class="col-sm-6">
     <label>Last Name</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="Last Name">
 	</div>
 	</div>
 					
 	<div class="form-group">
 	<label>Address</label>
-    <textarea rows="3" class="form-control"></textarea></div>	
+    <textarea rows="3" class="form-control" placeholder=" Enter Address"></textarea></div>	
 	<div class="row">
 	<div class="col-sm-4 ">
 	<label>City</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder=" Enter City">
 	</div>	
 	<div class="col-sm-4">
 	<label>State</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="Enter State">
 	</div>	
 	<div class="col-sm-4">
 	<label>Zip</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder=" Enter Zip code">
 	</div>		
 	</div>
 	
@@ -111,16 +111,16 @@ ${msg}
 	<div class="row">
 	<div class="col-sm-6 ">
 	<label>Phone Number</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="Enter Phone Number">
 	</div>	
     <div class="col-sm-6 ">
 	<label>Mobile</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="Enter Mobile">
 	</div>	
 	</div>	
 	<div class="form-group">
 	<label>Email Address</label>
-	<input type="text"  class="form-control">
+	<input type="text"  class="form-control" placeholder="Enter mail">
 	</div>	
 	<button type="button" class="btn btn-lg btn-info">Submit</button>
 	<button type="button" class="btn btn-lg btn-info">Reset</button>					
