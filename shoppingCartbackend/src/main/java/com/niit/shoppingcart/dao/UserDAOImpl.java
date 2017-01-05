@@ -3,7 +3,7 @@ package com.niit.shoppingcart.dao;
 import java.util.List;
 
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -11,22 +11,22 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.User1;
 
 @Repository
-
-
 public class UserDAOImpl implements UserDAO {
 	
 	// require session factory
 	@Autowired
-	public SessionFactory sessionFactory;   // to do operations on database we need session factory
+	private SessionFactory sessionFactory;   // to do operations on database we need session factory
 	// how to initialize
 	// At the time of creation of instance you need to pass session factory
 	public UserDAOImpl(SessionFactory sessionFactory)
-	{ this.sessionFactory = sessionFactory;
+	{ 
+		this.sessionFactory = sessionFactory;
 	}
 	
 
@@ -48,20 +48,12 @@ public class UserDAOImpl implements UserDAO {
 // invalid return null
 //valid will return user domain object
     @Transactional
-	public boolean validate(String id, String password) {
+	public User1 validate(String id, String password) {
 	String hql = "select * from user1 where id='"+id+"'and password='"+password+"'";
 	Query query =	sessionFactory.getCurrentSession().createQuery(hql);
-	 User1 u1=(User1)query.uniqueResult();
-	 System.out.println("The User ID is :"+u1.getId());
-	 if(u1 !=null)
-	 {
-		 return true;
-	 }
-	 else
-	 {
-		 return false;
-	 }	
-	}
+	 return(User1) query.uniqueResult();
+    }
+	 
     @Transactional
 	public boolean save(User1 user) {
 	

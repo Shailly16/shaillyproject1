@@ -41,52 +41,52 @@ public static void init()
 
 @Test
 public void getUserTestCase()
-{   
+{ user=userDAO.get("NIITPV");  
  //assert statements
-System.out.println(user.getName());
-Assert.assertEquals("User Test Case ","NIITPV",userDAO.get(user.getId()));// niit is expected whereas user.getName() will give the entered actual input.
+System.out.println(user.getId());
+Assert.assertEquals("User Test Case ","NIITPV",user.getId());// niit is expected whereas user.getName() will give the entered actual input.
 Assert.assertNotNull("getUserTestCase", user);// userDAO must not return null object.
 }
-//@Test
-//public void validateCredentials()
-//{
-	//boolean status= userDAO.validate("NIITPV", "niit");
-	//Assert.assertEquals(" in validate test case", true,status);
-//}
+@Test
+public void validateCredentials()
+{
+	user= userDAO.validate("NIITPV", "niit");
+	Assert.assertNotNull("validate test case",user);
+}
 
-//@Test
-//public void inValidateCredentials()
-//{
-	//user= userDAO.validate("SHAIL", "SHAIL");
-	//Assert.assertNull("inValidateCredentials", user);
-//}
- //public void getAllUsersTestCase()
- //{
-	//int size = userDAO.list().size();
-	//Assert.assertEquals("length check", 8,size);
- //}
-//@Test
-//public void saveTestCase()
-//{
+@Test
+public void inValidateCredentials()
+{
+	user= userDAO.validate("SHAIL", "SHAIL");
+	Assert.assertNull("inValidateCredentials", user);
+}
+ public void getAllUsersTestCase()
+ {
+	int size = userDAO.list().size();
+	Assert.assertEquals("length check", 8,size);
+ }
+@Test
+public void saveTestCase()
+{
 	
-	//user.setId("arpit");
-	//user.setName("arpita");
-	//user.setContact("987256478");
-	//user.setMail("sai@gmail.com");
-	//user.setPassword("sai");
-	//user.setRole("admin");
-	//Assert.assertEquals("saveTestCase", true, userDAO.save(user));
+	user.setId("arpit");
+	user.setName("arpita");
+	user.setContact("987256478");
+	user.setMail("sai@gmail.com");
+	user.setPassword("sai");
+	user.setRole("admin");
+	Assert.assertEquals("saveTestCase", true, userDAO.save(user));
 	
-//}
-//@Test
-//public void updateTestCase()
-//{
+}
+@Test
+public void updateTestCase()
+{
 	// giving id is mandatory as it is primary key.
 	
-	//user= userDAO.get("Sai");
+	user= userDAO.get("arpit");
 	
-	//user.setRole("role_admin");
-	//Assert.assertEquals("updateTestCase", true, userDAO.update(user));
+	user.setRole("customer");
+	Assert.assertEquals("updateTestCase", true, userDAO.update(user));
 	
-//}
+}
 }

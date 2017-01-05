@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table
-@Component
+@Component(value="user1")
 public class User1 
 {
 	@Id
+	
 	private String id;
 	private String name;
 	private String password;
@@ -22,6 +24,7 @@ public class User1
 
 			
 	public String getId() {
+		
 		return id;
 	}
 	public void setId(String id) {

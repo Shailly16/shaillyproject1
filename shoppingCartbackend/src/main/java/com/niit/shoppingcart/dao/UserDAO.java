@@ -16,7 +16,7 @@ public interface UserDAO {
 	public User1 get(String id);
 	// checking whether the credentials are valid or not
 	// if it is value it will return User1, else will return null
-	public boolean validate(String id, String Password);
+	public User1 validate(String id, String Password);
 	
 	// save(new registeration)
 	public boolean save(User1 user); // void will not tell if saved or not and boolean will tell yes or not
