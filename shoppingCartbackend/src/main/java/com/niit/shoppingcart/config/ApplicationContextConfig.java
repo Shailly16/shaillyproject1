@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.config;
 
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -15,8 +16,10 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shoppingcart.model.User1;
+
 @Configuration
-@ComponentScan("com.niit.shoppingCartbackend")
+@ComponentScan("com.niit.shoppingcart")
 @EnableTransactionManagement
 public class ApplicationContextConfig 
 {
@@ -31,11 +34,15 @@ public class ApplicationContextConfig
 		return dataSource;
 	}
 
-public Properties getHibernateProperties()
+private Properties getHibernateProperties()
 {
 	Properties properties = new Properties();
 	properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 	properties.put("hibernate.show_sql", "true");
+	 properties.put("hibernate.format_sql",true);
+     properties.put("hibernate.hbm2ddl.auto", "update");
+	
+
 	return properties;
 	
 }
@@ -46,7 +53,8 @@ public SessionFactory getSessionFactory(DataSource dataSource)
 {
 	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 	sessionBuilder.addProperties(getHibernateProperties());
-	
+	sessionBuilder.addAnnotatedClass(User1.class);
+	sessionBuilder.scanPackages("com.niit.shoppingcart");
 	return sessionBuilder.buildSessionFactory();
 	
 }
@@ -55,7 +63,9 @@ public SessionFactory getSessionFactory(DataSource dataSource)
 public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
 {
 	HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+	transactionManager.setSessionFactory(sessionFactory);
 	return transactionManager;
 	
 }
 }
+

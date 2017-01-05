@@ -3,6 +3,7 @@
 	<name>shoppingCartbackend</name>
 	<comment></comment>
 	<projects>
+		<project>shoppingcart</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
