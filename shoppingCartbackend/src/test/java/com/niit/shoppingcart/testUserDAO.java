@@ -1,7 +1,9 @@
 package com.niit.shoppingcart;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.User1;
@@ -13,9 +15,11 @@ public class testUserDAO {
 	  User1 user;
 	  @Autowired
 	  AnnotationConfigApplicationContext context;
+	  
 	
 	public testUserDAO() {
 		context = new AnnotationConfigApplicationContext();
+		
 		context.scan("com.niit.shoppingcart");
         context.refresh();
 		// context- bean factory
@@ -31,6 +35,7 @@ public class testUserDAO {
 	}
 
 	public User1 validate(String id, String pwd) {
+		System.out.println("user id is" +user.getId());
 		if (userDAO.validate(id,pwd)==null) {
 			System.out.println("not valid");
 			return user;
@@ -40,11 +45,10 @@ public class testUserDAO {
 
 		}
 	}
-
-	public static void main(String[] args) 
+public static void main(String[] args) 
 	{
 		testUserDAO t = new testUserDAO();
-		t.validate("niit", "niit");
+		t.validate("arpit", "sai");
 	}
 }
 	

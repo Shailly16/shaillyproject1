@@ -13,47 +13,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcart.dao.SupplierDAO;
-import com.niit.shoppingcart.model.Supplier1;
+import com.niit.shoppingcart.dao.UserDAO;
+import com.niit.shoppingcart.model.User1;
 
 @Repository
-public class SupplierDAOImpl implements SupplierDAO {
+public class UserDAOImpl implements UserDAO {
 	
 	// require session factory
 	@Autowired
 	private SessionFactory sessionFactory;   // to do operations on database we need session factory
 	// how to initialize
 	// At the time of creation of instance you need to pass session factory
-	public SupplierDAOImpl(SessionFactory sessionFactory)
+	public UserDAOImpl(SessionFactory sessionFactory)
 	{ 
 		this.sessionFactory = sessionFactory;
 	}
 	
 
 	@Transactional
-	public List<Supplier1> list() {
-	String hql = "from Supplier1";
+	public List<User1> list() {
+	String hql = "from User1";
 	Query query =	sessionFactory.getCurrentSession().createQuery(hql);
 	return query.list();
 //convert in db specific language
 		
 	}
 @Transactional
-	public Supplier1 get(String id) {
-		
+	public User1 get(String id) {
+		// TODO Auto-generated method stub
 	System.out.println(id);
-		return(Supplier1)sessionFactory.getCurrentSession().get(Supplier1.class, id);
+		return(User1)sessionFactory.getCurrentSession().get(User1.class, id);
 		
 	}
-
-@Transactional
-	public boolean save(Supplier1 user) {
+// invalid return null
+//valid will return user domain object
+    @Transactional
+	public User1 validate(String id, String password) {
+	String hql = "from User1 where id='"+id+"'and password='"+password+"'";
+    	
+	Query query =	sessionFactory.getCurrentSession().createQuery(hql);
+	 return(User1) query.uniqueResult();
+    }
+	 
+    @Transactional
+	public boolean save(User1 user) {
 	
 		
 		try {
 			sessionFactory.getCurrentSession().save(user);
 		} catch (HibernateException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -61,7 +70,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 	
 @Transactional
-	public boolean update(Supplier1 user) {
+	public boolean update(User1 user) {
 		try {
 			sessionFactory.getCurrentSession().update(user);
 		} catch (Exception e) {
@@ -71,12 +80,6 @@ public class SupplierDAOImpl implements SupplierDAO {
 		}
 		return true;
 	}
-
-
-   public Supplier1 validate(String id) {
-	
-	return null;
-}
 
 	
 	

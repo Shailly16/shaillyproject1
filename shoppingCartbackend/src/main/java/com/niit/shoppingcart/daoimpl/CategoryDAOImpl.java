@@ -1,4 +1,4 @@
-package com.niit.shoppingcart.dao;
+package com.niit.shoppingcart.daoimpl;
 
 import java.util.List;
 
@@ -13,49 +13,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.model.User1;
+import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.model.Category1;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class CategoryDAOImpl implements CategoryDAO {
 	
 	// require session factory
 	@Autowired
 	private SessionFactory sessionFactory;   // to do operations on database we need session factory
 	// how to initialize
 	// At the time of creation of instance you need to pass session factory
-	public UserDAOImpl(SessionFactory sessionFactory)
+	public CategoryDAOImpl(SessionFactory sessionFactory)
 	{ 
 		this.sessionFactory = sessionFactory;
 	}
 	
 
 	@Transactional
-	public List<User1> list() {
-	String hql = "from User1";
+	public List<Category1> list() {
+	String hql = "from Category1";
 	Query query =	sessionFactory.getCurrentSession().createQuery(hql);
 	return query.list();
 //convert in db specific language
 		
 	}
 @Transactional
-	public User1 get(String id) {
+	public Category1 get(String id) {
 		// TODO Auto-generated method stub
 	System.out.println(id);
-		return(User1)sessionFactory.getCurrentSession().get(User1.class, id);
+		return(Category1)sessionFactory.getCurrentSession().get(Category1.class, id);
 		
 	}
-// invalid return null
-//valid will return user domain object
-    @Transactional
-	public User1 validate(String id, String password) {
-	String hql = "select * from user1 where id='"+id+"'and password='"+password+"'";
-	Query query =	sessionFactory.getCurrentSession().createQuery(hql);
-	 return(User1) query.uniqueResult();
-    }
+
 	 
     @Transactional
-	public boolean save(User1 user) {
+	public boolean save(Category1 user) {
 	
 		
 		try {
@@ -69,7 +62,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 @Transactional
-	public boolean update(User1 user) {
+	public boolean update(Category1 user) {
 		try {
 			sessionFactory.getCurrentSession().update(user);
 		} catch (Exception e) {

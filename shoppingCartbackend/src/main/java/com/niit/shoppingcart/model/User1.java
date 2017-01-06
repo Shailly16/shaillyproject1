@@ -1,9 +1,12 @@
 package com.niit.shoppingcart.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +19,10 @@ public class User1
 	
 	private String id;
 	private String name;
+	//@Min(5)
+	//@Max(5)
 	private String password;
+	@Column(unique=true,nullable=false)
 	private String mail;
 	private String contact;
 	private String role;
