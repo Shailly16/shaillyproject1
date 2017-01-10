@@ -10,7 +10,9 @@ public List<Supplier1> list();
 	
 public Supplier1 get(String id);
 	
-public Supplier1 validate(String id);
+public void delete(String id) ;
+public Supplier1 getSupplierByName(String name);
+public Supplier1 getSupplierDetails();
 	
 public boolean save(Supplier1 Supplier1); 
 

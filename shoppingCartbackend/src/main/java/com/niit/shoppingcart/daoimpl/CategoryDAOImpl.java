@@ -73,6 +73,12 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return true;
 	}
 
+
+public Category1 validate(String id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 	
 	
 

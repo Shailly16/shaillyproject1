@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -26,10 +23,8 @@ public class User1
 	private String mail;
 	private String contact;
 	private String role;
-
-
-			
-	public String getId() {
+	
+    public String getId() {
 		
 		return id;
 	}
@@ -66,6 +61,7 @@ public class User1
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 	
 
 }

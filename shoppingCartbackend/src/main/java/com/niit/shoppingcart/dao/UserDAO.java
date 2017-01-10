@@ -16,12 +16,15 @@ public interface UserDAO {
 	public User1 get(String id);
 	// checking whether the credentials are valid or not
 	// if it is value it will return User1, else will return null
-	public User1 validate(String id, String Password);
+	
+	public User1 validate(String id, String password); 
 	
 	// save(new registeration)
 	public boolean save(User1 user); // void will not tell if saved or not and boolean will tell yes or not
 	
 	// update
 	public boolean update(User1 user); // to save User1 need to pass User1 details in form (User1 User1)
+	public void delete(String id);
+	public User1 getUserDetails();
 	
 }

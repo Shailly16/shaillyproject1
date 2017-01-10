@@ -1,8 +1,12 @@
 package com.niit.shoppingcart.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 import org.springframework.stereotype.Component;
 
@@ -12,11 +16,16 @@ import org.springframework.stereotype.Component;
 public class Product1 
 {
 	@Id
+	@Column(name="id")
 	private String id;
 	private String name;
 	private String description;
 	private float price;
+	@ManyToOne
+	@JoinColumn(name="category_id", updatable=false, insertable=false, nullable=false)
 	private String Category_id;
+	@ManyToOne
+	@JoinColumn(name="supplier_id", updatable=false, insertable=false,nullable=false)
 	private String Supplier_id;
 	private String stock;
 	public String getId() {

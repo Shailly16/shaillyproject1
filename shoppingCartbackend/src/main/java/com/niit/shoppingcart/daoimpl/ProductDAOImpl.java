@@ -38,7 +38,7 @@ public class ProductDAOImpl implements ProductDAO {
 //convert in db specific language
 		
 	}
-@Transactional
+ @Transactional
 	public Product1 get(String id) {
 		// TODO Auto-generated method stub
 	System.out.println(id);
