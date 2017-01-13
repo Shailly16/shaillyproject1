@@ -14,8 +14,8 @@ public void delete(String id) ;
 public Supplier1 getSupplierByName(String name);
 public Supplier1 getSupplierDetails();
 	
-public boolean save(Supplier1 Supplier1); 
+public boolean save(Supplier1 supplier); 
 
-public boolean update(Supplier1 Supplier1);
+public boolean update(Supplier1 supplier);
 
 }

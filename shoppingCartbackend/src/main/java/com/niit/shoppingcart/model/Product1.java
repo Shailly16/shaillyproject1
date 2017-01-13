@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,23 +11,31 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Entity
+@Embeddable
 @Table
-@Component
+@Component(value="product1")
 public class Product1 
 {
 	@Id
-	@Column(name="id")
+	
 	private String id;
 	private String name;
 	private String description;
-	private float price;
-	@ManyToOne
-	@JoinColumn(name="category_id", updatable=false, insertable=false, nullable=false)
+	private String price;
 	private String Category_id;
-	@ManyToOne
-	@JoinColumn(name="supplier_id", updatable=false, insertable=false,nullable=false)
 	private String Supplier_id;
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	@ManyToOne
+	@JoinColumn(name="Category_id", updatable=false, insertable=false, nullable=false)
+	private Category1 category;
+	@ManyToOne
+	@JoinColumn(name="Supplier_id", updatable=false, insertable=false,nullable=false)
+	private Supplier1 supplier;
 	private String stock;
 	public String getId() {
 		return id;
@@ -46,12 +55,8 @@ public class Product1
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public float getPrice() {
-		return price;
-	}
-	public void setPrice(float price) {
-		this.price = price;
-	}
+	
+	
 	public String getCategory_id() {
 		return Category_id;
 	}
@@ -70,6 +75,7 @@ public class Product1
 	public void setStock(String stock) {
 		this.stock = stock;
 	}
+	
 	
 	
 }

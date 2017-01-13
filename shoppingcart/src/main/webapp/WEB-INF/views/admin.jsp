@@ -49,7 +49,6 @@
 <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">0</span></a></li>
 <li><a href="#"><i class="glyphicon glyphicon-user"></i> Members <span class="badge badge-info">0</span></a></li>               
 <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-<li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
 <li><a href="#"><i class="glyphicon glyphicon-mail"></i> Mail</a></li>
 <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 </ul>
@@ -61,6 +60,16 @@
 <ul class="list-unstyled collapse" id="menu3">
 <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
 <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Twitter</a></li>
+</ul>
+</li>
+<li class="nav-header">
+<a href="#" data-toggle="collapse" data-target="#menu3">
+<h5>Addition<i class="glyphicon glyphicon-chevron-right"></i></h5>
+</a>
+<ul class="list-unstyled collapse" id="admin_manage">
+<li><a href="manage_categories"><i class="glyphicon glyphicon-circle"></i>ManageCategories</a></li>
+<li><a href="manage_product"><i class="glyphicon glyphicon-circle"></i>ManageProduct</a></li>
+<li><a href="manage_supplier"><i class="glyphicon glyphicon-circle"></i>ManageSupplier</a></li>
 </ul>
 </li>
 </ul>

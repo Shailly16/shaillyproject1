@@ -1,4 +1,4 @@
-package com.niit.shoppingcart.daoimpl;
+package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.User1;
 
-@Repository("userDAO")
+@Repository
 public class UserDAOImpl implements UserDAO {
 	Logger log = LoggerFactory.getLogger("UserDAOImpl.class");
 	// require session factory
@@ -46,13 +46,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public List<User1> list() {
-		log.debug("Starting of the method list");
-		@SuppressWarnings("unchecked")
-		List<User1> list = (List<User1>) sessionFactory.getCurrentSession()
-				.createCriteria(User1.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-	   log.debug("Ending of the method list");
-		return list;
+		String hql = "from User1";
+        Query query =	sessionFactory.getCurrentSession().createQuery(hql);
+        return query.list();	
 	}
 	                                                                                        /*String hql = "from User11";
 	                                                       Query query =	sessionFactory.getCurrentSession().createQuery(hql);
@@ -138,14 +134,14 @@ public User1 getUserDetails()
 public boolean save(User1 user) {
 	log.debug("Starting of the method : saveOrUpdate ");
 	try {
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		sessionFactory.getCurrentSession().save(user);
+		log.debug("Ending of the method : save ");
 	} catch (HibernateException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		return false;
 	}
 	
-	log.debug("Ending of the method : saveOrUpdate ");
 	return true;
 }
 
@@ -172,13 +168,14 @@ public boolean update(User1 user) {
 	log.debug("Starting of the method : Update ");
 	try {
 		sessionFactory.getCurrentSession().update(user);
+		log.debug("Ending of the method : Update ");
 	} catch (HibernateException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		return false;
 	}
 	
-	log.debug("Ending of the method : Update ");
+	
 	return true;
 }
 

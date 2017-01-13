@@ -10,16 +10,29 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
 
+.bg {
+    /* The image used */
+    background-image: url('img_girl.jpg');
 
+    /* Full height */
+    height: 100%; 
 
-     
-
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 </style>
 </head>
 <body>
+<div class="bg"></div>
 Please Login
 ${msg}
 <form action="validate">

@@ -1,8 +1,6 @@
 package com.niit.shoppingcart;
 
-
-
-
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ public class UserDAOTestCase {
 public static void init()
 {
 	context = new AnnotationConfigApplicationContext();
-	
+	//userDAO.validate("Chirutha", "Chirutha");
 	context.scan("com.niit.shoppingcart");
 	context.refresh();
 	
@@ -39,52 +37,75 @@ public static void init()
 }
 
 
-
+@Before
 @Test
 public void getUserTestCase()
-{ //user=userDAO.get("NIITPV");  
- //assert statements
-System.out.println("UID IS"+user.getId());
-Assert.assertEquals("User Test Case ","arpita2",user.getId());// niit is expected whereas user.getName() will give the entered actual input.
-//Assert.assertNotNull("getUserTestCase", user);// userDAO must not return null object.
+{
+	
+	//user = userDAO.get("Chirutha");
+	System.out.println("UID IS"+user.getId());
+	Assert.assertEquals("user Test Case ","Chirutha",user.getId());
+	
+	
+	//Assert statements
+ // Assert.assertEquals("getUserTestCase","Chirutha", user.getId());
+	
 }
+@Before
 @Test
 public void validateCredentials()
 {
-	//user= userDAO.validate("arpit", "sai");
-	//System.out.println("uide is"+user.getPassword());
-	Assert.assertNotNull("validate test case",userDAO.validate("arpita2", "sai"));
-	System.out.println("uide is"+user.getPassword());
-	
+//user=	userDAO.validate("Chirutha", "Chirutha");
+ Assert.assertNotNull("validateCredentials", userDAO.validate("Chirutha", "Chirutha"));
 }
 
+
+@Before
+@Test
 public void getAllUsersTestCase()
- {
-	int size = userDAO.list().size();
-	Assert.assertEquals("length check",1,size);
- }
+{
+ int size=	userDAO.list().size();
+ Assert.assertEquals(" length check ", 1 , size);
+ 
+ 
+}
+
+@Before
 @Test
 public void saveTestCase()
 {
 	
-	user.setId("arpita2");
-	user.setName("arpita");
-	user.setContact("987256478");
-	user.setMail("sai@gmail.com");
-	user.setPassword("sai");
-	user.setRole("admin");
-	Assert.assertEquals("saveTestCase", true, userDAO.save(user));
+	//you have create /insert new row in db
+	//provide values for user
 	
-}// abbas886@yahoo.com
+	user.setId("Chirutha");
+	user.setName("Chirutha");
+	user.setContact("989898989");
+	user.setMail("Chirutha@gmila.com");
+	user.setPassword("Chirutha");
+	user.setRole("ROLE_USER");
+	
+	
+ Assert.assertEquals("saveTestCase", true, 	userDAO.save(user));
+	
+}
+
+@Before
 @Test
 public void updateTestCase()
 {
-	// giving id is mandatory as it is primary key.
 	
-	user= userDAO.get("arpita2");
+	{
+		
+		
+		user = userDAO.get("Chirutha");
+		
+		user.setMail("Sai@yahoo.com");
+		
+	 Assert.assertEquals("updateTestCase", true, 	userDAO.update(user));
+		
+		
+	}
 	
-	user.setRole("customer");
-	Assert.assertEquals("updateTestCase", true, userDAO.update(user));
 	
-}
-}
+}}

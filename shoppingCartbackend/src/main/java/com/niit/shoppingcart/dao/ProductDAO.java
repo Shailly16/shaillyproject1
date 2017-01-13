@@ -11,10 +11,15 @@ public List<Product1> list();
 	
 public Product1 get(String id);
 		
-public Product1 validate(String id);
-		
-public boolean save(Product1 Product1); 
 
-public boolean update(Product1 Product1);
+		
+public Product1 getProductByName(String name) ;
+
+public boolean save(Product1 product); 
+
+
+public boolean update(Product1 product);
+public void delete(String id) ;
+public Product1 getProductDetails();
 
 }

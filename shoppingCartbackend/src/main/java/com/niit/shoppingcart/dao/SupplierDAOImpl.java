@@ -1,8 +1,8 @@
-package com.niit.shoppingcart.daoimpl;
+package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -17,12 +17,12 @@ import com.niit.shoppingcart.model.Supplier1;
 
 
 
-@Repository("supplierDAO")
+@Repository
 public class SupplierDAOImpl implements SupplierDAO {
 	
-  Logger log = LoggerFactory.getLogger(SupplierDAOImpl.class);
+  Logger log = LoggerFactory.getLogger("SupplierDAOImpl.class");
 	
-	//Logger log = LoggerFactory.getLogger("com.niit.shopingcart.dao.SupplierDAOImpl");
+	//Logger log = LoggerFactory.getLogger("com.niit.shopingcart.daoimpl.SupplierDAOImpl");
   
 	 
 	@Autowired
@@ -51,12 +51,10 @@ public class SupplierDAOImpl implements SupplierDAO {
 	@Transactional
 	public List<Supplier1> list() {
 		log.debug("Starting of the method list");
-		@SuppressWarnings("unchecked")
-		List<Supplier1> list = (List<Supplier1>) sessionFactory.getCurrentSession()
-				.createCriteria(Supplier1.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-	   log.debug("Ending of the method list");
-		return list;
+		String hql = "from User1";
+        Query query =	sessionFactory.getCurrentSession().createQuery(hql);
+        log.debug("Ending of the method list");
+	   return query.list();
 	}
 
 	@Transactional
@@ -65,7 +63,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		try {
 			sessionFactory.getCurrentSession().save(supplier);
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		}
@@ -80,7 +78,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		try {
 			sessionFactory.getCurrentSession().update(supplier);
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		}
@@ -92,9 +90,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public void delete(String id) {
 		log.debug("Starting of the method : delete ");
 		try {
-			Supplier1 user = new Supplier1();
-			user.setId(id);
-			sessionFactory.getCurrentSession().delete(user);
+			Supplier1 supplier = new Supplier1();
+			supplier.setId(id);
+			sessionFactory.getCurrentSession().delete(supplier);
 			log.debug("Ending of the method : delete ");
 		} catch (HibernateException e) {
 			log.error("Not able to delete the record:" + e.getMessage());
@@ -106,7 +104,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public Supplier1 get(String id) {
 		log.debug("Starting of the method : get ");
 		String hql = "from Supplier1 where id=" + "'"+ id+"'";
-		System.out.println(id);
+		System.out.println(hql);
 		return (Supplier1)sessionFactory.getCurrentSession().get(Supplier1.class, id);
 		
 		
@@ -116,7 +114,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public Supplier1 getSupplierByName(String name) {
 		log.debug("Starting of the method : getSupplierByName ");
 		String hql = "from Supplier1 where name1=" + "'"+ name+"'";
-		System.out.println(name);
+		System.out.println(hql);
 		return (Supplier1)sessionFactory.getCurrentSession().get(Supplier1.class, name);
 		
 		

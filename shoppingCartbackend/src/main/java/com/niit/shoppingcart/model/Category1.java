@@ -2,6 +2,8 @@ package com.niit.shoppingcart.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -9,26 +11,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
-@Entity
+//@Entity
+@Embeddable
 @Table
-@Component
+@Component(value="category1")
 public class Category1 
 {
-	@Id
+	
 	private String id;
 	private String name;
 	private String description;
-    public Set<Product1> product;
+    public Set<Product1> products;
 	
 	@OneToMany(mappedBy="Category1",fetch=FetchType.EAGER)
-	public Set<Product1> getProduct() {
-		return product;
+	public Set<Product1> getProducts() {
+		return products;
 	}
-	public void setProduct(Set<Product1> product) {
-		this.product = product;
+	public void setProducts(Set<Product1> products) {
+		this.products = products;
 	}
-
+	@Id
+	@Column(name="id")
 	public String getId() {
 		return id;
 	}
