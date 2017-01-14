@@ -37,7 +37,7 @@ public static void init()
 }
 
 
-@Before
+
 @Test
 public void getUserTestCase()
 {
@@ -51,7 +51,7 @@ public void getUserTestCase()
  // Assert.assertEquals("getUserTestCase","Chirutha", user.getId());
 	
 }
-@Before
+
 @Test
 public void validateCredentials()
 {
@@ -60,7 +60,7 @@ public void validateCredentials()
 }
 
 
-@Before
+
 @Test
 public void getAllUsersTestCase()
 {
@@ -70,7 +70,7 @@ public void getAllUsersTestCase()
  
 }
 
-@Before
+
 @Test
 public void saveTestCase()
 {
@@ -90,7 +90,7 @@ public void saveTestCase()
 	
 }
 
-@Before
+
 @Test
 public void updateTestCase()
 {

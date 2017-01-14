@@ -17,7 +17,7 @@ import com.niit.shoppingcart.model.Supplier1;
 
 
 
-@Repository
+@Repository("supplierDAOImpl")
 public class SupplierDAOImpl implements SupplierDAO {
 	
   Logger log = LoggerFactory.getLogger("SupplierDAOImpl.class");
@@ -48,11 +48,12 @@ public class SupplierDAOImpl implements SupplierDAO {
 		
 	}
 
+	
 	@Transactional
 	public List<Supplier1> list() {
 		log.debug("Starting of the method list");
-		String hql = "from User1";
-        Query query =	sessionFactory.getCurrentSession().createQuery(hql);
+		String hql = "from Supplier1";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
         log.debug("Ending of the method list");
 	   return query.list();
 	}
@@ -62,12 +63,13 @@ public class SupplierDAOImpl implements SupplierDAO {
 		log.debug("Starting of the method : save ");
 		try {
 			sessionFactory.getCurrentSession().save(supplier);
+			log.debug("Ending of the method : save ");
 		} catch (HibernateException e) {
 			
 			e.printStackTrace();
 			return false;
 		}
-		log.debug("Ending of the method : save ");
+		
 		return true;
 		
 	}
@@ -77,12 +79,13 @@ public class SupplierDAOImpl implements SupplierDAO {
 		log.debug("Starting of the method : save ");
 		try {
 			sessionFactory.getCurrentSession().update(supplier);
+			log.debug("Ending of the method : save ");
 		} catch (HibernateException e) {
 			
 			e.printStackTrace();
 			return false;
 		}
-		log.debug("Ending of the method : save ");
+		
 		return true;
 	}
 	

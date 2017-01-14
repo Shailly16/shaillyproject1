@@ -14,16 +14,16 @@ import org.springframework.stereotype.Component;
 //@Entity
 @Embeddable
 @Table
-@Component(value="category1")
+@Component
 public class Category1 
 {
-	
+	@Id
 	private String id;
 	private String name;
 	private String description;
-    public Set<Product1> products;
+    private Set<Product1> products;
 	
-	@OneToMany(mappedBy="Category1",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="category1",fetch=FetchType.EAGER)
 	public Set<Product1> getProducts() {
 		return products;
 	}
@@ -31,7 +31,7 @@ public class Category1
 		this.products = products;
 	}
 	@Id
-	@Column(name="id")
+	@Column(name="ID")
 	public String getId() {
 		return id;
 	}

@@ -40,11 +40,18 @@ public class ProductDAOTestCase {
 	{ //product=productDAO.get("NIITPV");  
 	 //assert statements
 	System.out.println("UID IS"+product.getId());
-	Assert.assertEquals("Product Test Case ","BZ001",product.getId());// niit is expected whereas product.getName() will give the entered actual input.
-	//Assert.assertNotNull("getProductTestCase", product);// productDAO must not return null object.
+	Assert.assertEquals("Product Test Case ","BZ001",product.getId());
 	}
 	
-	@Before
+	
+	@Test
+	public void getAllProductTestCase()
+	 {
+		int size = productDAO.list().size();
+		Assert.assertEquals("length check",8,size);
+	 }
+	
+	
 	@Test
 	public void saveTestCase()
 	{
@@ -56,10 +63,11 @@ public class ProductDAOTestCase {
 		product.setCategory_id("LP001");
 		product.setSupplier_id("RA002");
 		product.setStock("200");
-		Assert.assertEquals("saveTestCase", true, productDAO.save(product));
+		
+	    Assert.assertEquals( true, productDAO.save(product));
 		
 	}
-	@Before
+	
 	@Test
 	public void updateTestCase()
 	{
@@ -68,20 +76,13 @@ public class ProductDAOTestCase {
 		product= productDAO.get("BZ001");
 		
 		product.setStock("130");
-		Assert.assertEquals("updateTestCase", true, productDAO.update(product));
+		Assert.assertEquals( true, productDAO.update(product));
 		
 	}
 	
 
 
 	
-	@Before
-	@Test
-	public void getAllProductTestCase()
-	 {
-		int size = productDAO.list().size();
-		Assert.assertEquals("length check",1,size);
-	 }
 	
 }
 	

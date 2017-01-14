@@ -2,7 +2,7 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -19,7 +19,7 @@ import com.niit.shoppingcart.model.Category1;
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
 	
-  Logger log = LoggerFactory.getLogger(CategoryDAOImpl.class);
+  Logger log = LoggerFactory.getLogger("CategoryDAOImpl.class");
 	
 	//Logger log = LoggerFactory.getLogger("com.niit.shopingcart.dao.CategoryDAOImpl");
   
@@ -49,14 +49,18 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Transactional
 	public List<Category1> list() {
-		log.debug("Starting of the method list");
-		@SuppressWarnings("unchecked")
-		List<Category1> list = (List<Category1>) sessionFactory.getCurrentSession()
-				.createCriteria(Category1.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-	   log.debug("Ending of the method list");
-		return list;
+		String hql = "from Category1";
+        Query query =	sessionFactory.getCurrentSession().createQuery(hql);
+        return query.list();
 	}
+	
+	@Transactional
+	public void saveOrUpdate(Category1 category) {
+		log.debug("Starting of the method : saveOrUpdate ");
+		sessionFactory.getCurrentSession().saveOrUpdate(category);
+		log.debug("Ending of the method : saveOrUpdate ");
+	}
+	
 
 	@Transactional
 	public boolean save(Category1 category) {
@@ -107,37 +111,24 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public Category1 get(String id) {
 		log.debug("Starting of the method : get ");
 		String hql = "from Category1 where id=" + "'"+ id+"'";
-		System.out.println(id);
-		return (Category1)sessionFactory.getCurrentSession().get(Category1.class, id);
-		
-		
-	}
-	
-	@Transactional
-	public Category1 getCategoryByName(String name) {
-		log.debug("Starting of the method : getCategoryByName ");
-		String hql = "from Category1 where name1=" + "'"+ name+"'";
-		System.out.println(name);
-		return (Category1)sessionFactory.getCurrentSession().get(Category1.class, name);
-		
-		
-	}
-		
-	
-	
-	public Category1 getCategoryDetails()
-	{
-		String hql = "from Category1";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
+		Query query =sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("hql"+hql);
 		@SuppressWarnings("unchecked")
 		List<Category1> list = (List<Category1>) query.list();
 		
 		if (list != null && !list.isEmpty()) {
 			return list.get(0);
 		}
-		
+		log.debug("end get");
 		return null;
+		
+	}
+	
+	
+	
+	
+	
+		
 		
 	}
 
@@ -145,7 +136,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	
 	
-}
+
 
 
 

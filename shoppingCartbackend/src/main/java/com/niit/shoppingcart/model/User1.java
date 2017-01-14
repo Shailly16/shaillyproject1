@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component(value="user1")
 public class User1 
 {
-	@Id
+	
 	
 	private String id;
 	private String name;
@@ -23,7 +23,8 @@ public class User1
 	private String mail;
 	private String contact;
 	private String role;
-	
+	@Id
+	@Column(name= "id")
     public String getId() {
 		
 		return id;

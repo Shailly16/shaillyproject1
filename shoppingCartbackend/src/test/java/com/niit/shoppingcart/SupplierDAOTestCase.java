@@ -33,22 +33,15 @@ public class SupplierDAOTestCase {
 		supplierDAO =(SupplierDAO)context.getBean("supplierDAOImpl");
 
 	}
-	@Before
+	
 	@Test
 	public void getSupplierTestCase()
-	{ //supplier=supplierDAO.get("NIITPV");  
+	{ 
 	 //assert statements
 	System.out.println("UID IS"+supplier.getId());
-	Assert.assertEquals("Supplier Test Case ","BZ001",supplier.getId());// niit is expected whereas supplier.getName() will give the entered actual input.
-	//Assert.assertNotNull("getSupplierTestCase", supplier);// supplierDAO must not return null object.
+	Assert.assertEquals("RA002",supplier.getId());
 	}
-	@Before
-	@Test
-	public void getAllSupplierTestCase()
-	 {
-		int size = supplierDAO.list().size();
-		Assert.assertEquals("length check",1,size);
-	 }
+	
 	@Before
 	@Test
 	public void saveTestCase()
@@ -58,10 +51,21 @@ public class SupplierDAOTestCase {
 		supplier.setName("MAC_Beauty");
 		supplier.setAddress(" House No.1,25Street,Boston,USA_201036 ");
 		
-		Assert.assertEquals("saveTestCase", true, supplierDAO.save(supplier));
+		Assert.assertEquals( true, supplierDAO.save(supplier));
 		
 	}
-	@Before
+	
+	
+	
+	@Test
+	public void getAllSupplierTestCase()
+	 {
+		
+		int size=supplierDAO.list().size();
+		Assert.assertEquals("length check",1,size);
+	 }
+	
+	
 	@Test
 	public void updateTestCase()
 	{
@@ -70,7 +74,7 @@ public class SupplierDAOTestCase {
 		supplier= supplierDAO.get("RA002");
 		
 		supplier.setName("Glow_House");
-		Assert.assertEquals("updateTestCase", true, supplierDAO.update(supplier));
+		Assert.assertEquals( true, supplierDAO.update(supplier));
 		
 	}
 	}

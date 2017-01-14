@@ -2,7 +2,7 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -113,7 +113,7 @@ public User1 getUserByName(String name) {
 	                                                    return true;	// if statement is successful return true , hence false*/
 	
 
-
+@Transactional
 public User1 getUserDetails()
 { 
 	String hql = "from User1";

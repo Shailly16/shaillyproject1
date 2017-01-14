@@ -19,9 +19,9 @@ import com.niit.shoppingcart.model.Product1;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 	
-  Logger log = LoggerFactory.getLogger("Product1.class");
+  Logger log = LoggerFactory.getLogger("ProductDAOImpl.class");
 	
-	//Logger log = LoggerFactory.getLogger("com.niit.shopingcart.dao.ProductDAOImpl");
+	//Logger log = LoggerFactory.getLogger("com.niit.shoppingcart.dao.ProductDAOImpl");
   
 	 
 	@Autowired

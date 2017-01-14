@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Embeddable
 @Table
-@Component(value="product1")
+@Component
 public class Product1 
 {
 	@Id

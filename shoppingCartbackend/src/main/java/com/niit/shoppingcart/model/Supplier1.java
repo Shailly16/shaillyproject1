@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Embeddable
 @Table
-@Component(value="supplier1")
+@Component
 public class Supplier1 
 {
 	
@@ -27,6 +28,7 @@ public class Supplier1
 	public Set<Product1> products;
 	
 	@OneToMany(mappedBy="supplier1",fetch=FetchType.EAGER)
+	
 	public Set<Product1> getProducts() {
 		return products;
 	}
@@ -34,7 +36,8 @@ public class Supplier1
 		this.products = products;
 	}
 	@Id
-	@Column(name="id")
+	@Column(name="Id")
+	@GeneratedValue
 	public String getId() {
 		return id;
 	}
