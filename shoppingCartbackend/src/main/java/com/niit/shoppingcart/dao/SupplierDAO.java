@@ -10,10 +10,10 @@ public List<Supplier1> list();
 	
 public Supplier1 get(String id);
 	
-public void delete(String id) ;
-public Supplier1 getSupplierByName(String name);
+public boolean delete(String id) ;
+public Supplier1 getByName(String name);
 public Supplier1 getSupplierDetails();
-	
+public void saveOrUpdate(Supplier1 supplier);	
 public boolean save(Supplier1 supplier); 
 
 public boolean update(Supplier1 supplier);

@@ -8,35 +8,14 @@
 <title>shopping cart</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Bellezza</a>
-    </div>
-    <div class="collapse navbar-collapse" id="MyNavbar">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">100% Genuine</a></li>
-      <li class="dropdown"><a href="#">Easy Returns</a>
-       
-      </li>
-      <li><a href="#">Best Brands</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-  
-      <li><a href="login1"><span class="glyphicon glyphicon-user"></span>Login</a></li>
-      <li><a href="Registeration"><span class="glyphicon glyphicon-registration-mark"></span>Register</a></li>
-    </ul>
-   
-    </div>
-    </div>
-    </nav>
 
 
 
-${successMsg}
-
+<c:if test="${!empty successMsg}">
+<div class="alert alert-success">${successMsg}</div>   
+</c:if>
 <c:if test="${not empty errorMsg}">
-    ${errorMsg}
+<div class="alert alert-error">${errorMsg}</div> 
 <jsp:include page="login1.jsp"></jsp:include>
 </c:if>
 <c:if test="${showLoginPage}">
@@ -44,6 +23,20 @@ ${successMsg}
 </c:if>
 <c:if test="${showRegisterPage}">
 <jsp:include page="Registeration.jsp"></jsp:include>
+</c:if>
+<c:if test="${!empty selectedProduct.name}">
+<%@ include file="./selectedProduct.jsp" %>
+</c:if>
+<c:if test="${isAdmin==true}">
+<%@ include file="./admin/admin.jsp" %>
+</c:if>
+<c:if test="${isAdminClickedCategories==true}">
+<%@ include file="./admin/admin.jsp" %>
+<%@ include file="./admin/category.jsp" %>
+</c:if>
+<c:if test="${isAdminClickedCategories==true}">
+<%@ include file="./admin/admin.jsp" %>
+<%@ include file="./admin/product.jsp" %>
 </c:if>
 </body>
 </html>

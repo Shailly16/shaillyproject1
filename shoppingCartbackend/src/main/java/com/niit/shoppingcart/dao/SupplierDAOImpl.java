@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.SupplierDAO;
+import com.niit.shoppingcart.model.Product1;
 import com.niit.shoppingcart.model.Supplier1;
 
 
@@ -90,7 +91,15 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 	
 	@Transactional
-	public void delete(String id) {
+	public void saveOrUpdate(Supplier1 supplier) {
+		log.debug("Starting of the method : saveOrUpdate ");
+		sessionFactory.getCurrentSession().save(supplier);
+			log.debug("Ending of the method : saveOrUpdate ");
+		} 
+	
+	
+	@Transactional
+	public boolean delete(String id) {
 		log.debug("Starting of the method : delete ");
 		try {
 			Supplier1 supplier = new Supplier1();
@@ -100,7 +109,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 		} catch (HibernateException e) {
 			log.error("Not able to delete the record:" + e.getMessage());
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	@Transactional
@@ -114,7 +125,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 	
 	@Transactional
-	public Supplier1 getSupplierByName(String name) {
+	public Supplier1 getByName(String name) {
 		log.debug("Starting of the method : getSupplierByName ");
 		String hql = "from Supplier1 where name1=" + "'"+ name+"'";
 		System.out.println(hql);

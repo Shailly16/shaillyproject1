@@ -33,9 +33,22 @@ public class Product1
 	@ManyToOne
 	@JoinColumn(name="Category_id", updatable=false, insertable=false, nullable=false)
 	private Category1 category;
+	public Category1 getCategory() {
+		return category;
+	}
+	public void setCategory(Category1 category) {
+		this.category = category;
+	}
 	@ManyToOne
 	@JoinColumn(name="Supplier_id", updatable=false, insertable=false,nullable=false)
 	private Supplier1 supplier;
+	public Supplier1 getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Supplier1 supplier) {
+		this.supplier = supplier;
+	}
+	
 	private String stock;
 	public String getId() {
 		return id;

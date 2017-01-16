@@ -27,6 +27,7 @@ import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.MyCart;
+import com.niit.shoppingcart.model.Product1;
 import com.niit.shoppingcart.model.Category1;
 import com.niit.shoppingcart.model.Supplier1;
 import com.niit.shoppingcart.model.User1;
@@ -34,7 +35,7 @@ import com.niit.shoppingcart.model.User1;
 @Controller
 public class UserController {
 
-	public static Logger log = LoggerFactory.getLogger(UserController.class);
+	public static Logger log = LoggerFactory.getLogger("UserController.class");
 
 	@Autowired
 	UserDAO userDAO;
@@ -63,6 +64,9 @@ public class UserController {
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private Product1 product;
 
 	/**
 	 * if invalid credentials -> Home page , login , error message if valid

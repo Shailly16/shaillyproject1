@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.model.Category1;
+import com.niit.shoppingcart.model.Category1;
 
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
@@ -94,7 +95,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 	
 	@Transactional
-	public void delete(String id) {
+	public boolean delete(String id) {
 		log.debug("Starting of the method : delete ");
 		try {
 			Category1 category = new Category1();
@@ -104,7 +105,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		} catch (HibernateException e) {
 			log.error("Not able to delete the record:" + e.getMessage());
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	@Transactional
@@ -123,6 +126,18 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return null;
 		
 	}
+	
+	@Transactional
+	public Category1 getByName(String name) {
+		log.debug("Starting of the method : getCategoryByName ");
+		String hql = "from Category1 where name1=" + "'"+ name+"'";
+		System.out.println(hql);
+		return (Category1)sessionFactory.getCurrentSession().get(Category1.class, name);
+		
+		
+	}
+		
+	
 	
 	
 	

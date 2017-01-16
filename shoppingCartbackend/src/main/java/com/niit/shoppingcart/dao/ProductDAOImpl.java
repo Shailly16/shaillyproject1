@@ -65,7 +65,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Transactional
-	public Product1 getProductByName(String name) {
+	public Product1 getByName(String name) {
 		log.debug("Starting of the method : getProductByName ");
 		String hql = "from Product1 where name1=" + "'"+ name+"'";
 		System.out.println(name);
@@ -92,6 +92,14 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Transactional
+	public void saveOrUpdate(Product1 product) {
+		log.debug("Starting of the method : save ");
+		sessionFactory.getCurrentSession().save(product);
+		log.debug("Ending of the method : save ");
+		} 
+	
+	
+	@Transactional
 	public boolean update(Product1 product) {
 		log.debug("Starting of the method : save ");
 		try {
@@ -107,7 +115,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Transactional
-	public void delete(String id) {
+	public boolean delete(String id) {
 		log.debug("Starting of the method : delete ");
 		try {
 			Product1 product = new Product1();
@@ -117,7 +125,9 @@ public class ProductDAOImpl implements ProductDAO {
 		} catch (HibernateException e) {
 			log.error("Not able to delete the record:" + e.getMessage());
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	
@@ -140,7 +150,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 
-	
 	
 
 
