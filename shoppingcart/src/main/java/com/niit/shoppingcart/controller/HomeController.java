@@ -22,7 +22,7 @@ import com.niit.shoppingcart.model.User1;
 @Controller
 public class HomeController {
 
-	Logger log = LoggerFactory.getLogger(HomeController.class);
+	Logger log=LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	User1 user;

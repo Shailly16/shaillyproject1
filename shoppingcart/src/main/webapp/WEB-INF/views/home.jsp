@@ -8,21 +8,27 @@
 <title>shopping cart</title>
 </head>
 <body>
-
-
-
+<c:if test="${!empty logoutMessage}">
+<div class="alert alert-success">${logoutMessage}</div>   
+</c:if>
 <c:if test="${!empty successMsg}">
-<div class="alert alert-success">${successMsg}</div>   
+<div class="alert alert-success">${successMessage}</div>   
 </c:if>
 <c:if test="${not empty errorMsg}">
-<div class="alert alert-error">${errorMsg}</div> 
+<div class="alert alert-error">${errorMessage}</div> 
 <jsp:include page="login1.jsp"></jsp:include>
 </c:if>
 <c:if test="${showLoginPage}">
 <jsp:include page="login1.jsp"></jsp:include>
 </c:if>
 <c:if test="${showRegisterPage}">
-<jsp:include page="Registeration.jsp"></jsp:include>
+<jsp:include page="./Registeration.jsp"></jsp:include>
+</c:if>
+<c:if test="${isUserClickedHere==true}">
+<%@ include file="./Registeration.jsp" %>
+</c:if>
+<c:if test="${isUserClickedHere==true || invalidCredentials==true}">
+<%@ include file="./login1.jsp" %>
 </c:if>
 <c:if test="${!empty selectedProduct.name}">
 <%@ include file="./selectedProduct.jsp" %>
@@ -34,9 +40,13 @@
 <%@ include file="./admin/admin.jsp" %>
 <%@ include file="./admin/category.jsp" %>
 </c:if>
-<c:if test="${isAdminClickedCategories==true}">
+<c:if test="${isAdminClickedProducts==true}">
 <%@ include file="./admin/admin.jsp" %>
 <%@ include file="./admin/product.jsp" %>
+</c:if>
+<c:if test="${isAdminClickedSuppliers==true}">
+<%@ include file="./admin/admin.jsp" %>
+<%@ include file="./admin/supplier.jsp" %>
 </c:if>
 </body>
 </html>

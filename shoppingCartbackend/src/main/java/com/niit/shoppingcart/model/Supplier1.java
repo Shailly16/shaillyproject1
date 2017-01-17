@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,10 +25,10 @@ public class Supplier1
 	
 	private String name;
 	private String address; 
-	public Set<Product1> products;
+	
 	
 	@OneToMany(mappedBy="supplier1",fetch=FetchType.EAGER)
-	
+	private Set<Product1> products;
 	public Set<Product1> getProducts() {
 		return products;
 	}

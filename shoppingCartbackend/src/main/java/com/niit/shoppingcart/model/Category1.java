@@ -21,9 +21,10 @@ public class Category1
 	private String id;
 	private String name;
 	private String description;
-    private Set<Product1> products;
+    
 	
 	@OneToMany(mappedBy="category1",fetch=FetchType.EAGER)
+	private Set<Product1> products;
 	public Set<Product1> getProducts() {
 		return products;
 	}
