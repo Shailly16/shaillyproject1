@@ -18,7 +18,7 @@ import com.niit.shoppingcart.model.Supplier1;
 
 
 
-@Repository("supplierDAOImpl")
+@Repository
 public class SupplierDAOImpl implements SupplierDAO {
 	
   Logger log = LoggerFactory.getLogger("SupplierDAOImpl.class");

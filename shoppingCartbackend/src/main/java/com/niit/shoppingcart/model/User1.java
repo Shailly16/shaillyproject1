@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -15,13 +19,18 @@ public class User1
 	
 	
 	private String id;
+	@NotBlank(message="Enter UserName")
 	private String name;
-	//@Min(5)
-	//@Max(5)
+	@Min(15)
+	@Max(15)
+	@NotBlank(message="Specify Password")
 	private String password;
 	@Column(unique=true,nullable=false)
+	@NotBlank(message="Specify Email")
 	private String mail;
+	@NotBlank(message="Specify Contact")
 	private String contact;
+	@NotBlank(message="Specify Role")
 	private String role;
 	@Id
 	@Column(name= "id")

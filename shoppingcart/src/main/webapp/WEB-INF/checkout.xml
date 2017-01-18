@@ -1,0 +1,31 @@
+<on-start>
+<evaluatew	expression="orderWebflow.initflow()" result="flowScope.order"/>
+</on-start>
+<view-state id="flowExecutor" view="user/shippingAddress" model="shippingAddress">
+<transition on="submitShippingAddress" to="shippingDetails"/>
+</view-state>
+<action-state id="shippingDetails">
+<evaluate expression="orderWebflow.addShippingAddress(flowScope.order,shippingAddress)"></evaluate>
+<transition on="success" to="viewBillingDetails"/>
+</action-state>
+<view-state id="viewBillingDetails" view="user/billingAddress" model="billingAddress">
+<transition on="submitBillingAddress" to="billingDetails"/>
+<transition on="backToShippingAddress" to="cart_checkout"/>
+</view-state>
+<action-state id="billingDetails">
+<evaluate
+    expression="orderWebflow.addShippingAddress(flowScope.order,billingAddress)"></evaluate>
+<transition on="success" to="viewPaymentDetails"/>
+</action-state>
+<view-state id="viewPaymentDetails" view="user/payment" model="paymentMethod">
+<transition on="submitpaymentMethod" to="paymentDetails"/>
+</view-state>
+<action-state id="PaymentDetails">
+<evaluate
+    expression="orderWebflow.addShippingAddress(flowScope.order,paymentMethod)"></evaluate>
+<transition on="success" to="orderConfirm"/>
+</action-state>
+<view-state id="orderConfirm" view="user/orderConfirmed" model="order">
+<transition on="finalHome" to="toHome"/>
+</view-state>
+<end-state id="toHome" view="externalRedirect:contextRelative:/"/>

@@ -4,9 +4,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Shipping Address</title>
 </head>
 <body>
+<div class = fluid-container>
+<h1>Shipping Address</h1>
+
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">Line1</label>
+<div class="col-sm-10">
+<form:errors path="line1" class="error"/>
+<form:input path="line1" type="text" class="form-control"/>
+</div>
+</div>
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">Line2</label>
+<div class="col-sm-10">
+<form:errors path="line2" class="error"/>
+<form:input path="line2" type="text" class="form-control"/>
+</div>
+</div>
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">City</label>
+<div class="col-sm-10">
+<form:errors path="city" class="error"/>
+<form:input path="city" type="text" class="form-control" required="true"/>
+</div>
+</div>
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">State</label>
+<div class="col-sm-10">
+<form:errors path="state" class="error"/>
+<form:input path="state" type="text" class="form-control" required="true"/>
+</div>
+</div>
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">Country</label>
+<div class="col-sm-10">
+<form:errors path="country" class="error"/>
+<form:input path="country" type="text" class="form-control" required="true"/>
+</div>
+</div>
+<div class = "form-group">
+<label for="" class="control-label col-sm-2">Zip code</label>
+<div class="col-sm-10">
+<form:errors path="zipCode" class="error"/>
+<form:input path="zipCode" type="text" pattern="^{1,9}"class="form-control"/>
+</div>
+</div>
+<div class="col-md-offset-3">
+<input type="submit" name="_eventId_submitShippingAddress" class="btn btn-md btn-success" value="Save">
+<input type="submit" name="_eventId_cancel" class="btn btn-md btn-danger" value="Cancel"></div>
+
+</div>
+</div>
+</div>
 
 </body>
 </html>

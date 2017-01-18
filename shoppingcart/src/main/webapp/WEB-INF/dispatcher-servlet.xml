@@ -16,5 +16,19 @@
  <property name="suffix">
     <value>.jsp</value>
  </property>
+ <webflow:flow-executor id="flowExecutor">
+ <webflow:flow-registry id="flowRegistry"
+    flow-builder-services="flowBuilderServices" base-path="/WEB-INF">
+ <webflow:flow-location id="cart_checkout" path="/checkout.xml"/>
+ </webflow:flow-registry>
+ <webflow:flow-builder-services id="flowBuilderServices"
+    view-factory-creator="viewFactoryCreator"/>
+ <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+   <property name="flowExecutor" ref="flowExecutor"/>
+ </bean>
+  <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+   <property name="flowRegistry" ref="flowRegistry"/>
+   </bean>
+   </webflow:flow-executor>
  </bean>
 </beans>

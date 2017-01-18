@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:set var="imagefolder" value="/resource/img/" />
+<table>
+<tr>
+<td><img alt="${selectedProduct.name}" src="${imageFolder}${selectedProduct.id}.jpg"></td>
+<td><a class="col-xs-offset-5 btn btn-lg btn-success" href="cart_checkout">Checkout</a></td>
+</tr>
+<tr>
+<td>Price:${selectedProduct.price}</td>
+</tr>
+<tr>
+<td><a class="icon-shopping-cart" href="myCart/add/${selectedProduct.id}">Add To Cart</a></td>
+</tr>
+</table>
 
 </body>
 </html>

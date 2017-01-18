@@ -51,7 +51,7 @@ public class SupplierDAOTestCase {
 		supplier.setName("MAC_Beauty");
 		supplier.setAddress(" House No.1,25Street,Boston,USA_201036 ");
 		
-		Assert.assertEquals( true, supplierDAO.save(supplier));
+		Assert.assertEquals( "saveTestCase", true, supplierDAO.save(supplier));
 		
 	}
 	
