@@ -1,5 +1,9 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.springframework.org/schema/webflow
+						  http://www.springframework.org/schema/webflow/spring-webflow-4.0.xsd">
 <on-start>
-<evaluatew	expression="orderWebflow.initflow()" result="flowScope.order"/>
+<evaluate expression="orderWebflow.initflow()" result="flowScope.order"/>
 </on-start>
 <view-state id="flowExecutor" view="user/shippingAddress" model="shippingAddress">
 <transition on="submitShippingAddress" to="shippingDetails"/>
@@ -28,4 +32,6 @@
 <view-state id="orderConfirm" view="user/orderConfirmed" model="order">
 <transition on="finalHome" to="toHome"/>
 </view-state>
-<end-state id="toHome" view="externalRedirect:contextRelative:/"/>
+<end-state id="toHome" view="externalRedirect:contextRelative:/">
+</end-state>
+</flow>
