@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
-import com.niit.shoppingcart.model.Category1;
+import com.niit.shoppingcart.model.Category;
 
 @Controller
 public class CategoryController {
@@ -22,7 +22,7 @@ public class CategoryController {
 	private CategoryDAO categoryDAO;
 	
 	@Autowired
-	private Category1 category;
+	private Category category;
 	
 	@RequestMapping(value="manage_categories", method = RequestMethod.GET)
 	public String listCategories(Model model){
@@ -35,9 +35,9 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="manage_categories", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute ("category") Category1 category,Model model){
+	public String addCategory(@ModelAttribute ("category") Category category,Model model){
 		log.debug("Starting of the method addCategory");
-		log.debug("id:"+ category.getId());
+		log.debug("id:"+ category.getCid());
 		if (categoryDAO.save(category)==true){
 		
 		model.addAttribute("msg", "Successfully created/updated the category");}

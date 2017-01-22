@@ -7,7 +7,15 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>shoppingcart Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
   <dependencies>
+  <dependency>
+    <groupId>org.javassist</groupId>
+    <artifactId>javassist</artifactId>
+    <version>3.19.0-GA</version>
+</dependency>
+  
+  
   <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-config</artifactId>
@@ -29,6 +37,7 @@
     <version>2.4.4.RELEASE</version>
 </dependency>
 
+
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-taglibs</artifactId>
@@ -44,16 +53,12 @@
     <artifactId>jstl-api</artifactId>
     <version>1.2</version>
 </dependency>
-<dependency>
-    <groupId>javax.servlet.jsp.jstl</groupId>
-    <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-    <version>1.2.1</version>
-</dependency>
+
 
   
   <dependency>
    <groupId>com.niit</groupId>
-  <artifactId>shoppingCartbackend</artifactId>
+  <artifactId>com.niit.shoppingCartBackend1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -98,12 +103,7 @@
     <artifactId>junit</artifactId>
     <version>4.12</version>
 </dependency>
- <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.5</version>
-    </dependency>
-    <dependency>
+<dependency>
         <groupId>jstl</groupId>
         <artifactId>jstl</artifactId>
         <version>1.2</version>

@@ -3,6 +3,7 @@
 	<name>shoppingcart</name>
 	<comment></comment>
 	<projects>
+		<project>com.niit.shoppingCartBackend1</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

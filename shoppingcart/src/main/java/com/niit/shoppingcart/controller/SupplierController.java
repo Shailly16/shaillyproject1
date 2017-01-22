@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.shoppingcart.dao.SupplierDAO;
-import com.niit.shoppingcart.model.Supplier1;
+import com.niit.shoppingcart.model.Supplier;
 
 @Controller
 public class SupplierController {
@@ -22,7 +22,7 @@ public class SupplierController {
 	private SupplierDAO supplierDAO;
 	
 	@Autowired
-	private Supplier1 supplier;
+	private Supplier supplier;
 	
 	@RequestMapping(value="manage_suppliers", method = RequestMethod.GET)
 	public String listCategories(Model model){
@@ -35,9 +35,9 @@ public class SupplierController {
 	}
 	
 	@RequestMapping(value="manage_suppliers", method = RequestMethod.POST)
-	public String addSupplier(@ModelAttribute ("supplier") Supplier1 supplier,Model model){
+	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier,Model model){
 		log.debug("Starting of the method addSupplier");
-		log.debug("id:"+ supplier.getId());
+		log.debug("id:"+ supplier.getSid());
 		if (supplierDAO.save(supplier)==true){
 		
 		model.addAttribute("msg", "Successfully created/updated the supplier");}

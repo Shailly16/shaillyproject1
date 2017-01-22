@@ -1,7 +1,6 @@
 package com.niit.shoppingcart.controller;
 
 import java.util.List;
-import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -23,25 +21,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CategoryDAO;
-import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
-import com.niit.shoppingcart.dao.UserDAO;
+import com.niit.shoppingcart.dao.userDAOImpl;
 import com.niit.shoppingcart.model.MyCart;
-import com.niit.shoppingcart.model.Product1;
-import com.niit.shoppingcart.model.Category1;
-import com.niit.shoppingcart.model.Supplier1;
-import com.niit.shoppingcart.model.User1;
+import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.model.User;
 
 @Controller
 public class UserController {
 
-	public static Logger log = LoggerFactory.getLogger("UserController.class");
+	public static Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	UserDAO userDAO;
+	userDAOImpl userDAO;
 
 	@Autowired
-	User1 user;
+	User user;
 
 	@Autowired
 	private CartDAO cartDAO;
@@ -53,20 +50,20 @@ public class UserController {
 	private CategoryDAO categoryDAO;
 
 	@Autowired
-	private Category1 category;
+	private Category category;
 
 	@Autowired
 	private SupplierDAO supplierDAO;
 
 	@Autowired
-	private Supplier1 supplier;
+	private Supplier supplier;
 
 	
 	@Autowired
 	private HttpSession session;
 	
 	@Autowired
-	private Product1 product;
+	private Product product;
 
 	/**
 	 * if invalid credentials -> Home page , login , error message if valid
@@ -153,7 +150,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute User1 user) {
+	public ModelAndView registerUser(@ModelAttribute User user) {
 		log.debug("Starting of the method registerUser");
 		ModelAndView mv = new ModelAndView("home");
 		if (userDAO.get(user.getId()) == null) {

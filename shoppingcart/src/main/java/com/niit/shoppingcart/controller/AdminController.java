@@ -10,21 +10,21 @@ package com.niit.shoppingcart.controller;
 	import com.niit.shoppingcart.dao.CategoryDAO;
 	import com.niit.shoppingcart.dao.ProductDAO;
 	import com.niit.shoppingcart.dao.SupplierDAO;
-	import com.niit.shoppingcart.model.Category1;
-	import com.niit.shoppingcart.model.Product1;
-	import com.niit.shoppingcart.model.Supplier1;
+	import com.niit.shoppingcart.model.Category;
+	import com.niit.shoppingcart.model.Product;
+	import com.niit.shoppingcart.model.Supplier;
 
 	@Controller
 	public class AdminController {
 		private static Logger log = LoggerFactory.getLogger("AdminController.class");
 		@Autowired
-		private Product1 product;
+		private Product product;
 
 		@Autowired
-		private Supplier1 supplier;
+		private Supplier supplier;
 
 		@Autowired
-		private Category1 category;
+		private Category category;
 		
 		@Autowired
 		private SupplierDAO supplierDAO;

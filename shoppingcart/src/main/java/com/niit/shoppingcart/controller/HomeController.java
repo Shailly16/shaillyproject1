@@ -14,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 
-import com.niit.shoppingcart.model.Category1;
-import com.niit.shoppingcart.model.Product1;
-import com.niit.shoppingcart.model.Supplier1;
-import com.niit.shoppingcart.model.User1;
+import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.model.User;
 
 @Controller
 public class HomeController {
@@ -25,22 +25,22 @@ public class HomeController {
 	Logger log=LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	User1 user;
+	User user;
 
 	@Autowired
 	private CategoryDAO categoryDAO;
 
 	@Autowired
-	private Category1 category;
+	private Category category;
 
 	@Autowired
 	private SupplierDAO supplierDAO;
 
 	@Autowired
-	private Supplier1 supplier;
+	private Supplier supplier;
 
 	@Autowired
-	private Product1 product;
+	private Product product;
 
 	/**
 	 * Category list will load and set to session
@@ -90,7 +90,7 @@ public class HomeController {
 
 	
 	@RequestMapping("/home")
-	public String reDirectToHome(@ModelAttribute("selectedProduct") final Product1 selectedProduct, final Model model) {
+	public String reDirectToHome(@ModelAttribute("selectedProduct") final Product selectedProduct, final Model model) {
 		log.debug("Starting of the method reDirectToHome");
 		model.addAttribute("selectedProduct", selectedProduct);
 	   /* model.addAttribute("categoryList", this.categoryDAO.list());

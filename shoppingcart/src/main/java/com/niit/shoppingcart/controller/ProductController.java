@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
-import com.niit.shoppingcart.model.Category1;
-import com.niit.shoppingcart.model.Product1;
-import com.niit.shoppingcart.model.Supplier1;
+import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Supplier;
 @Controller
 public class ProductController {
 	
@@ -26,26 +27,26 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	private ProductDAO productDAO;
 	
 	@Autowired
-	private Product1 product;
+	private Product product;
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
 	@Autowired
-	private Category1 category;
+	private Category category;
 	
 	@Autowired
-	private Supplier1 supplier;
+	private Supplier supplier;
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
 	
 	
-	@RequestMapping(value="manage_products", method = RequestMethod.GET)
+	@RequestMapping(value="/manage_products", method = RequestMethod.GET)
 	public String listProducts(Model model){
 		log.debug("Starting of the method listProducts");
 		model.addAttribute("product",  product);
-		model.addAttribute("productList", productDAO.list());
+		model.addAttribute("productList", this.productDAO.list());
 		model.addAttribute("isAdminClickedProducts", "true");
 		log.debug("End of the method listProducts");
 		return "/home";
@@ -53,19 +54,19 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 }
 	
 	@RequestMapping(value="manage_product_add", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute ("product") Product1 product, @RequestParam("image")Model model)
+	public String addProduct(@ModelAttribute ("product") Product product, @RequestParam("image") MultipartFile file,Model model)
 	{
 	log.debug("Starting of the method listProducts");
-	Category1 category = categoryDAO.getByName(product.getCategory().getName());
+	Category category = categoryDAO.getByName(product.getCategory().getName());
 	
-	Supplier1 supplier = supplierDAO.getByName(product.getSupplier().getName());
+	Supplier supplier = supplierDAO.getByName(product.getSupplier().getName());
 	
 	product.setCategory(category);
 	product.setSupplier(supplier);
 	
 	product.setCategory_id(product.getId());
-	product.setSupplier_id(supplier.getId());
-	//product.setId(com.niit.shoppingcart.util.Util.removeCommon(product.getId()));
+	product.setSupplier_id(supplier.getSid());
+	product.setId(com.niit.shoppingcart.util.Util.removeComman(product.getId()));
 	productDAO.save(product);
 	//FileUtil.upload(path,file,product.getId()+".jpg");
 	log.debug("End of the method listProducts");

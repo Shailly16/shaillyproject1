@@ -1,0 +1,90 @@
+package com.niit.shoppingcart.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.shoppingcart.dao.CartDAO;
+import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.model.MyCart;
+import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.User;
+
+@Controller
+	public class CartController {
+		private static Logger log = LoggerFactory.getLogger(CartController.class);
+		@Autowired
+		private CartDAO cartDAO;
+		
+		@Autowired
+		private MyCart myCart;
+		
+		@Autowired
+		private ProductDAO productDAO;
+		
+		@RequestMapping(value="/myCart", method = RequestMethod.GET)
+		public String listCategories(Model model,HttpSession session){
+			log.debug("Starting of the method myCart");
+			model.addAttribute("myCart", new MyCart());String loggedInUserid = (String) session.getAttribute("loggedInUserID");
+			
+			if(loggedInUserid == null){
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+				loggedInUserid = auth.getName();
+				
+			}
+			
+			
+			
+			int cartSize = cartDAO.list(loggedInUserid).size();
+			
+			if(cartSize == 0){
+			    model.addAttribute("errorMessage", "You do not have products in the Cart");}
+				else{
+				model.addAttribute("myCart", cartDAO.list(loggedInUserid));
+				model.addAttribute("totalAmount", cartDAO.getTotalAmount(loggedInUserid));
+				model.addAttribute("displayCart", new MyCart());
+			}
+				
+			    log.debug("End of the method listCategories");
+			    return "/home";}
+
+		
+          @RequestMapping(value = "/myCart/add/{id}", method = RequestMethod.GET)
+          public ModelAndView addToCart(@PathVariable("id") String id, HttpSession session) {
+	      log.debug("Starting of the method addToCart");
+	       Product product = productDAO.get(id);
+	      myCart.setPrice(product.getPrice());
+	      myCart.setProductName(product.getName());
+	      String loggedInUserid = (String) session.getAttribute("loggedInUserID");
+			
+			if(loggedInUserid == null){
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+				loggedInUserid = auth.getName();
+				
+			}
+			myCart.setId(loggedInUserid);
+			
+	        myCart.setStatus('N');
+			cartDAO.save(myCart);
+			ModelAndView mv = new ModelAndView("redirect:/home");
+			mv.addObject("successMessage", "Successfully added the product to myCart");
+			log.debug("Ending of the method addToCart");
+			return mv;
+			
+	
+		
+          }
+          
+          }
+		
