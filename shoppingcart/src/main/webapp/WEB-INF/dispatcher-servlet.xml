@@ -10,17 +10,18 @@
  http://www.springframework.org/schema/context/spring-context-4.0.xsd
  http://www.springframework.org/schema/webflow-config
  http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.xsd
- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
- 
- 
- <context:component-scan base-package="com.niit" />
+ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"> 
+
+
+<context:component-scan base-package="com.niit" />
+
  <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builderviewFactoryCreator">
  <property name="viewResolvers">
  <list>
  <ref bean="viewResolver"/>
  </list>
  </property>
- </bean>
+ </bean> 
  <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
  <property name="prefix" value="/WEB-INF/views/"/>
