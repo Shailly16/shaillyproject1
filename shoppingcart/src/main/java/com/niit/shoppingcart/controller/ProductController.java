@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
@@ -70,9 +72,10 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	productDAO.save(product);
 	//FileUtil.upload(path,file,product.getId()+".jpg");
 	log.debug("End of the method listProducts");
-	model.addAttribute("product",  product);
-	model.addAttribute("productList", productDAO.list());
+	
 	model.addAttribute("isAdminClickedProducts", "true");
+	model.addAttribute("productList", this.productDAO.list());
+	model.addAttribute("product", new Product());
 	return "/home";
 	}
 	
@@ -98,9 +101,20 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 		log.debug("Starting of the method editCategory");
 		product = productDAO.get(id);
 		
-		model.addAttribute("product",product);
+		model.addAttribute("product",new Product());
 		
 		return"forward:/manage_products";
+	}
+	
+	@RequestMapping(value="manage_product/get/{id}")
+	public ModelAndView getSelectedProduct(@PathVariable("id")String id, RedirectAttributes redirectAttribute) throws Exception
+	{
+		log.debug("Starting of the method getselectedProduct");
+		product = productDAO.get(id);
+		ModelAndView mv = new ModelAndView("redirect:/home");
+		redirectAttribute.addFlashAttribute("selectedProduct", productDAO.get(id));
+		log.debug("Ending of the method getselectedProduct");
+		return mv;
 	}
 		
 }

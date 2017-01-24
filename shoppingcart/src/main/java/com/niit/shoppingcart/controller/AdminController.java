@@ -16,7 +16,7 @@ package com.niit.shoppingcart.controller;
 
 	@Controller
 	public class AdminController {
-		private static Logger log = LoggerFactory.getLogger("AdminController.class");
+		private static Logger log = LoggerFactory.getLogger(AdminController.class);
 		@Autowired
 		private Product product;
 
@@ -40,7 +40,7 @@ package com.niit.shoppingcart.controller;
 		@RequestMapping("manage_categories")
 		public ModelAndView categories() {
 			log.debug("Starting of the method categories");
-			ModelAndView mv = new ModelAndView("home");
+			ModelAndView mv = new ModelAndView("/home");
 			mv.addObject("category", category);
 			mv.addObject("isAdminClickedCategories", "true");
 			mv.addObject("categoryList", categoryDAO.list());
@@ -51,9 +51,9 @@ package com.niit.shoppingcart.controller;
 		@RequestMapping("manage_products")
 		public ModelAndView products() {
 			log.debug("Starting of the method products");
-			ModelAndView mv = new ModelAndView("home");
+			ModelAndView mv = new ModelAndView("/home");
 			mv.addObject("isAdminClickedProducts", "true");
-			mv.addObject("product", product);
+			mv.addObject("product", new Product());
 			mv.addObject("productList", productDAO.list());
 			mv.addObject("category", category);
 			mv.addObject("categoryList", categoryDAO.list());
@@ -66,7 +66,7 @@ package com.niit.shoppingcart.controller;
 		@RequestMapping("manage_suppliers")
 		public ModelAndView suppliers() {
 			log.debug("Starting of the method suppliers");
-			ModelAndView mv = new ModelAndView("home");
+			ModelAndView mv = new ModelAndView("/home");
 			mv.addObject("supplier", supplier);
 			mv.addObject("isAdminClickedSuppliers", "true");
 			mv.addObject("supplierList", supplierDAO.list());
