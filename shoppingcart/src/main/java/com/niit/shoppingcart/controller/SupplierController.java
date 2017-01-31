@@ -24,7 +24,7 @@ public class SupplierController {
 	@Autowired
 	private Supplier supplier;
 	
-	@RequestMapping(value="manage_suppliers", method = RequestMethod.GET)
+	@RequestMapping(value="/manage_suppliers", method = RequestMethod.GET)
 	public String listCategories(Model model){
 		log.debug("Starting of the method listCategories");
 		model.addAttribute("supplier", supplier);
@@ -34,7 +34,7 @@ public class SupplierController {
 		return "/home";
 	}
 	
-	@RequestMapping(value="manage_suppliers", method = RequestMethod.POST)
+	@RequestMapping(value="/manage_suppliers", method = RequestMethod.POST)
 	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier,Model model){
 		log.debug("Starting of the method addSupplier");
 		log.debug("id:"+ supplier.getSid());
@@ -52,7 +52,7 @@ public class SupplierController {
 		return "/home";
 	}
 	
-	@RequestMapping(value="manage_supplier_remove/{id}")
+	@RequestMapping(value="/manage_supplier_remove/{id}")
 	public String deleteSupplier(@PathVariable("id")String id, Model model) throws Exception
 	{
 		boolean flag = supplierDAO.delete(id);
@@ -68,7 +68,7 @@ public class SupplierController {
 		return"forward:/manage_suppliers";
 	}
 		
-	@RequestMapping(value="manage_supplier_edit/{id}")
+	@RequestMapping(value="/manage_supplier_edit/{id}")
 	public String editSupplier(@PathVariable("id")String id, Model model) throws Exception
 	{
 		log.debug("Starting of the method editSupplier");

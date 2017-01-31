@@ -36,7 +36,8 @@ import com.niit.shoppingcart.model.User;
 		@RequestMapping(value="/myCart", method = RequestMethod.GET)
 		public String listCategories(Model model,HttpSession session){
 			log.debug("Starting of the method myCart");
-			model.addAttribute("myCart", new MyCart());String loggedInUserid = (String) session.getAttribute("loggedInUserID");
+			model.addAttribute("myCart", new MyCart());
+			String loggedInUserid = (String) session.getAttribute("loggedInUserID");
 			
 			if(loggedInUserid == null){
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -73,7 +74,7 @@ import com.niit.shoppingcart.model.User;
 				loggedInUserid = auth.getName();
 				
 			}
-			myCart.setId(loggedInUserid);
+			myCart.setUserID(loggedInUserid);
 			
 	        myCart.setStatus('N');
 			cartDAO.save(myCart);

@@ -12,16 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcart.dao.userDAO;
+import com.niit.shoppingcart.dao.UserDAO;
 
 import com.niit.shoppingcart.model.User;
 
 
 
 @Repository
-public class userDAOImpl implements userDAO {
+public class UserDAOImpl implements UserDAO {
 	
-  Logger log = LoggerFactory.getLogger("userDAOImpl.class");
+  Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	
 	//Logger log = LoggerFactory.getLogger("com.niit.shopingcart.daoimpl.userDAOImpl");
   
@@ -30,13 +30,13 @@ public class userDAOImpl implements userDAO {
 	private SessionFactory sessionFactory;
 	
 		
-	public userDAOImpl()
+	public UserDAOImpl()
 	{
 		
 	}
 
 
-	public userDAOImpl(SessionFactory sessionFactory) {
+	public UserDAOImpl(SessionFactory sessionFactory) {
 		
 			try {
 				this.sessionFactory = sessionFactory;
@@ -94,13 +94,12 @@ public class userDAOImpl implements userDAO {
 	    {
 	    	log.debug("Starting of the method : isValidUser ");
 			log.info("The user id :" + id);
-			String hql = "from user where id = "  +  "'"  + id + "'"   +  " and "
-			  + "password = "  + "'"  +  password  + "'";
+			String hql = "from User where id = '"  + id + "' and  password ='"  +  password  + "'";
 			Query query =	sessionFactory.getCurrentSession().createQuery(hql);
 			log.info(" The query is :" + hql);
 			
 			
-			 return(User) query.uniqueResult();
+			return (User)query.uniqueResult();
 	    }
 		                                                   
 	    	
@@ -153,18 +152,8 @@ public class userDAOImpl implements userDAO {
 	
 
     @Transactional
-	public User getUserDetails() {
-		String hql = "from user";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		@SuppressWarnings("unchecked")
-		List<User> list = (List<User>) query.list();
-		
-		if (list != null && !list.isEmpty()) {
-			return list.get(0);
-		}
-		
-		return null;
+	public User getUserDetails(String hql) {
+    	return sessionFactory.getCurrentSession().get(User.class, hql);
 	}
 
 

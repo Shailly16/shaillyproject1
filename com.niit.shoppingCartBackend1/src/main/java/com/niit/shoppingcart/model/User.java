@@ -21,8 +21,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class User implements Serializable 
 {
-	private static final long serialVersionUID = 1L;
-    @Id
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3230822938324337390L;
+
+	@Id
 	private String id;
 	
 	private String name;
@@ -55,17 +60,6 @@ public class User implements Serializable
 		this.role = role;
 	}
 	
-	
-	
-	
-	/*@OneToMany(mappedBy="supplier1",fetch=FetchType.EAGER)
-	private Set<Product1> products;
-	public Set<Product1> getProducts() {
-		return products;
-	}
-	public void setProducts(Set<Product1> products) {
-		this.products = products;
-	}*/
 	@Id
 	@Column(name="Id")
 	//@GeneratedValue

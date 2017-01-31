@@ -81,7 +81,7 @@ public class productTestCase {
 	 {
 		
 		int size=productDAO1.list().size();
-		Assert.assertEquals("length check",0,size);
+		Assert.assertEquals("length check",1,size);
 	 }
 	
 	

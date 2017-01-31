@@ -10,9 +10,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
+  <div class="navbar-header">
       <h5>Bellezza</h5>
     </div>
     <div class="collapse navbar-collapse" id="MyNavbar">
@@ -29,20 +31,21 @@
       </c:if>
        <c:if test="${!empty loggedInUser}">
        <span class="glyphicon glyphicon-shopping-cart"></span>
-       <c:if test="${empty isAdmin}">
+       <c:if test="${isAmin==false}">
        <a href="myCart">MyCart</a><i class="fa fa-shopping-cart">${cartSize}</i>
       </c:if>
-      </c:if>
+      <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+     <!-- <li><a href=j_spring_security_logout><span class="glyphicon glyphicon-log-out"></span>Logout</a></li> -->
+       </c:if>
       
-      <c:if test="${empty loggedInUser}">
-      <li><a href="Registeration"><span class="glyphicon glyphicon-registration-mark"></span>Register</a></li>
+      
+      <li><a href="register"><span class="glyphicon glyphicon-registration-mark"></span>Register</a></li>
+      
+     
     </ul>
-   </c:if>
+   
     </div>
     </div>
     </nav>
-</head>
-<body>
-
 </body>
 </html>

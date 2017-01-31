@@ -55,7 +55,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 
 }
 	
-	@RequestMapping(value="manage_product_add", method = RequestMethod.POST)
+	@RequestMapping(value="/manage_product_add", method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute ("product") Product product, @RequestParam("image") MultipartFile file,Model model)
 	{
 	log.debug("Starting of the method listProducts");
@@ -66,7 +66,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	product.setCategory(category);
 	product.setSupplier(supplier);
 	
-	product.setCategory_id(product.getId());
+	product.setCategory_id(category.getCid());
 	product.setSupplier_id(supplier.getSid());
 	product.setId(com.niit.shoppingcart.util.Util.removeComman(product.getId()));
 	productDAO.save(product);
@@ -79,7 +79,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	return "/home";
 	}
 	
-	@RequestMapping(value="manage_product_remove/{id}")
+	@RequestMapping(value="/manage_product_remove/{id}")
 	public String deleteProduct(@PathVariable("id")String id, Model model) throws Exception
 	{
 		boolean flag = productDAO.delete(id);
@@ -95,7 +95,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 		return"forward:/manage_products";
 	}
 		
-	@RequestMapping(value="manage_product_edit/{id}")
+	@RequestMapping(value="/manage_product_edit/{id}")
 	public String editProduct(@PathVariable("id")String id, Model model) throws Exception
 	{
 		log.debug("Starting of the method editCategory");

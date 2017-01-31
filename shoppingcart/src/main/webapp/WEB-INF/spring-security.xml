@@ -13,10 +13,10 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 <security:http auto-config="true">
 <security:intercept-url pattern="/manage**"  access="hasRole('ROLE_ADMIN')" />
-<security:intercept-url pattern="/myCart/**"  access="hasRole('ROLE_ADMIN')" />
-<security:intercept-url pattern="/cart_checkout**"  access="hasRole('ROLE_ADMIN')" />
-<security:form-login username-parameter="username"
-   password-parameter="password" authentication-failure-url="/loginError"/>
+<security:intercept-url pattern="/myCart/**"  access="hasRole('ROLE_USER')" />
+<security:intercept-url pattern="/cart_checkout**"  access="hasRole('ROLE_USER')" />
+<security:form-login username-parameter="id"
+   password-parameter="password" authentication-failure-forward-url="/loginError"/>
  
  <security:access-denied-handler error-page="/accessDenied"/>
  <security:csrf/>
@@ -26,8 +26,8 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 <security:authentication-manager>
 <security:authentication-provider>
 <security:jdbc-user-service data-source-ref="dataSource"
-                             users-by-username-query="select id,password,'true'as enabled from user where id=?"
-                             authorities-by-username-query="select id,role from from user where id=?"/>
+                             users-by-username-query="select id,password,'true' as enabled from user where id=?"
+                             authorities-by-username-query="select id,role from user where id=?"/>
 </security:authentication-provider>
 </security:authentication-manager>
 

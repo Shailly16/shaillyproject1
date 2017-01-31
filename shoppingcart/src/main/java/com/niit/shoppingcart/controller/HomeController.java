@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 
 import com.niit.shoppingcart.model.Category;
@@ -41,6 +42,9 @@ public class HomeController {
 
 	@Autowired
 	private Product product;
+	
+	@Autowired
+	private ProductDAO productDAO;
 
 	/**
 	 * Category list will load and set to session
@@ -49,11 +53,12 @@ public class HomeController {
 	 * @return
 	 */
     //http://localhost:8080/ShoppingCartFrontEnd/
+	
 	@RequestMapping("/")
 	public ModelAndView onLoad(HttpSession session) {
 		log.debug("Starting of the method onLoad");
 		ModelAndView mv = new ModelAndView("/home");
-		session.setAttribute("category", category);
+		session.setAttribute("category",category);
 		session.setAttribute("product", product);
 		session.setAttribute("supplier", supplier);
 		
@@ -67,21 +72,13 @@ public class HomeController {
 	}
 
 
-	@RequestMapping("/registerHere")
-	public ModelAndView registerHere() {
-		log.debug("Starting of the method registerHere");
-		ModelAndView mv = new ModelAndView("/home");
-		mv.addObject("user", user);
-		mv.addObject("isUserClickedRegisterHere", "true");
-		log.debug("Ending of the method registerHere");
-		return mv;
-	}
+	
 
-	@RequestMapping("/loginHere")
+	@RequestMapping("/login1")
 	public ModelAndView loginHere() {
 		log.debug("Starting of the method loginHere");
 		System.out.println("loginHere");
-		ModelAndView mv = new ModelAndView("/home");
+		ModelAndView mv = new ModelAndView("/login1");
 		mv.addObject("user",user);
 		mv.addObject("isUserClickedLoginHere", "true");
 		log.debug("Ending of the method loginHere");
@@ -93,11 +90,16 @@ public class HomeController {
 	public String reDirectToHome(@ModelAttribute("selectedProduct") final Product selectedProduct, final Model model) {
 		log.debug("Starting of the method reDirectToHome");
 		model.addAttribute("selectedProduct", selectedProduct);
-	   /* model.addAttribute("categoryList", this.categoryDAO.list());
-	    model.addAttribute("productList", this.productDAO.list());*/
+	    model.addAttribute("categoryList", this.categoryDAO.list());
+	    model.addAttribute("productList", this.productDAO.list());
 		log.debug("Ending of the method reDirectToHome");
 		return "/home";
 	}
+	
+	
+	
+	
+	
 }
 
 

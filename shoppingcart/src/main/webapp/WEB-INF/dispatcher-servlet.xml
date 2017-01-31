@@ -15,7 +15,7 @@
 
 <context:component-scan base-package="com.niit" />
 
- <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builderviewFactoryCreator">
+ <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
  <property name="viewResolvers">
  <list>
  <ref bean="viewResolver"/>
@@ -29,7 +29,7 @@
  
  </bean>
  <bean id="multipartResolver"
- class="org.springframework.web.multiport.commons.CommonMultiportResolver" />
+ class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
  
  <webflow:flow-executor id="flowExecutor"/>
  <webflow:flow-registry id="flowRegistry"

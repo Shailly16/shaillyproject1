@@ -19,7 +19,14 @@ private static final long serialVersionUID = 1L;
 
 
 @Id
-private String id;
+private Long id;
+
+
+
+@Column(name="user_id")
+private String userID;
+
+
 
 @Column(name="add_product")
 private String productName;
@@ -35,18 +42,26 @@ public void setPrice(double price) {
 
 private char status;
 
-@Transient()
+//@Transient()
 @Column(name="add_date")
 private Date addedDate;
 
-
-public String getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(String loggedInUserid) {
-	this.id = loggedInUserid;
+public void setId(long id) {
+	this.id = id;
 }
+
+public String getUserID() {
+	return userID;
+}
+
+public void setUserID(String userID) {
+	this.userID = userID;
+}
+
 
 public String getProductName() {
 	return productName;

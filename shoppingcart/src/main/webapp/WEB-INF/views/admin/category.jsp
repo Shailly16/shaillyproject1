@@ -8,7 +8,8 @@
 
 </head>
 <body>
-${msg}
+
+		
 	<h1>Add a Category</h1>
 	<c:url var="addAction" value="/manage_category_add"></c:url>
 	<form:form action="${addAction}" commandName="category"  method="post">

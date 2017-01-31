@@ -24,17 +24,17 @@ public class CategoryController {
 	@Autowired
 	private Category category;
 	
-	@RequestMapping(value="manage_categories", method = RequestMethod.GET)
+	/*@RequestMapping(value="/manage_categories", method = RequestMethod.GET)
 	public String listCategories(Model model){
 		log.debug("Starting of the method listCategories");
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method listCategories");
-		return "/home";
-	}
+		return "/home";}*/
 	
-	@RequestMapping(value="manage_categories", method = RequestMethod.POST)
+	
+	@RequestMapping(value="/manage_categories_add", method = RequestMethod.POST)
 	public String addCategory(@ModelAttribute ("category") Category category,Model model){
 		log.debug("Starting of the method addCategory");
 		log.debug("id:"+ category.getCid());
@@ -52,7 +52,7 @@ public class CategoryController {
 		return "/home";
 	}
 	
-	@RequestMapping(value="manage_category_remove/{id}")
+	@RequestMapping(value="/manage_category_remove/{id}")
 	public String deleteCategory(@PathVariable("id")String id, Model model) throws Exception
 	{
 		boolean flag = categoryDAO.delete(id);
@@ -68,7 +68,7 @@ public class CategoryController {
 		return"forward:/manage_categories";
 	}
 		
-	@RequestMapping(value="manage_category_edit/{id}")
+	@RequestMapping(value="/manage_category_edit/{id}")
 	public String editCategory(@PathVariable("id")String id, Model model) throws Exception
 	{
 		log.debug("Starting of the method editCategory");

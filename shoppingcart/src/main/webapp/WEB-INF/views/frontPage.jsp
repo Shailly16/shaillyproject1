@@ -90,7 +90,7 @@
   <div class="row">
   <div class="col-md-3">
   <div class="thumbnail">
-   <a href="images/face powder.jpg" target="_blank">
+   <a href="img/face powder.jpg" target="_blank">
           <img src="C:\Users\pavelion\Desktop\ekart project pictures\face powder.jpg" alt="Compaq" style="width:50%">
    </a>
           </div>

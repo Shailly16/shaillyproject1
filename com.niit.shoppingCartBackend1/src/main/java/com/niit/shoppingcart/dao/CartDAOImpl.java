@@ -40,13 +40,12 @@ private SessionFactory sessionFactory;
 
 	
 	@Transactional
-	public List<MyCart> list(String id) {
+	public List<MyCart> list(String userID) {
 		log.debug("Starting of the method list");
-		String hql = "from MyCart where userID="+"' and status="+ "'N'";
+		String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        List<MyCart> list = (List<MyCart>) query.list();
         log.debug("Ending of the method list");
-        return list;
+        return query.list();
 	}
 	
 	@Transactional
@@ -57,16 +56,16 @@ private SessionFactory sessionFactory;
 		log.debug("Ending of the method : save ");
 	}
 	
-	 public long getTotalAmount(String id)
+	 public long getTotalAmount(String userID)
 	 {
 		 log.debug("Starting of the getTotalAmount");
-		 String hql = "from MyCart where userID="+"' and status="+ "'N'";
+		 String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
 		 log.debug("hql"+hql);
 			
 	      Query query = sessionFactory.getCurrentSession().createQuery(hql);
-	     
-	       log.debug("Ending of the getTotalAmount");
-	       return (Long) query.uniqueResult();
+	      Long sum = (Long)query.uniqueResult();
+	      log.debug("sum="+sum);
+	      return sum;
 		 
 	 }
 

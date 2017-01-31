@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
-import com.niit.shoppingcart.dao.userDAOImpl;
+import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.MyCart;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Category;
@@ -35,10 +37,10 @@ public class UserController {
 	public static Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	userDAOImpl userDAO;
+	UserDAO userDAO;
 
 	@Autowired
-	User user;
+	User user1;
 
 	@Autowired
 	private CartDAO cartDAO;
@@ -74,32 +76,36 @@ public class UserController {
 	 * @param password
 	 * @return it will return data and page name where to return
 	 */
+	
+	
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public ModelAndView validate(@RequestParam(value = "username") String userID,
-			@RequestParam(value = "password") String password) {
+			@RequestParam(value = "password") String password, HttpSession session ) {
 		log.debug("Starting of the method validate");
 
 		// ModelAndView mv = new ModelAndView("/home");
 		ModelAndView mv = new ModelAndView("/home");
-		user = userDAO.validate(userID, password);
+		user1 = userDAO.validate(userID, password);
 		// if the record exist with this userID and password it will return user
 		// details else will return null
 
-		if (user != null) {
+		if (user1 != null) {
 			log.debug("Valid Credentials");
 			// null means invalid credentials
-			session.setAttribute("loggedInUser", user.getName());
-			session.setAttribute("loggedInUserID", user.getId());
+			user1 = userDAO.get(userID);
+			session.setAttribute("loggedInUser", user1.getName());
+			session.setAttribute("loggedInUserID", user1.getPassword());
 
-			session.setAttribute("user", user); //
+			session.setAttribute("user", user1); //
 
-			if (user.getRole().equals("ROLE_ADMIN")) {
+			if (user1.getRole().equals("ROLE_ADMIN")) {
 				log.debug("Logged in as Admin");
 				mv.addObject("isAdmin", "true");
+			
 				session.setAttribute("supplier", supplier);
 				session.setAttribute("supplierList", supplierDAO.list());
-                                                                 session.setAttribute("productList", categoryDAO.list());
-                                                                 session.setAttribute("product", product);
+                
+                session.setAttribute("category",category);
 				session.setAttribute("categoryList", categoryDAO.list());
 
 			} else {
@@ -108,7 +114,7 @@ public class UserController {
 				//myCart = cartDAO.list(userID);
 				mv.addObject("myCart", myCart);
 				// Fetch the myCart list based on user ID
-				List<MyCart> cartList = cartDAO.list(userID);
+				List<MyCart> cartList = cartDAO.list(password);
 				mv.addObject("cartList", cartList);
 				mv.addObject("cartSize", cartList.size());
 			}
@@ -149,13 +155,22 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute User user) {
+	@RequestMapping("/register")
+	public ModelAndView registerHere() {
+		log.debug("Starting of the method registerHere");
+		ModelAndView mv = new ModelAndView("/register");
+		mv.addObject("user", new User());
+		mv.addObject("isUserClickedRegisterHere", "true");
+		log.debug("Ending of the method registerHere");
+		return mv;
+	}
+	@RequestMapping(value = "/registeration", method = RequestMethod.POST)
+	public ModelAndView registerUser(@ModelAttribute User user1) {
 		log.debug("Starting of the method registerUser");
-		ModelAndView mv = new ModelAndView("home");
-		if (userDAO.get(user.getId()) == null) {
-			user.setRole("ROLE_USER"); // all the users are end users by default
-			userDAO.update(user);
+		ModelAndView mv = new ModelAndView("/home");
+		if (userDAO.get(user1.getId()) == null) {
+			user1.setRole("ROLE_USER"); // all the users are end users by default
+			userDAO.saveOrUpdate(user1);
 			log.debug("You are successfully register");
 			mv.addObject("successMessage", "You are successfully registered");
 		} else {
@@ -171,7 +186,7 @@ public class UserController {
 		log.debug("Starting of the method loginError");
 		model.addAttribute("errorMessage", "Login Error");
 		log.debug("Ending of the method loginError");
-		return "home";
+		return "/home";
 
 	}
 
@@ -180,7 +195,7 @@ public class UserController {
 		log.debug("Starting of the method accessDenied");
 		model.addAttribute("errorMessage", "You are not authorized to access this page");
 		log.debug("Ending of the method accessDenied");
-		return "home";
+		return "/home";
 
 	}
 
