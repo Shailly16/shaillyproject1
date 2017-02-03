@@ -11,13 +11,16 @@
 
 		
 	<h1>Add a Category</h1>
-	<c:url var="addAction" value="/manage_category_add"></c:url>
-	<form:form action="${addAction}" commandName="category"  method="post">
+	<c:url var="action" value="/manage_category_add"></c:url>
+
+ <form:form name='category' action="${action}" method="post">
+
+	
 		<table>
 			<tr>
 				<td><form:label path="id"> <spring:message text="ID" />	</form:label></td>
 				<c:choose>
-					<c:when test="${!empty category.id}">
+					<c:when test="${!empty category.Cid}">
 						<td><form:input path="id" disabled="true" readonly="true" /></td>
 					</c:when>
 					<c:otherwise>

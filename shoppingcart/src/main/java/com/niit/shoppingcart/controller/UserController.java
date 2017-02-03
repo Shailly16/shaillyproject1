@@ -84,7 +84,7 @@ public class UserController {
 		log.debug("Starting of the method validate");
 
 		// ModelAndView mv = new ModelAndView("/home");
-		ModelAndView mv = new ModelAndView("/home");
+		ModelAndView mv = new ModelAndView("/admin/adminHome");
 		user1 = userDAO.validate(userID, password);
 		// if the record exist with this userID and password it will return user
 		// details else will return null
@@ -94,7 +94,7 @@ public class UserController {
 			// null means invalid credentials
 			user1 = userDAO.get(userID);
 			session.setAttribute("loggedInUser", user1.getName());
-			session.setAttribute("loggedInUserID", user1.getPassword());
+			session.setAttribute("loggedInUserID", user1.getId());
 
 			session.setAttribute("user", user1); //
 

@@ -33,10 +33,7 @@
 <div id="error">${errorMessage}</div>
 <%@ include file="./login1.jsp" %>
 </c:if>
-<c:if test="${isAdmin==true}">
-<%@ include file="./admin/adminHome.jsp" %>
-</c:if>
-
+<br>
 <%@ include file="./Footer.jsp" %>
 </body>
 </html>

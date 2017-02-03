@@ -15,7 +15,7 @@
 </head>
 <body>
 Please Login
-<br>${msg}
+<br>
 <c:url var="action" value="/validate"></c:url>
 <%--<c:url var="action" value="/j_spring_security_check'> --%>
 <form name='loginForm' action="${action}" method="post">

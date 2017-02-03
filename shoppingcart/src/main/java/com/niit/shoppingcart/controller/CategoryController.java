@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,21 +25,23 @@ public class CategoryController {
 	@Autowired
 	private Category category;
 	
-	/*@RequestMapping(value="/manage_categories", method = RequestMethod.GET)
+	@RequestMapping(value="/manage_categories", method = RequestMethod.GET)
 	public String listCategories(Model model){
 		log.debug("Starting of the method listCategories");
-		model.addAttribute("category", category);
+		model.addAttribute("category",  category);
+		
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method listCategories");
-		return "/home";}*/
+		return "/admin/adminHome";
+		 }
 	
 	
-	@RequestMapping(value="/manage_categories_add", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute ("category") Category category,Model model){
+	@RequestMapping(value="/manage_category_add", method = RequestMethod.POST)
+	public String addCategory(@ModelAttribute ("category") Category category, Model model){
 		log.debug("Starting of the method addCategory");
 		log.debug("id:"+ category.getCid());
-		if (categoryDAO.save(category)==true){
+		if (categoryDAO.saveOrUpdate(category) == true){
 		
 		model.addAttribute("msg", "Successfully created/updated the category");}
 		else
@@ -49,10 +52,10 @@ public class CategoryController {
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method addCategory");
-		return "/home";
+		return "/admin/adminHome";
 	}
 	
-	@RequestMapping(value="/manage_category_remove/{id}")
+	@RequestMapping(value="manage_category_remove/{id}")
 	public String deleteCategory(@PathVariable("id")String id, Model model) throws Exception
 	{
 		boolean flag = categoryDAO.delete(id);
@@ -68,7 +71,7 @@ public class CategoryController {
 		return"forward:/manage_categories";
 	}
 		
-	@RequestMapping(value="/manage_category_edit/{id}")
+	@RequestMapping(value="manage_category_edit/{id}")
 	public String editCategory(@PathVariable("id")String id, Model model) throws Exception
 	{
 		log.debug("Starting of the method editCategory");

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.util.FileUtil;
 @Controller
 public class ProductController {
 	
@@ -42,12 +44,14 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
+
+	private String path;
 	
 	
 	@RequestMapping(value="/manage_products", method = RequestMethod.GET)
 	public String listProducts(Model model){
 		log.debug("Starting of the method listProducts");
-		model.addAttribute("product",  product);
+		model.addAttribute("product", new Product());
 		model.addAttribute("productList", this.productDAO.list());
 		model.addAttribute("isAdminClickedProducts", "true");
 		log.debug("End of the method listProducts");
@@ -69,9 +73,9 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	product.setCategory_id(category.getCid());
 	product.setSupplier_id(supplier.getSid());
 	product.setId(com.niit.shoppingcart.util.Util.removeComman(product.getId()));
-	productDAO.save(product);
-	//FileUtil.upload(path,file,product.getId()+".jpg");
-	log.debug("End of the method listProducts");
+	productDAO.saveOrUpdate(product);
+	FileUtil.upload(path,file,product.getId()+".jpg");
+	log.debug("End of the method addProduct");
 	
 	model.addAttribute("isAdminClickedProducts", "true");
 	model.addAttribute("productList", this.productDAO.list());
@@ -80,30 +84,30 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	}
 	
 	@RequestMapping(value="/manage_product_remove/{id}")
-	public String deleteProduct(@PathVariable("id")String id, Model model) throws Exception
+	public String deleteProduct(@PathVariable("id")String id, ModelMap model) throws Exception
 	{
-		boolean flag = productDAO.delete(id);
+		log.debug("Starting of the method removeProduct");
 		
-		String msg = "Successfully done the operation";
-		if(flag!= true)
-		{
-			msg = "The operation could not success";
-			
+		try {
+			productDAO.delete(id);
+			model.addAttribute("message", "Successfully Added");
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+			e.printStackTrace();
 		}
-		model.addAttribute("msg", msg);
 		
 		return"forward:/manage_products";
 	}
 		
-	@RequestMapping(value="/manage_product_edit/{id}")
+	@RequestMapping(value="manage_product_edit/{id}")
 	public String editProduct(@PathVariable("id")String id, Model model) throws Exception
 	{
-		log.debug("Starting of the method editCategory");
+		log.debug("Starting of the method editProduct");
 		product = productDAO.get(id);
 		
-		model.addAttribute("product",new Product());
-		
-		return"forward:/manage_products";
+		model.addAttribute("selectedProduct", product);
+		log.debug("End of the method edit Product");
+		return "forward:/manage_products";
 	}
 	
 	@RequestMapping(value="manage_product/get/{id}")
