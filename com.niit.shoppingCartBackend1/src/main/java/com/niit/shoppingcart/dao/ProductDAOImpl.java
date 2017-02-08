@@ -89,19 +89,13 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	
 	@Transactional
-	public boolean delete(String id) {
+	public void delete(String id) {
 		log.debug("Starting of the method : delete ");
-		try {
-			Product product1 = new Product();
-			product1.setId(id);
-			sessionFactory.getCurrentSession().delete(product1);
+		
+			Product ProductToDelete = new Product();
+			ProductToDelete.setId(id);
+			sessionFactory.getCurrentSession().delete(ProductToDelete);
 			log.debug("Ending of the method : delete ");
-		} catch (HibernateException e) {
-			log.error("Not able to delete the record:" + e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-		return true;
 	}
 
 	@Transactional
@@ -144,6 +138,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 
+	
 	
 
 

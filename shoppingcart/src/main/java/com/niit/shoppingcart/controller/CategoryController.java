@@ -33,7 +33,7 @@ public class CategoryController {
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method listCategories");
-		return "/admin/adminHome";
+		return "/home";
 		 }
 	
 	
@@ -41,7 +41,7 @@ public class CategoryController {
 	public String addCategory(@ModelAttribute ("category") Category category, Model model){
 		log.debug("Starting of the method addCategory");
 		log.debug("id:"+ category.getCid());
-		if (categoryDAO.saveOrUpdate(category) == true){
+		if (categoryDAO.save(category) == true){
 		
 		model.addAttribute("msg", "Successfully created/updated the category");}
 		else
@@ -52,22 +52,21 @@ public class CategoryController {
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method addCategory");
-		return "/admin/adminHome";
+		return "/manageCategories";
 	}
 	
 	@RequestMapping(value="manage_category_remove/{id}")
-	public String deleteCategory(@PathVariable("id")String id, Model model) throws Exception
+	public String deleteCategory(@PathVariable("id")String cid, ModelMap model) throws Exception
 	{
-		boolean flag = categoryDAO.delete(id);
-		
-		String msg = "Successfully done the operation";
-		if(flag!= true)
-		{
-			msg = "The operation could not success";
-			
+		log.debug("Starting of the method removeCategory");
+		try {
+			categoryDAO.delete(cid);
+			model.addAttribute("message", "Successfully removed");
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+			e.printStackTrace();
 		}
-		model.addAttribute("msg", msg);
-		
+
 		return"forward:/manage_categories";
 	}
 		
@@ -76,7 +75,7 @@ public class CategoryController {
 	{
 		log.debug("Starting of the method editCategory");
 		category = categoryDAO.get(id);
-		
+		categoryDAO.update(category);
 		model.addAttribute("category",category);
 		
 		return"forward:/manage_categories";

@@ -17,11 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.ProductDAOImpl;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.util.FileUtil;
+import com.niit.shoppingcart.util.Util;
 @Controller
 public class ProductController {
 	
@@ -59,11 +61,11 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 
 }
 	
-	@RequestMapping(value="/manage_product_add", method = RequestMethod.POST)
+	@RequestMapping(value="/manage_product_add")
 	public String addProduct(@ModelAttribute ("product") Product product, @RequestParam("image") MultipartFile file,Model model)
 	{
-	log.debug("Starting of the method listProducts");
-	Category category = categoryDAO.getByName(product.getCategory().getName());
+	log.debug("Starting of the method addProduct");
+	/*Category category = categoryDAO.getByName(product.getCategory().getName());
 	
 	Supplier supplier = supplierDAO.getByName(product.getSupplier().getName());
 	
@@ -72,14 +74,24 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	product.setCategory_id(category.getCid());
 	product.setSupplier_id(supplier.getSid());
-	product.setId(com.niit.shoppingcart.util.Util.removeComman(product.getId()));
-	productDAO.saveOrUpdate(product);
-	FileUtil.upload(path,file,product.getId()+".jpg");
-	log.debug("End of the method addProduct");
+	product.setId(com.niit.shoppingcart.util.Util.removeComman(product.getId()));*/
+	log.debug("id:"+ product.getId());
+	if (productDAO.save(product) == true){
 	
-	model.addAttribute("isAdminClickedProducts", "true");
+	model.addAttribute("msg", "Successfully created/updated the product");}
+	else
+	{
+	model.addAttribute("msg", "not able to create/update the product");}
+	
+	
+	
+	
+	FileUtil.upload(path,file,product.getId()+".jpg");
+	
 	model.addAttribute("productList", this.productDAO.list());
 	model.addAttribute("product", new Product());
+	model.addAttribute("isAdminClickedProducts", "true");
+	log.debug("End of the method addProduct");
 	return "/home";
 	}
 	
@@ -90,13 +102,13 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 		
 		try {
 			productDAO.delete(id);
-			model.addAttribute("message", "Successfully Added");
+			model.addAttribute("message", "Successfully removed");
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
 		}
-		
-		return"forward:/manage_products";
+
+		return"forward:/manageProducts";
 	}
 		
 	@RequestMapping(value="manage_product_edit/{id}")
@@ -105,7 +117,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 		log.debug("Starting of the method editProduct");
 		product = productDAO.get(id);
 		
-		model.addAttribute("selectedProduct", product);
+		model.addAttribute("selectedproduct", product);
 		log.debug("End of the method edit Product");
 		return "forward:/manage_products";
 	}
@@ -115,6 +127,7 @@ private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	{
 		log.debug("Starting of the method getselectedProduct");
 		product = productDAO.get(id);
+		
 		ModelAndView mv = new ModelAndView("redirect:/home");
 		redirectAttribute.addFlashAttribute("selectedProduct", productDAO.get(id));
 		log.debug("Ending of the method getselectedProduct");

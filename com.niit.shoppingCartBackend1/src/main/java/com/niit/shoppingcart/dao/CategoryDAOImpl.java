@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.shoppingcart.dao.CategoryDAO;
 //import com.niit.shoppingcart.model.Product1;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Product;
 
 
 
@@ -88,28 +89,34 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 	
 	@Transactional
-	public void saveOrUpdate(Category category1) {
+	public boolean saveOrUpdate(Category category1) {
 		log.debug("Starting of the method : saveOrUpdate ");
-		sessionFactory.getCurrentSession().save(category1);
+		try {
+			sessionFactory.getCurrentSession().save(category1);
 			log.debug("Ending of the method : saveOrUpdate ");
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+			return true;
+			
 		} 
 	
 	
 	@Transactional
-	public boolean delete(String id) {
+	public void delete(String id) {
+		
 		log.debug("Starting of the method : delete ");
-		try {
-			Category category1 = new Category();
-			category1.setCid(id);
-			sessionFactory.getCurrentSession().delete(category1);
-			log.debug("Ending of the method : delete ");
-		} catch (HibernateException e) {
-			log.error("Not able to delete the record:" + e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+		
+		Category CategoryToDelete = new Category();
+		CategoryToDelete.setCid(id);
+		sessionFactory.getCurrentSession().delete(CategoryToDelete);
+		log.debug("Ending of the method : delete ");
+         
 	}
+
+	
 
 	@Transactional
 	public Category get(String id) {

@@ -12,30 +12,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<footer class="Site_footer">
-  <div class="container">
-  <div class="row">
-  <div class="col-md-5">
-  <br>
-  <address>Shop number:44,Inner Circle<br>Cannaught Place,New Delhi<br> India-201547
-  </address>
-  
-  </div>
-  <div class="bottom_footer">
-
-
-  <div class="col-md-7">
-       <ul class="footer_nav nav-inverse">
-  <li><a href="#">Home</a></li>
-   <li><a href="#">Contacts</a></li>
-    <li><a href="#">Link</a></li>
-    </ul>
-  </div>
-  </div>
-  </div>
-  
-  
+<div class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+    <div class="container">
+      <p class="navbar-text pull-centre"> © 2017 - Site Built By Shailly Garg </p>
  </div>
-  </footer>
+ </div>
 </body>
 </html>

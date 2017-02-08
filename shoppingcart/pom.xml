@@ -47,7 +47,12 @@
 			<version>1.2</version>
 			
 		</dependency>
- 
+ <dependency>
+  <groupId>javax.servlet.jsp</groupId>
+  <artifactId>jsp-api</artifactId>
+  <version>2.1</version>
+  
+</dependency>
 
 
 		<dependency>
@@ -115,7 +120,7 @@
 		<dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-expression</artifactId>
-    <version>4.2.5.RELEASE</version>
+    <version>4.3.5.RELEASE</version>
 </dependency>
 
 	</dependencies>

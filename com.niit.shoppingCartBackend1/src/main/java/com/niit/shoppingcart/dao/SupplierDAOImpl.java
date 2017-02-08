@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,20 +101,16 @@ public class SupplierDAOImpl implements SupplierDAO {
 	
 	
 	@Transactional
-	public boolean delete(String id) {
+	public void delete(String id) {
 		log.debug("Starting of the method : delete ");
-		try {
+		
 			Supplier supplier1 = new Supplier();
 			supplier1.setSid(id);
+			System.out.println(supplier1.getSid());
 			sessionFactory.getCurrentSession().delete(supplier1);
 			log.debug("Ending of the method : delete ");
-		} catch (HibernateException e) {
-			log.error("Not able to delete the record:" + e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+		
+		} 
 
 	@Transactional
 	public Supplier get(String id) {

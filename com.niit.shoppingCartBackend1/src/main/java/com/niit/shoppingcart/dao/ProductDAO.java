@@ -10,7 +10,7 @@ public List<Product> list();
 	
 public Product get(String id);
 	
-public boolean delete(String id) ;
+public void delete(String id) ;
 public Product getByName(String name);
 public Product getProductDetails();
 public void saveOrUpdate(Product product1);	

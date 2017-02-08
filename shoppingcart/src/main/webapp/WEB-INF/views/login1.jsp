@@ -14,25 +14,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-Please Login
-<br>
+<%@ include file="./header.jsp" %>
 <c:url var="action" value="/validate"></c:url>
-<%--<c:url var="action" value="/j_spring_security_check'> --%>
+<%-- //<c:url var="action" value="/j_spring_security_check'>  --%>
 <form name='loginForm' action="${action}" method="post">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="text-center">Login</h1>
+        </div>
+         <div class="modal-body">
+             <div class="form-group">
+             <input class="form-control" type="text" name="username" placeholder="User ID">
+             </div>
 
-<div class="input-group margin-bottom-sm">
-<span class="input-group-addon">
-<i class="fa fa-envelope-o fa-fw"></i></span>
-<input class="form-control" type="text" name="username" placeholder="User ID">
-</div>
-<div class="input-group">
-<span class="input-group-addon">
-<i class="fa fa-key fa-fw"></i></span>
-<input class="form-control" type="password" name="password" placeholder="Password">
-</div>
-<input type="hidden" name="${_csrf.parameterName}"
-value="${_csrf.token}"/><input type="submit"
-class="btn btn-default" value="login">
+             <div class="form-group">
+                 <input class="form-control" type="password" name="password" placeholder="Password">
+             </div>
+
+             <div class="form-group">
+                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                 <input type="submit" class="btn btn-block btn-lg btn-primary" value="Login"/>
+                 <span class="pull-right"><a href="register">Register</a></span>
+             </div>
+         </div>
+    </div>
+ </div>
 </form>
+<br>
+<br>
+<%@ include file="./Footer.jsp" %>
+
+</body>
+</html>
 
 

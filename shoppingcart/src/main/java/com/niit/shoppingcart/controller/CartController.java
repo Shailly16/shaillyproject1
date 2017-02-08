@@ -19,7 +19,6 @@ import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.model.MyCart;
 import com.niit.shoppingcart.model.Product;
-import com.niit.shoppingcart.model.User;
 
 @Controller
 	public class CartController {
@@ -34,7 +33,7 @@ import com.niit.shoppingcart.model.User;
 		private ProductDAO productDAO;
 		
 		@RequestMapping(value="/myCart", method = RequestMethod.GET)
-		public String listCategories(Model model,HttpSession session){
+		public String myCart(Model model,HttpSession session){
 			log.debug("Starting of the method myCart");
 			model.addAttribute("myCart", new MyCart());
 			String loggedInUserid = (String) session.getAttribute("loggedInUserID");
@@ -54,7 +53,7 @@ import com.niit.shoppingcart.model.User;
 				else{
 				model.addAttribute("myCart", cartDAO.list(loggedInUserid));
 				model.addAttribute("totalAmount", cartDAO.getTotalAmount(loggedInUserid));
-				model.addAttribute("displayCart", new MyCart());
+				model.addAttribute("displayCart", "true");
 			}
 				
 			    log.debug("End of the method listCategories");
@@ -74,7 +73,7 @@ import com.niit.shoppingcart.model.User;
 				loggedInUserid = auth.getName();
 				
 			}
-			myCart.setUserID(loggedInUserid);
+			//myCart.setUserID(loggedInUserid);
 			
 	        myCart.setStatus('N');
 			cartDAO.save(myCart);

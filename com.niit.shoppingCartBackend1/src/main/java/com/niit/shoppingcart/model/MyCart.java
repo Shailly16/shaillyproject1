@@ -87,8 +87,8 @@ public void setAddedDate(Date addedDate) {
 	this.addedDate = addedDate;
 }
 
-public void setId(Long maxId) {
-	// TODO Auto-generated method stub
+public Long setId(Long maxId) {
+	return maxId;
 	
 }
 

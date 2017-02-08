@@ -1,5 +1,7 @@
 package com.niit.shoppingcart.dao;
 
+
+
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -11,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcart.model.Category;
-import com.niit.shoppingcart.model.MyCart;
+import com.niit.shoppingcart.dao.OrderDAO;
 import com.niit.shoppingcart.model.Order;
+
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {

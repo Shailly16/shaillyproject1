@@ -10,10 +10,10 @@ public List<Category> list();
 	
 public Category get(String id);
 	
-public boolean delete(String id) ;
+public void delete(String id) ;
 public Category getByName(String name);
 public Category getCategoryDetails();
-public void saveOrUpdate(Category category1);	
+public boolean saveOrUpdate(Category category1);	
 public boolean save(Category category1); 
 
 public boolean update(Category category1);

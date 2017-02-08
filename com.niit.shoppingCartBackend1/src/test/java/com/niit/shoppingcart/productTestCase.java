@@ -54,15 +54,15 @@ public class productTestCase {
 	{ 
 	 //assert statements
 	System.out.println("UID IS"+product1.getId());
-	Assert.assertEquals("PZ002",product1.getId());
-	}
+	Assert.assertEquals("PZ001", product1.getId());
+	}	
 	
 	
 	@Test
 	public void saveTestCase()
 	{
 		
-		product1.setId("PZ002");
+		product1.setId("PZ001");
 		product1.setName("MAC_Beauty");
 		product1.setDescription(" House No.1,25Street,Boston,USA_201036 ");
 		product1.setPrice(200);
@@ -90,7 +90,7 @@ public class productTestCase {
 	{
 		// giving id is mandatory as it is primary key.
 		
-		product1= productDAO1.get("PZ002");
+		product1= productDAO1.get("PZ001");
 		
 		product1.setName("Glow_House");
 		Assert.assertEquals( true, productDAO1.update(product1));

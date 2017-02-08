@@ -61,7 +61,7 @@ public class categoryTestCase {
 	 {
 		
 		int size=categoryDAO1.list().size();
-		Assert.assertEquals("length check",1,size);
+		Assert.assertEquals("length check",5,size);
 	 }
 	
 	

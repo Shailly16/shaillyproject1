@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <meta charset="utf-8">
@@ -15,15 +16,12 @@
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
   <div class="navbar-header">
-      <h5>Bellezza</h5>
+ <a class="navbar-brand" href="#">Bellezza</a>
     </div>
     <div class="collapse navbar-collapse" id="MyNavbar">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">100% Genuine</a></li>
-      <li class="dropdown"><a href="#">Easy Returns</a>
-       
-      </li>
-      <li><a href="#">Best Brands</a></li>
+    <li class="active"><a href="home">Home</a></li>
+    <li class="active"><a href="contact">ContactUs</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
        <c:if test="${empty loggedInUser}">
@@ -31,7 +29,7 @@
       </c:if>
        <c:if test="${!empty loggedInUser}">
        <span class="glyphicon glyphicon-shopping-cart"></span>
-       <c:if test="${isAmin==false}">
+       <c:if test="${isAdmin==false}">
        <a href="myCart">MyCart</a><i class="fa fa-shopping-cart">${cartSize}</i>
       </c:if>
       <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>

@@ -26,15 +26,15 @@ public class SupplierController {
 	
 	@RequestMapping(value="/manage_suppliers", method = RequestMethod.GET)
 	public String listCategories(Model model){
-		log.debug("Starting of the method listCategories");
+		log.debug("Starting of the method listSuppliers");
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
-		model.addAttribute("isAdminClickedCategories", "true");
-		log.debug("End of the method listCategories");
+		model.addAttribute("isAdminClickedSuppliers", "true");
+		log.debug("End of the method listSuppliers");
 		return "/home";
 	}
 	
-	@RequestMapping(value="/manage_suppliers", method = RequestMethod.POST)
+	@RequestMapping(value="/manage_supplier_add", method = RequestMethod.POST)
 	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier,Model model){
 		log.debug("Starting of the method addSupplier");
 		log.debug("id:"+ supplier.getSid());
@@ -47,25 +47,26 @@ public class SupplierController {
 		
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
-		model.addAttribute("isAdminClickedCategories", "true");
+		model.addAttribute("isAdminClickedSuppliers", "true");
 		log.debug("End of the method addSupplier");
-		return "/home";
+		return "redirect:/manageSuppliers";
 	}
 	
 	@RequestMapping(value="/manage_supplier_remove/{id}")
 	public String deleteSupplier(@PathVariable("id")String id, Model model) throws Exception
 	{
-		boolean flag = supplierDAO.delete(id);
-		
-		String msg = "Successfully done the operation";
-		if(flag!= true)
-		{
-			msg = "The operation could not success";
-			
+		System.out.println("supplier id is" +id);
+		try {
+			supplierDAO.delete(id);
+			model.addAttribute("message", "Successfully removed");
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+			e.printStackTrace();
 		}
-		model.addAttribute("msg", msg);
+
 		
-		return"forward:/manage_suppliers";
+		
+		return"redirect:/manageSuppliers";
 	}
 		
 	@RequestMapping(value="/manage_supplier_edit/{id}")
@@ -75,8 +76,9 @@ public class SupplierController {
 		supplier = supplierDAO.get(id);
 		
 		model.addAttribute("supplier",supplier);
-		
-		return"forward:/manage_suppliers";
+		model.addAttribute("supplierList", supplierDAO.list());
+		model.addAttribute("isAdminClickedSuppliers", "true");
+		return"redirect:/manageSuppliers";
 	}
 		
 	

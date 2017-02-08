@@ -15,9 +15,9 @@
   <style>
    .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-      width: 50%;
-     margin:auto;}
-      
+      width: 100%;
+     margin:auto;
+    max-height: 300px;} 
 </style>
 </head>
 <body>

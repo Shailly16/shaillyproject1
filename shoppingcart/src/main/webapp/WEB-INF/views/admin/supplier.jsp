@@ -14,21 +14,21 @@
 	<form:form action="${addAction}" commandName="supplier">
 		<table>
 			<tr>
-				<td><form:label path="id">
+				<td><form:label path="sid">
 						<spring:message text="ID" />
 					</form:label></td>
 				<c:choose>
-					<c:when test="${!empty supplier.id}">
-						<td><form:input path="id" disabled="true" readonly="true" />
+					<c:when test="${!empty supplier.sid}">
+						<td><form:input path="sid" disabled="true" readonly="true" />
 						</td>
 					</c:when>
 
 					<c:otherwise>
-						<td><form:input path="id" pattern =".{5,20}" required="true" title="id should contains 5 to 20 characters" /></td>
+						<td><form:input path="sid" pattern =".{5,20}" required="true" title="sid should contains 5 to 20 characters" /></td>
 					</c:otherwise>
 				</c:choose>
 			<tr>
-			<form:input path="id" hidden="true"  />
+			<form:input path="sid" hidden="true"  />
 				<td><form:label path="name">
 						<spring:message text="Name" />
 					</form:label></td>
@@ -42,9 +42,10 @@
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty supplier.name}">
-						<input type="submit"
-							value="<spring:message text="Edit Supplier"/>" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<input type="submit" value="<spring:message text="Edit Supplier"/>" />
 					</c:if> <c:if test="${empty supplier.name}">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="submit" value="<spring:message text="Add Supplier"/>" />
 					</c:if></td>
 			</tr>
@@ -63,11 +64,11 @@
 			</tr>
 			<c:forEach items="${supplierList}" var="supplier">
 				<tr>
-					<td>${supplier.id}</td>
+					<td>${supplier.sid}</td>
 					<td>${supplier.name}</td>
 					<td>${supplier.address}</td>
-					<td><a href="<c:url value='manage_supplier_edit/${supplier.id}' />">Edit</a></td>
-					<td><a href="<c:url value='manage_supplier_remove/${supplier.id}' />">Delete</a></td>
+					<td><a href="<c:url value='manage_supplier_edit/${supplier.sid}' />">Edit</a></td>
+					<td><a href="<c:url value='manage_supplier_remove/${supplier.sid}' />">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +19,7 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table
 @Component
@@ -25,7 +27,8 @@ public class Product implements Serializable
 {
 	private static final long serialVersionUID = 1L;
     @Id
-	private String id;
+    @Column(name = "ID")
+    private String id;
 	private String name;
 	private String description;
 	private double price;
@@ -43,9 +46,15 @@ public class Product implements Serializable
 	@JoinColumn(name="supplier_id", updatable=false, insertable=false,nullable=false)
 	private Supplier supplier;
 	
+	@Transient
+	private MultipartFile image;
 	
-	
-	
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
 	public String getCategory_id() {
 		return category_id;
 	}
@@ -80,7 +89,8 @@ public class Product implements Serializable
 	
 	
 	
-	@Id
+	
+   
 	public String getId() {
 		return id;
 	}

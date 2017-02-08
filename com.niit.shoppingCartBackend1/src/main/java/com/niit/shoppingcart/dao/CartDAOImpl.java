@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.MyCart;
-
+import com.niit.shoppingcart.dao.CartDAO;
 @Repository
 public class CartDAOImpl implements CartDAO {
 	
@@ -88,6 +87,8 @@ private SessionFactory sessionFactory;
 	
 }
 
+
+	
 
 	
 }
