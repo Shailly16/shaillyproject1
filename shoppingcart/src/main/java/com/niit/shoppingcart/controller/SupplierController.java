@@ -17,15 +17,15 @@ import com.niit.shoppingcart.model.Supplier;
 public class SupplierController {
 
 	private static Logger log = LoggerFactory.getLogger(SupplierController.class);
-	
+
 	@Autowired
 	private SupplierDAO supplierDAO;
-	
+
 	@Autowired
 	private Supplier supplier;
-	
-	@RequestMapping(value="/manage_suppliers", method = RequestMethod.GET)
-	public String listCategories(Model model){
+
+	@RequestMapping(value = "/manage_suppliers", method = RequestMethod.GET)
+	public String listCategories(Model model) {
 		log.debug("Starting of the method listSuppliers");
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
@@ -33,29 +33,29 @@ public class SupplierController {
 		log.debug("End of the method listSuppliers");
 		return "/home";
 	}
-	
-	@RequestMapping(value="/manage_supplier_add", method = RequestMethod.POST)
-	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier,Model model){
+
+	@RequestMapping(value = "/manage_supplier_add", method = RequestMethod.POST)
+	public String addSupplier(@ModelAttribute("supplier") Supplier supplier, Model model) {
 		log.debug("Starting of the method addSupplier");
-		log.debug("id:"+ supplier.getSid());
-		if (supplierDAO.save(supplier)==true){
-		
-		model.addAttribute("msg", "Successfully created/updated the supplier");}
-		else
-		{
-			model.addAttribute("msg", "not able to create/update the supplier");}
-		
+		log.debug("id:" + supplier.getSid());
+		if (supplierDAO.save(supplier) == true) {
+
+			model.addAttribute("msg", "Successfully created the supplier");
+		} else {
+			supplierDAO.saveOrUpdate(supplier);
+			model.addAttribute("msg", "updated the supplier");
+		}
+
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
 		model.addAttribute("isAdminClickedSuppliers", "true");
 		log.debug("End of the method addSupplier");
 		return "redirect:/manageSuppliers";
 	}
-	
-	@RequestMapping(value="/manage_supplier_remove/{id}")
-	public String deleteSupplier(@PathVariable("id")String id, Model model) throws Exception
-	{
-		System.out.println("supplier id is" +id);
+
+	@RequestMapping(value = "/manage_supplier_remove/{id}")
+	public String deleteSupplier(@PathVariable("id") String id, Model model) throws Exception {
+		System.out.println("supplier id is" + id);
 		try {
 			supplierDAO.delete(id);
 			model.addAttribute("message", "Successfully removed");
@@ -64,28 +64,18 @@ public class SupplierController {
 			e.printStackTrace();
 		}
 
-		
-		
-		return"redirect:/manageSuppliers";
+		return "admin/supplier";
 	}
-		
-	@RequestMapping(value="/manage_supplier_edit/{id}")
-	public String editSupplier(@PathVariable("id")String id, Model model) throws Exception
-	{
+
+	@RequestMapping(value = "/manage_supplier_edit/{id}")
+	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editSupplier");
 		supplier = supplierDAO.get(id);
-		
-		model.addAttribute("supplier",supplier);
+
+		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
 		model.addAttribute("isAdminClickedSuppliers", "true");
-		return"redirect:/manageSuppliers";
+		return "admin/supplier";
 	}
-		
-	
-		
-		
-	}
-	
-	
-			
 
+}

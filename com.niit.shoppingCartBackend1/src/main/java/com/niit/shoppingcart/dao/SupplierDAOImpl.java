@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,16 +80,16 @@ public class SupplierDAOImpl implements SupplierDAO {
 	
 	@Transactional
 	public boolean update(Supplier supplier1) {
-		log.debug("Starting of the method : save ");
-		try {
-			sessionFactory.getCurrentSession().update(supplier1);
-			log.debug("Ending of the method : save ");
-		} catch (HibernateException e) {
-			
-			e.printStackTrace();
-			return false;
-		}
-		
+		log.debug("Starting of the method : update ");
+		Session s= sessionFactory.openSession();
+		Transaction t=s.beginTransaction();
+		Supplier sd= (Supplier)s.get(Supplier.class, supplier1.getSid());
+		sd.setSid(supplier1.getSid());
+		sd.setName(supplier1.getName());
+		sd.setAddress(supplier1.getAddress());
+		s.saveOrUpdate(sd);
+		s.flush();
+		t.commit();
 		return true;
 	}
 	
@@ -104,10 +105,12 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public void delete(String id) {
 		log.debug("Starting of the method : delete ");
 		
-			Supplier supplier1 = new Supplier();
-			supplier1.setSid(id);
-			System.out.println(supplier1.getSid());
-			sessionFactory.getCurrentSession().delete(supplier1);
+		Session s= sessionFactory.openSession();
+		Transaction t=s.beginTransaction();
+		Supplier sd= (Supplier)s.get(Supplier.class, id);
+		s.delete(sd);
+		s.flush();
+		t.commit();
 			log.debug("Ending of the method : delete ");
 		
 		} 

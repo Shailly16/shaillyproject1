@@ -13,11 +13,12 @@
 
 	<form:form action="${addAction}" commandName="supplier">
 		<table>
+		
 			<tr>
 				<td><form:label path="sid">
 						<spring:message text="ID" />
 					</form:label></td>
-				<c:choose>
+				 <c:choose>
 					<c:when test="${!empty supplier.sid}">
 						<td><form:input path="sid" disabled="true" readonly="true" />
 						</td>
@@ -26,9 +27,10 @@
 					<c:otherwise>
 						<td><form:input path="sid" pattern =".{5,20}" required="true" title="sid should contains 5 to 20 characters" /></td>
 					</c:otherwise>
-				</c:choose>
+				</c:choose> 
+			
+			
 			<tr>
-			<form:input path="sid" hidden="true"  />
 				<td><form:label path="name">
 						<spring:message text="Name" />
 					</form:label></td>

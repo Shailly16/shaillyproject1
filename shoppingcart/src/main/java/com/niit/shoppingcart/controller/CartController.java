@@ -56,7 +56,7 @@ import com.niit.shoppingcart.model.Product;
 				model.addAttribute("displayCart", "true");
 			}
 				
-			    log.debug("End of the method listCategories");
+			    log.debug("End of the method myCart");
 			    return "/home";}
 
 		
