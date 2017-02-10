@@ -52,7 +52,7 @@ public class AdminController {
 	@RequestMapping("manageProducts")
 	public ModelAndView products() {
 		log.debug("Starting of the method products");
-		ModelAndView mv = new ModelAndView("product1");
+		ModelAndView mv = new ModelAndView("admin/product");
 		
 		mv.addObject("isAdminClickedProducts", "true");
 		mv.addObject("product", product);

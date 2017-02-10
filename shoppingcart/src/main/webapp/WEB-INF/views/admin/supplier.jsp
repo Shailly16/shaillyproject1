@@ -1,12 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> --%>
 <html>
 <head>
 <title>Supplier Page</title>
 
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 	<h1>Add a Supplier</h1>
 
 	<c:url var="addAction" value="/manage_supplier_add"></c:url>

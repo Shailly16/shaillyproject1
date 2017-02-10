@@ -1,9 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> --%>
+ <%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>  --%>
 
 <%@ page session="false" %>
 <html>
@@ -12,71 +9,72 @@
 <title>Product Page</title>
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 	<h1>Add a Product</h1>
 	
 
-	<%-- <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
- --%>
-<%--  <c:url var="addAction" value="/manage_product_add"></c:url>
-	<form:form action="${addAction}" commandName="product" enctype="multipart/form-data" method="post">
+<c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
+ 
+ <c:url var="addAction" value="/manage_product_add"></c:url>
+	<f:form action="${addAction}" commandName="product" enctype="multipart/f-data" method="post">
 		<table>
 			<tr>
-				<td><form:label path="id">
+				<td><f:label path="id">
 						<spring:message text="ID" />
-					</form:label></td>
+					</f:label></td>
 				<c:choose>
 					<c:when test="${!empty product.id}">
-						<td><form:input path="id" value="" disabled="true" readonly="true" />
+						<td><f:input path="id" value="" disabled="true" readonly="true" />
 						</td>
 					</c:when>
 
 					<c:otherwise>
-						<td><form:input path="id" pattern=".{5,20}" required="true"
+						<td><f:input path="id" pattern=".{5,20}" required="true"
 								title="id should contains 5 to 20 characters" /></td>
 					</c:otherwise>
 				</c:choose>
 			<tr>
-				<form:input path="id" hidden="true" />
-				<td><form:label path="name">
+				<f:input path="id" hidden="true" />
+				<td><f:label path="name">
 						<spring:message text="Name" />
-					</form:label></td>
-				<td><form:input path="name" required="true" /></td>
+					</f:label></td>
+				<td><f:input path="name" required="true" /></td>
 			</tr>
 
 
 			<tr>
-				<td><form:label path="price">
+				<td><f:label path="price">
 						<spring:message text="Price" />
-					</form:label></td>
-				<td><form:input path="price" required="true" /></td>
+					</f:label></td>
+				<td><f:input path="price" required="true" /></td>
 			</tr>
 
 			<tr>
-				<td><form:label path="description">
+				<td><f:label path="description">
 						<spring:message text="Description" />
-					</form:label></td>
-				<td><form:input path="description" required="true" /></td>
+					</f:label></td>
+				<td><f:input path="description" required="true" /></td>
 			</tr>
 
 			<tr>
-				<td><form:label path="supplier">
+				<td><f:label path="supplier">
 						<spring:message text="Supplier" />
-					</form:label></td>
-				<td><form:select path="supplier.name" items="${supplierList}"
+					</f:label></td>
+				<td><f:select path="supplier.name" items="${supplierList}"
 						itemValue="name" itemLabel="name" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="category">
+				<td><f:label path="category">
 						<spring:message text="Category" />
-					</form:label></td>
-				<td><form:select path="category.name" items="${categoryList}"
+					</f:label></td>
+				<td><f:select path="category.name" items="${categoryList}"
 						itemValue="name" itemLabel="name" /></td>
 			</tr>
 			<tr>
-				<td align="left"><form:label path="image">
+				<td align="left"><f:label path="image">
 						<spring:message text=" Image" />
-					</form:label></td>
-				<td align="left"><form:input type="file" name="image" path="image" /></td>
+					</f:label></td>
+				<td align="left"><f:input type="file" name="image" path="image" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty product.name}">
@@ -89,13 +87,13 @@
 		
 		<input type="hidden" 
              name="${_csrf.parameterName}" 
-             value="${_csrf.token}" /> --%>
-	<%-- </form:form> --%>
+             value="${_csrf.token}" />
+</f:form> 
 	<br>
 
-<form:label path="id">
+<f:label path="id">
 <spring:message text="ID" />
-	</form:label>
+	</f:label>
 			
 
 	<h3>Product List</h3>
