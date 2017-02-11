@@ -13,7 +13,7 @@
     Add a Product
 </h1>
 <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
-<form:form action="${addAction}" commandName="product" modelAttribute="product" enctype="multipart/form-data" method="POST">
+<form:form action="${addAction}" commandName="product" modelAttribute="product" method="POST">
 <table>
     
     

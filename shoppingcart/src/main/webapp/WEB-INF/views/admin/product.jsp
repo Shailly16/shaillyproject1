@@ -1,103 +1,97 @@
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> --%>
- <%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>  --%>
-
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<title>Product Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-	<h1>Add a Product</h1>
-	
-
+<h1>Add a product</h1>
 <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
- 
- <c:url var="addAction" value="/manage_product_add"></c:url>
-	<f:form action="${addAction}" commandName="product" enctype="multipart/f-data" method="post">
+<form:form action="${addAction}" commandName="product" enctype="multipart/form-data" method="post">
 		<table>
-			<tr>
-				<td><f:label path="id">
-						<spring:message text="ID" />
-					</f:label></td>
+		<tr>
+				<td><form:label path="id"> <spring:message text="ID" />	</form:label></td>
 				<c:choose>
 					<c:when test="${!empty product.id}">
-						<td><f:input path="id" value="" disabled="true" readonly="true" />
-						</td>
+						<td><form:input path="cid" disabled="true" readonly="true" /></td>
 					</c:when>
-
 					<c:otherwise>
-						<td><f:input path="id" pattern=".{5,20}" required="true"
+						<td><form:input path="id" pattern=".{5,20}" required="true"
 								title="id should contains 5 to 20 characters" /></td>
 					</c:otherwise>
 				</c:choose>
-			<tr>
-				<f:input path="id" hidden="true" />
-				<td><f:label path="name">
-						<spring:message text="Name" />
-					</f:label></td>
-				<td><f:input path="name" required="true" /></td>
-			</tr>
-
-
-			<tr>
-				<td><f:label path="price">
-						<spring:message text="Price" />
-					</f:label></td>
-				<td><f:input path="price" required="true" /></td>
-			</tr>
-
-			<tr>
-				<td><f:label path="description">
-						<spring:message text="Description" />
-					</f:label></td>
-				<td><f:input path="description" required="true" /></td>
-			</tr>
-
-			<tr>
-				<td><f:label path="supplier">
-						<spring:message text="Supplier" />
-					</f:label></td>
-				<td><f:select path="supplier.name" items="${supplierList}"
-						itemValue="name" itemLabel="name" /></td>
-			</tr>
-			<tr>
-				<td><f:label path="category">
-						<spring:message text="Category" />
-					</f:label></td>
-				<td><f:select path="category.name" items="${categoryList}"
-						itemValue="name" itemLabel="name" /></td>
-			</tr>
-			<tr>
-				<td align="left"><f:label path="image">
-						<spring:message text=" Image" />
-					</f:label></td>
-				<td align="left"><f:input type="file" name="image" path="image" /></td>
-			</tr>
-			<tr>
+				</tr>
+         <tr>
+        <td>
+            <form:label path="name">
+                <spring:message text="Name"/>
+            </form:label>
+        </td>
+        <td> <form:input path="name" /></td>
+            <td><form:errors path="name" cssStyle="color:#00ff00;"/></td>
+      
+    </tr>
+    <tr>
+     <td>
+           
+    
+            <form:label path="price">
+                <spring:message text="Price"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="price" />
+        </td>
+         <td><form:errors path="price" cssStyle="color:#00ff00;"/></td>
+    </tr>
+    
+     
+    
+    
+    
+    
+    <tr>
+        <td>
+            <form:label path="description">
+                <spring:message text="Description"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="description" />
+        </td>
+         <td><form:errors path="description" cssStyle="color:#00ff00;"/>
+        </td>
+    </tr>
+     <tr>
+        <td>
+            <form:label path="image">
+                <spring:message text="Photo to upload"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input type="file" path="image" />
+        </td><td></td>
+        
+    </tr>
+    <tr>
 				<td colspan="2"><c:if test="${!empty product.name}">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="submit" value="<spring:message text="Edit Product"/>" />
 					</c:if> <c:if test="${empty product.name}">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="submit" value="<spring:message text="Add Product"/>" />
 					</c:if></td>
 			</tr>
-		</table>
-		
-		<input type="hidden" 
-             name="${_csrf.parameterName}" 
-             value="${_csrf.token}" />
-</f:form> 
-	<br>
-
-<f:label path="id">
-<spring:message text="ID" />
-	</f:label>
-			
-
-	<h3>Product List</h3>
-	<c:if test="${!empty productList}">
+    
+    
+     </table> 
+ </form:form>
+<br>
+<h3>Product List</h3>
+<c:if test="${!empty productList}">
 		<table class="tg">
 			<tr>
 				<th width="80">Product ID</th>
@@ -117,14 +111,20 @@
 					<td>${product.price}</td>
 					<td>${product.category.name}</td>
 					<td>${product.supplier.name}</td>
-					<td><a href="<c:url value='manage_product_edit/${product.id}' />">Edit</a></td>
-					<td><a href="<c:url value='manage_product_remove/${product.id}' />">Delete</a></td>
+                    <td><a href="<c:url value='/manage_product_edit/${product.id}' />">Edit</a></td>
+					
+					<td><a href="<c:url value='/manage_product_remove/${product.id}' />">Delete</a></td>
 				</tr>
-			</c:forEach>
-		</table>
-	</c:if>
+        </tbody>
+    </c:forEach>
+    </table>
+ </c:if>  
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+ <script src="resource/bootstrap/js/bootstrap.min.js"></script>
+       
+        
+    
+
 </body>
 </html>
-
-
-
