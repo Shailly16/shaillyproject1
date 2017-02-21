@@ -80,12 +80,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return true;
 	}
 	
-	@Transactional
-	public void saveOrUpdate(Product product1) {
-		log.debug("Starting of the method : saveOrUpdate ");
-		sessionFactory.getCurrentSession().save(product1);
-			log.debug("Ending of the method : saveOrUpdate ");
-		} 
 	
 	
 	@Transactional

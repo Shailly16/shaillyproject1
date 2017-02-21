@@ -12,7 +12,26 @@
 <%@ include file="./user/Courosal.jsp"%>
 <br>
 <br>
-<%@ include file="./product_menu.jsp"%>
+
+   <div class="container">
+  
+   <c:forEach items="${categoryList}" var="category">
+   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> ${category.name} <span class="caret"></span></a>
+   <ul class="dropdown-menu" role="menu">
+     
+						<c:forEach items="${productList}" var="product">
+						<c:if test="${(product.category_id).equals (category.cid)}">
+						
+						<li><a href="manage_products/get/${product.id}">${product.name}</a></li>
+						</c:if>
+						</c:forEach>
+						
+					 </ul> 
+			</c:forEach> 
+     </div>
+    <hr color="blue" width="100" >
+	${category.products}
+	 
 <c:if test="${!empty logoutMessage}">
 <div class="alert alert-success">${logoutMessage}</div>   
 </c:if>
@@ -50,6 +69,6 @@
 </c:if>
 
 <br>
-<%@ include file="./Footer.jsp" %>
+ <%@ include file="./Footer.jsp" %>
 </body>
 </html>

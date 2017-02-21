@@ -15,6 +15,8 @@
 </head>
 <body>
 <%@ include file="./header.jsp" %>
+
+
 <c:url var="action" value="/validate"></c:url>
 <%-- //<c:url var="action" value="/j_spring_security_check'>  --%>
 <form name='loginForm' action="${action}" method="post">

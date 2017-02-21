@@ -52,33 +52,39 @@ public class CategoryController {
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
 		log.debug("End of the method addCategory");
-		return "/manageCategories";
+		return "redirect:/manageCategories";
 	}
 	
-	@RequestMapping(value="manage_category_remove/{id}")
-	public String deleteCategory(@PathVariable("id")String cid, ModelMap model) throws Exception
-	{
-		log.debug("Starting of the method removeCategory");
+	@RequestMapping(value = "/manage_category_remove/{id}")
+	public String deleteCategory(@PathVariable("id") String id, Model model) throws Exception {
+		System.out.println("category id is" + id);
 		try {
-			categoryDAO.delete(cid);
+			categoryDAO.delete(id);
 			model.addAttribute("message", "Successfully removed");
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
 		}
 
-		return"forward:/manage_categories";
+		return "redirect:/manageCategories";
 	}
 		
-	@RequestMapping(value="manage_category_edit/{id}")
-	public String editCategory(@PathVariable("id")String id, Model model) throws Exception
+	@RequestMapping(value="/manage_category_edit")
+	public String editP(@ModelAttribute("id") String id,Model model)
+	{
+		model.addAttribute("editP", categoryDAO.get(id));
+		
+		return "admin/category";
+	}
+	
+	 @ModelAttribute("editP")
+	@RequestMapping(value="/manage_category_edit/{id}")
+	public String editCategory(@PathVariable("id") String id ,Category category)
 	{
 		log.debug("Starting of the method editCategory");
-		category = categoryDAO.get(id);
 		categoryDAO.update(category);
-		model.addAttribute("category",category);
-		
-		return"forward:/manage_categories";
+		log.debug("Ending of the method editCategory");
+		return "redirect:manageCategories";
 	}
 		
 	

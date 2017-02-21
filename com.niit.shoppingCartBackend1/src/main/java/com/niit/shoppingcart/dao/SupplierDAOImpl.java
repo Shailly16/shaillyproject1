@@ -2,12 +2,13 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.SupplierDAO;
+import com.niit.shoppingcart.model.Category;
 //import com.niit.shoppingcart.model.Product1;
 import com.niit.shoppingcart.model.Supplier;
 
@@ -97,7 +99,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public void saveOrUpdate(Supplier supplier1) {
 		log.debug("Starting of the method : saveOrUpdate ");
 		sessionFactory.getCurrentSession().save(supplier1);
-			log.debug("Ending of the method : saveOrUpdate ");
+	    log.debug("Ending of the method : saveOrUpdate ");
 		} 
 	
 	
@@ -128,10 +130,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 	@Transactional
 	public Supplier getByName(String name) {
 		log.debug("Starting of the method : getsupplierByName ");
-		String hql = "from supplier where name1=" + "'"+ name+"'";
-		System.out.println(hql);
-		return (Supplier)sessionFactory.getCurrentSession().get(Supplier.class, name);
-		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Supplier.class);
+		criteria.add(Restrictions.like("name", name));
+		return(Supplier)criteria.uniqueResult();
 		
 	}
 		

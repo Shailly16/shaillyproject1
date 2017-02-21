@@ -14,23 +14,32 @@
 <body>
 
 	<div class="container">
+	
+	
 
-	<ul class="nav nav-pills" role="tablist">
+	 <%-- <ul class="nav nav-pills" role="tablist">
 	<c:forEach items="${categoryList}" var="category">
 	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> ${category.name} <span class="caret"></span></a>
      <ul class="dropdown-menu" role="menu">
-						<c:forEach items="${category.products}" var="product">
-							<li><a href="manage_product/get/${product.id}">${product.name}</a></li>
+     
+						<c:forEach items="${product.getCategory().getName()}" var="product">
+						<c:if test="${category.name}.equals(product.getCategory_id())"></c:if>
+						<li><a href="manage_products/get/${product.id}">${product.name}</a></li>
+						<c:out value="${product.name}"></c:out>
 						</c:forEach>
-					</ul></li>
-			</c:forEach>
+					 </ul> 
+			</c:forEach> 
      
 
 									
 							
 					
 					</ul>
-			
+			 --%>
+			 
+ 
+
+			 
            
 		
 	</div>

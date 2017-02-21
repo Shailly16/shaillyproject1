@@ -108,6 +108,7 @@ public class Product implements Serializable
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+		System.out.println("model class name is " +category.getName());
 	}
 	public Supplier getSupplier() {
 		return supplier;

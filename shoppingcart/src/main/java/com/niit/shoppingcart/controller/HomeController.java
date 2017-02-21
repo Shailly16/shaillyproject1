@@ -64,7 +64,7 @@ public class HomeController {
 		
 		
 		session.setAttribute("categoryList", categoryDAO.list());
-		
+		session.setAttribute("productList", productDAO.list());
 		session.setAttribute("supplierList", supplierDAO.list());
 
 		log.debug("Ending of the method onLoad");

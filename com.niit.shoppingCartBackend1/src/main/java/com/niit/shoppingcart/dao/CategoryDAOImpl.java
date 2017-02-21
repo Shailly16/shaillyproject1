@@ -2,10 +2,13 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import com.niit.shoppingcart.dao.CategoryDAO;
 //import com.niit.shoppingcart.model.Product1;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Category;
 
 
 
@@ -76,14 +81,15 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Transactional
 	public boolean update(Category category1) {
 		log.debug("Starting of the method : save ");
-		try {
-			sessionFactory.getCurrentSession().update(category1);
-			log.debug("Ending of the method : save ");
-		} catch (HibernateException e) {
-			
-			e.printStackTrace();
-			return false;
-		}
+		Session s= sessionFactory.openSession();
+		Transaction t=s.beginTransaction();
+		Category sd= (Category)s.get(Category.class, category1.getCid());
+		sd.setCid(category1.getCid());
+		sd.setName(category1.getName());
+		sd.setAddress(category1.getAddress());
+		s.saveOrUpdate(sd);
+		s.flush();
+		t.commit();
 		
 		return true;
 	}
@@ -107,13 +113,14 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Transactional
 	public void delete(String id) {
 		
-		log.debug("Starting of the method : delete ");
-		
-		Category CategoryToDelete = new Category();
-		CategoryToDelete.setCid(id);
-		sessionFactory.getCurrentSession().delete(CategoryToDelete);
-		log.debug("Ending of the method : delete ");
-         
+		Session s= sessionFactory.openSession();
+		Transaction t=s.beginTransaction();
+		Category sd= (Category)s.get(Category.class, id);
+		s.delete(sd);
+		s.flush();
+		t.commit();
+	    log.debug("Ending of the method : delete ");
+		 
 	}
 
 	
@@ -131,9 +138,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Transactional
 	public Category getByName(String name) {
 		log.debug("Starting of the method : getcategoryByName ");
-		String hql = "from category where name1=" + "'"+ name+"'";
-		System.out.println(hql);
-		return (Category)sessionFactory.getCurrentSession().get(Category.class, name);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Category.class);
+		criteria.add(Restrictions.like("name", name));
+		return(Category)criteria.uniqueResult();
 		
 		
 	}

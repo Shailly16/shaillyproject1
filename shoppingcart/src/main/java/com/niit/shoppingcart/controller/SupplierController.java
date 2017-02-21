@@ -64,14 +64,14 @@ public class SupplierController {
 			e.printStackTrace();
 		}
 
-		return "admin/supplier";
+		return "redirect:/manageSuppliers";
 	}
 
 	@RequestMapping(value = "/manage_supplier_edit/{id}")
 	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editSupplier");
 		supplier = supplierDAO.get(id);
-
+        supplierDAO.update(supplier);
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
 		model.addAttribute("isAdminClickedSuppliers", "true");

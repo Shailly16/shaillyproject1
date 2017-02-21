@@ -8,7 +8,7 @@
 
 </head>
 <body>
-${msg}
+<%@ include file="../header.jsp" %>
 	<h1>Add a Category</h1>
 	<c:url var="addAction" value="/manage_category_add"></c:url>
 	<form:form action="${addAction}" commandName="category"  method="post">
@@ -48,13 +48,13 @@ ${msg}
 	<br>
 	<h3>Category List</h3>
 	<c:if test="${!empty categoryList}">
-		<table class="tg">
+		<table class="tg" border="1" style="padding-left:200px;">
 			<tr>
-				<th width="80">Category ID</th>
+				<th width="120">Category ID</th>
 				<th width="120">Category Name</th>
-				<th width="120">Category Description</th>
-				<th width="60">Edit</th>
-				<th width="60">Delete</th>
+				<th width="250">Category Description</th>
+				<th width="80">Edit</th>
+				<th width="80">Delete</th>
 			</tr>
 			<c:forEach items="${categoryList}" var="category">
 				<tr>
@@ -68,6 +68,15 @@ ${msg}
 			</c:forEach>
 		</table>
 	</c:if>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<%@ include file="../Footer.jsp" %>
 </body>
 </html>
 

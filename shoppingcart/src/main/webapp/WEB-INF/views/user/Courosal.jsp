@@ -35,19 +35,19 @@
    
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="C:\Users\pavelion\Desktop\ekart project pictures\imp symbols\sun.png" alt="haircare" >
+        <img src="${pageContext.request.contextPath}/resources/img/barbie.png" alt="haircare" >
       </div>
 
       <div class="item">
-        <img src="C:\Users\pavelion\Desktop\ekart project pictures\imp symbols\beauty.jpg" alt="lotions" >
+        <img src="${pageContext.request.contextPath}/resources/img/beauty.jpg" alt="lotions" >
       </div>
     
       <div class="item">
-        <img src="C:\Users\pavelion\Desktop\ekart project pictures\imp symbols\best.jpg" alt="pefume">
+        <img src="${pageContext.request.contextPath}/resources/img/Maybellene.jpg" alt="pefume">
       </div>
       
       <div class="item">
-        <img src="C:\Users\pavelion\Desktop\ekart project pictures\imp symbols\lakme.jpg" alt="pefume">
+        <img src="${pageContext.request.contextPath}/resources/img/lakme.jpg" alt="pefume">
       </div>
    
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="com.niit.shoppingcart.supplierTestCase" time="0.096" errors="1" skipped="0">
+<testsuite tests="4" failures="1" name="com.niit.shoppingcart.supplierTestCase" time="0.55" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_05\jre\bin"/>
@@ -27,9 +27,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8.1"/>
-    <property name="classworlds.conf" value="F:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4577655023263903158.tmp"/>
+    <property name="classworlds.conf" value="F:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf6971505296157840123.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_05\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Java\jdk1.8.0_05\jre\bin;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/lib/amd64;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;C:\Program Files\Java\jdk1.8.0_05\bin;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;;C:\Users\pavelion\Desktop;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_05\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/lib/amd64;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;C:\Program Files\Java\jdk1.8.0_05\bin;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;;C:\Users\pavelion\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -61,9 +61,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="saveTestCase" time="0.037">
-    <error message="could not execute statement; SQL [n/a]; constraint [&quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 24 */ &apos;RA002&apos; )&quot;; SQL statement:
-insert into Supplier (address, name, sid) values (?, ?, ?) [23505-193]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement" type="org.springframework.dao.DataIntegrityViolationException">org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [&quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 24 */ &apos;RA002&apos; )&quot;; SQL statement:
+  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="saveTestCase" time="0.045">
+    <error message="could not execute statement; SQL [n/a]; constraint [&quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 39 */ &apos;RA002&apos; )&quot;; SQL statement:
+insert into Supplier (address, name, sid) values (?, ?, ?) [23505-193]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement" type="org.springframework.dao.DataIntegrityViolationException">org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [&quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 39 */ &apos;RA002&apos; )&quot;; SQL statement:
 insert into Supplier (address, name, sid) values (?, ?, ?) [23505-193]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:241)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)
@@ -75,7 +75,7 @@ insert into Supplier (address, name, sid) values (?, ?, ?) [23505-193]]; nested 
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213)
-	at com.sun.proxy.$Proxy42.save(Unknown Source)
+	at com.sun.proxy.$Proxy41.save(Unknown Source)
 	at com.niit.shoppingcart.supplierTestCase.saveTestCase(supplierTestCase.java:61)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -132,7 +132,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not execu
 	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:65)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.doCommit(HibernateTransactionManager.java:582)
 	... 39 more
-Caused by: org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: &quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 24 */ &apos;RA002&apos; )&quot;; SQL statement:
+Caused by: org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: &quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 39 */ &apos;RA002&apos; )&quot;; SQL statement:
 insert into Supplier (address, name, sid) values (?, ?, ?) [23505-176]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
 	at org.h2.message.DbException.get(DbException.java:178)
@@ -167,26 +167,327 @@ insert into Supplier (address, name, sid) values (?, ?, ?) [23505-176]
     values
         (?, ?, ?)
 </system-out>
-    <system-err>Feb 08, 2017 11:44:34 AM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@71f0b72e: startup date [Wed Feb 08 11:44:34 IST 2017]; root of context hierarchy
-Feb 08, 2017 11:44:34 AM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+    <system-err>Feb 12, 2017 3:31:36 PM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5eed2d86: startup date [Sun Feb 12 15:31:36 IST 2017]; root of context hierarchy
+Feb 12, 2017 3:31:37 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
 INFO: Loaded JDBC driver: org.h2.Driver
-Feb 08, 2017 11:44:34 AM org.hibernate.dialect.Dialect &lt;init&gt;
+Feb 12, 2017 3:31:37 PM org.hibernate.dialect.Dialect &lt;init&gt;
 INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-Feb 08, 2017 11:44:35 AM org.springframework.orm.hibernate5.HibernateTransactionManager afterPropertiesSet
-INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@35764bef] of Hibernate SessionFactory for HibernateTransactionManager
-Feb 08, 2017 11:44:35 AM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Feb 12, 2017 3:31:37 PM org.springframework.orm.hibernate5.HibernateTransactionManager afterPropertiesSet
+INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@d8d9199] of Hibernate SessionFactory for HibernateTransactionManager
+Feb 12, 2017 3:31:37 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 WARN: SQL Error: 23505, SQLState: 23505
-Feb 08, 2017 11:44:35 AM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-ERROR: Unique index or primary key violation: &quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 24 */ &apos;RA002&apos; )&quot;; SQL statement:
+Feb 12, 2017 3:31:37 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+ERROR: Unique index or primary key violation: &quot;PRIMARY_KEY_C ON PUBLIC.SUPPLIER(SID) VALUES ( /* 39 */ &apos;RA002&apos; )&quot;; SQL statement:
 insert into Supplier (address, name, sid) values (?, ?, ?) [23505-193]
-Feb 08, 2017 11:44:35 AM org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl release
+Feb 12, 2017 3:31:37 PM org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl release
 INFO: HHH000010: On release of batch it still contained JDBC statements
-Feb 08, 2017 11:44:35 AM org.hibernate.internal.SessionImpl$5 mapManagedFlushFailure
+Feb 12, 2017 3:31:37 PM org.hibernate.internal.SessionImpl$5 mapManagedFlushFailure
 ERROR: HHH000346: Error during managed flush [could not execute statement]
 </system-err>
   </testcase>
-  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="getsupplierTestCase" time="0"/>
-  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="updateTestCase" time="0.031"/>
-  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="getAllsupplierTestCase" time="0.028"/>
+  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="getsupplierTestCase" time="0.004"/>
+  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="updateTestCase" time="0.224"/>
+  <testcase classname="com.niit.shoppingcart.supplierTestCase" name="getAllsupplierTestCase" time="0.277">
+    <failure message="length check expected:&lt;5&gt; but was:&lt;11&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: length check expected:&lt;5&gt; but was:&lt;11&gt;
+	at junit.framework.Assert.fail(Assert.java:57)
+	at junit.framework.Assert.failNotEquals(Assert.java:329)
+	at junit.framework.Assert.assertEquals(Assert.java:78)
+	at junit.framework.Assert.assertEquals(Assert.java:234)
+	at com.niit.shoppingcart.supplierTestCase.getAllsupplierTestCase(supplierTestCase.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</failure>
+    <system-out>Hibernate: 
+    select
+        supplier0_.sid as sid1_5_,
+        supplier0_.address as address2_5_,
+        supplier0_.name as name3_5_ 
+    from
+        Supplier supplier0_
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.category_id as category2_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        supplier1_.sid as sid1_5_2_,
+        supplier1_.address as address2_5_2_,
+        supplier1_.name as name3_5_2_ 
+    from
+        Product products0_ 
+    inner join
+        Supplier supplier1_ 
+            on products0_.supplier_id=supplier1_.sid 
+    where
+        products0_.category_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_3_0_,
+        products0_.ID as ID1_3_0_,
+        products0_.ID as ID1_3_1_,
+        products0_.category_id as category2_3_1_,
+        products0_.description as descript3_3_1_,
+        products0_.name as name4_3_1_,
+        products0_.price as price5_3_1_,
+        products0_.stock as stock6_3_1_,
+        products0_.supplier_id as supplier7_3_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+</system-out>
+    <system-err>Feb 12, 2017 3:31:38 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+</system-err>
+  </testcase>
 </testsuite>

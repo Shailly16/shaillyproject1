@@ -25,6 +25,12 @@ public class Category implements Serializable
     private String cid;
     
   
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String id) {
+		this.cid = id;
+	}
 	private String name;
 	private String description; 
 	
@@ -37,12 +43,7 @@ public class Category implements Serializable
 		this.products = products;}
 	
 	 
-		public String getCid() {
-		return cid;
-	}
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
+		
 		public String getDescription() {
 			return description;
 		}

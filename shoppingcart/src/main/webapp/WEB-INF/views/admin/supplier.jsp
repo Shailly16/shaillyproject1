@@ -8,6 +8,8 @@
 </head>
 <body>
 <%@ include file="../header.jsp" %>
+<br>
+<br>
 	<h1>Add a Supplier</h1>
 
 	<c:url var="addAction" value="/manage_supplier_add"></c:url>
@@ -57,11 +59,11 @@
 	<br>
 	<h3>Supplier List</h3>
 	<c:if test="${!empty supplierList}">
-		<table class="tg">
+		<table class="tg" border="1" style="padding-left:200px">
 			<tr>
 				<th width="80">Supplier ID</th>
 				<th width="120">Supplier Name</th>
-				<th width="120">Supplier Address</th>
+				<th width="150">Supplier Address</th>
 				<th width="60">Edit</th>
 				<th width="60">Delete</th>
 			</tr>
@@ -76,5 +78,14 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<%@ include file="../Footer.jsp" %>
 </body>
 </html>
