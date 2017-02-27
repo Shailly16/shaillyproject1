@@ -22,7 +22,7 @@
 						<c:forEach items="${productList}" var="product">
 						<c:if test="${(product.category_id).equals (category.cid)}">
 						
-						<li><a href="manage_products/get/${product.id}">${product.name}</a></li>
+						<li><a href="<spring:url value="/display/${product.id}"/>">${product.name}</a></li>
 						</c:if>
 						</c:forEach>
 						

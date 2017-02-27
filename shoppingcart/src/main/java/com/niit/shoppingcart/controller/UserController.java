@@ -84,7 +84,7 @@ public class UserController {
 		log.debug("Starting of the method validate");
 
 		// ModelAndView mv = new ModelAndView("/home");
-		ModelAndView mv = new ModelAndView("/admin/adminHome");
+		ModelAndView mv = new ModelAndView("/home");
 		user1 = userDAO.validate(userID, password);
 		// if the record exist with this userID and password it will return user
 		// details else will return null
@@ -110,7 +110,7 @@ public class UserController {
 
 			} else {
 				log.debug("Logged in as User");
-				mv.addObject("isAdmin", "false");
+				mv.addObject("isAdmin", "false"); 
 				//myCart = cartDAO.list(userID);
 				mv.addObject("myCart", myCart);
 				// Fetch the myCart list based on user ID
@@ -153,6 +153,7 @@ public class UserController {
 		    
 		log.debug("Ending of the method logout");
 		return mv;
+		
 	}
 
 	@RequestMapping("/register")

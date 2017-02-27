@@ -9,6 +9,7 @@
 <body>
 <%@ include file="../header.jsp" %>
 <h1>Add a product</h1>
+
 <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
 <form:form action="${addAction}" commandName="product" enctype="multipart/form-data" method="post">
 		<table>
@@ -112,7 +113,7 @@
     <tr>
 				 <td colspan="2"><c:if test="${!empty product.name}">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="submit" value="<spring:message text="Edit Product"/>" /> 
+						<input type="submit" value="<spring:message text="Edit Product"/>"/> 
 					 </c:if>  <c:if test="${empty product.name}">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="submit" value="<spring:message text="Add Product"/>" />

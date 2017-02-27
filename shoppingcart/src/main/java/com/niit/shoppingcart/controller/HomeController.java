@@ -7,15 +7,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.ContactDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Contact;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
@@ -96,11 +99,31 @@ public class HomeController {
 		return "/home";
 	}
 	
+	@RequestMapping(value = "/contact")
+	public ModelAndView contactPage() {
+		
+		
+		return new ModelAndView("contact");
+	}
+
+	@ModelAttribute("contact")
+	public Contact contact()
+	{
+		return new Contact();
+	}
+	@RequestMapping("/addContact")
+	public String addContact(@ModelAttribute("contact") Contact contact , BindingResult result)
+	{
+		
 	
-	
-	
-	
+		return "contact";
+		
+	}
 }
+	
+	
+	
+
 
 
 		

@@ -18,25 +18,24 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<img src='<c:url value="/resource/img/${product.image}" />' class="single-img" alt="image" /> 
+				<img src='<c:url value="/resources/images/${product.name}.png" />' alt="image" height="200" width="300" /> 
 			</div>
 			<div class="col-md-6">
 
 				<h3>${product.name}</h3>
 				<p>${product.description}</p>
 				<p>
-					<strong>Item Code : </strong><span class="label label-warning">${product.Id}</span>
-				</p>
-				
-				<p>
-					<strong>category</strong> : ${product.category}
+					<strong>Item Code : </strong><span class="label label-warning">${product.id}</span>
 				</p>
 				<p>
-					<strong>Availble units in stock </strong> : ${product.Stock}
+					<strong>category</strong> : ${product.category.name}
 				</p>
-				<h4>${product.Price}Rupees</h4>
+				<p>
+					<strong>Availble units in stock </strong> : ${product.stock}
+				</p>
+				<h4>${product.price}Rupees</h4>
 				
-					<a href= "/myCart/add/{product.id}" class="btn btn-warning btn-large"> <span
+					<a href="<spring:url value="/myCart/add/${product.id}"/>" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span>Add To Cart
 					</a>
 				

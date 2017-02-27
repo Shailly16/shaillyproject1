@@ -138,7 +138,7 @@ public class ProductController {
 	public String editProduct(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editProduct");
 		product = productDAO.get(id);
-        productDAO.update(product);
+       
 		model.addAttribute("product", product);
 		model.addAttribute("productList", productDAO.list());
 		model.addAttribute("isAdminClickedProducts", "true");
@@ -148,17 +148,55 @@ public class ProductController {
 	
 	
 
-	@RequestMapping(value = "manage_product/get/{id}")
-	public ModelAndView getSelectedProduct(@PathVariable("id") String id, RedirectAttributes redirectAttribute)
+	@RequestMapping(value = "/display/{id}")
+	public String getSelectedProduct(@PathVariable("id") String id,Model model)
 			throws Exception {
 		log.debug("Starting of the method getselectedProduct");
 		product = productDAO.get(id);
-       
-		ModelAndView mv = new ModelAndView("redirect:/display");
-		redirectAttribute.addFlashAttribute("selectedProduct", productDAO.get(id));
+       model.addAttribute("product", product);
 		log.debug("Ending of the method getselectedProduct");
-		return mv;
+		return "/display";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

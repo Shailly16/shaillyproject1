@@ -69,25 +69,20 @@ public class CategoryController {
 		return "redirect:/manageCategories";
 	}
 		
-	@RequestMapping(value="/manage_category_edit")
-	public String editP(@ModelAttribute("id") String id,Model model)
-	{
-		model.addAttribute("editP", categoryDAO.get(id));
+	
 		
+	@RequestMapping(value = "/manage_category_edit/{id}")
+	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
+		log.debug("Starting of the method editcategory");
+		category = categoryDAO.get(id);
+		
+		model.addAttribute("category", category);
+		model.addAttribute("categoryList", categoryDAO.list());
+		model.addAttribute("isAdminClickedCategories", "true");
 		return "admin/category";
 	}
-	
-	 @ModelAttribute("editP")
-	@RequestMapping(value="/manage_category_edit/{id}")
-	public String editCategory(@PathVariable("id") String id ,Category category)
-	{
-		log.debug("Starting of the method editCategory");
-		categoryDAO.update(category);
-		log.debug("Ending of the method editCategory");
-		return "redirect:manageCategories";
-	}
-		
-	
+
+	  
 		
 		
 	}

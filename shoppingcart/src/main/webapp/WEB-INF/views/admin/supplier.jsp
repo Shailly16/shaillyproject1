@@ -12,7 +12,7 @@
 <br>
 	<h1>Add a Supplier</h1>
 
-	<c:url var="addAction" value="/manage_supplier_add"></c:url>
+	<c:url var="addAction" value="/manage_supplier_add/{supplier.id}"></c:url>
 
 	<form:form action="${addAction}" commandName="supplier">
 		<table>
@@ -24,11 +24,13 @@
 				 <c:choose>
 					<c:when test="${!empty supplier.sid}">
 						<td><form:input path="sid" disabled="true" readonly="true" />
+						<form:hidden path="sid" />
 						</td>
 					</c:when>
 
 					<c:otherwise>
-						<td><form:input path="sid" pattern =".{5,20}" required="true" title="sid should contains 5 to 20 characters" /></td>
+						<td><form:input path="sid" pattern =".{5,20}" required="true" title="sid should contains 5 to 20 characters" />
+						<form:hidden path="sid" /></td>
 					</c:otherwise>
 				</c:choose> 
 			
@@ -47,7 +49,7 @@
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty supplier.name}">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 						<input type="submit" value="<spring:message text="Edit Supplier"/>" />
 					</c:if> <c:if test="${empty supplier.name}">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
