@@ -81,7 +81,7 @@ public class ProductController {
 		log.debug("id:"+ product.getId()); 
 		System.out.println("abc is" +k);
 		category= categoryDAO.getByName(product.getCategory().getName());
-		 supplier = supplierDAO.getByName(product.getSupplier().getName());
+		supplier = supplierDAO.getByName(product.getSupplier().getName());
 		 
 		 product.setCategory(category); 
 		 product.setSupplier(supplier);
@@ -105,7 +105,7 @@ public class ProductController {
 			else
 			{
 				product.setId(k);
-				categoryDAO.update(category);
+				productDAO.update(product);
 	            model.addAttribute("msg", "updated the product");}
 			
 		
@@ -125,7 +125,7 @@ public class ProductController {
 		
 		
 		log.debug("End of the method addProduct");
-		return "admin/product";
+		return "redirect:/manageProducts";
 	}
 
 	@RequestMapping(value = "/manage_product_remove/{id}")
@@ -146,6 +146,7 @@ public class ProductController {
 	@RequestMapping(value = "/manage_product_edit/{id}")
 	public String editProduct(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editProduct");
+		k=id;
 		product = productDAO.get(id);
        
 		model.addAttribute("product", product);

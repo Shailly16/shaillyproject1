@@ -11,7 +11,11 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class BillingAddress implements Serializable {
+public class BillingAddress implements Serializable  {
+	
+/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 @Id
 private String billingAddressId;

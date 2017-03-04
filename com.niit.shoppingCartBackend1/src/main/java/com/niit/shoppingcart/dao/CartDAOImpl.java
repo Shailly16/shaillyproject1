@@ -13,40 +13,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.MyCart;
 import com.niit.shoppingcart.dao.CartDAO;
 @Repository
 public class CartDAOImpl implements CartDAO {
 	
+	static Logger log = LoggerFactory.getLogger(CartDAOImpl.class);
+
+	private SessionFactory sessionFactory;
+		
+			
+		
+
+		@Autowired
+		public CartDAOImpl(SessionFactory sessionFactory) {
+			
+				try {
+					this.sessionFactory = sessionFactory;
+					log.info(" The connection is established properly..");
+				} catch (Exception e) {
+					log.error("Not able to prepare connection.  Please check application"
+							+ "context java file");
+					e.printStackTrace();
+				}
+			
+		}
+
 	
-	/*public Cart getCartById(int cartId) {
+	@Transactional
+	public Cart getCartById(int cartId) {
 		Session session=sessionFactory.getCurrentSession();
 		
 		return (Cart)session.get(Cart.class,new Integer(cartId));
 		
 	}	
-	*/
-	static Logger log = LoggerFactory.getLogger(CartDAOImpl.class);
-
-private SessionFactory sessionFactory;
 	
-		
 	
-
-	@Autowired
-	public CartDAOImpl(SessionFactory sessionFactory) {
-		
-			try {
-				this.sessionFactory = sessionFactory;
-				log.info(" The connection is established properly..");
-			} catch (Exception e) {
-				log.error("Not able to prepare connection.  Please check application"
-						+ "context java file");
-				e.printStackTrace();
-			}
-		
-	}
-
 	
 	@Transactional
 	public List<MyCart> list(String userID) {
@@ -65,6 +68,7 @@ private SessionFactory sessionFactory;
 		log.debug("Ending of the method : save ");
 	}
 	
+	@Transactional
 	 public long getTotalAmount(String userID)
 	 {
 		 log.debug("Starting of the getTotalAmount");

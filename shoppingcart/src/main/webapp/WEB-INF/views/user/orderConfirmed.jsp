@@ -22,7 +22,7 @@
  Order # ${order.orderID}<br>
  Shipping Address : ${order.shippingAddress}<br>
  Billing Address : ${order.billingAddress}<br>
- <form:form><input type="submit" name="_eventId_finalHome" value="Home"></input>
+ <form:form><input type="submit" name="_eventId_toHome" value="Home"></input>
  </form:form>
  </div>
  </div>

@@ -1,45 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:schemaLocation="http://www.springframework.org/schema/webflow
-						  http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
-	
-	<var name="shippingAddress"	class="com.niit.shoppingcart.model.ShippingAddress"/>	
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+ 
+	<!-- <var name="shippingAddress"	class="com.niit.shoppingcart.model.ShippingAddress"/>	
 	<var name="billingAddress" class="com.niit.shoppingcart.model.BillingAddress"/>			  
-	<var name="myCart" class="com.niit.shoppingcart.model.MyCart"/>			  
+	<var name="Cart" class="com.niit.shoppingcart.model.Cart"/>			  
 	<var name="order" class="com.niit.shoppingcart.model.Order"/>			  
-	<var name="paymentMethod" class="com.niit.shoppingcart.model.PaymentMethod"/>			  
-			  
-
+	<var name="paymentMethod" class="com.niit.shoppingcart.model.PaymentMethod"/>	-->  		  
+	<var name="cart" class="com.niit.shoppingcart.model.Shopping"></var> 		 
+<var name="shoppingCart" class="com.niit.shoppingcart.webflow.ShoppingCart"></var> 
 <on-start>
-<evaluate expression="orderWebflow.initflow()" result="flowScope.order"/>
+ <evaluate expression="userController.initFlow()" result="flowScope.cart"/>
 </on-start>
-<view-state id="flowExecutor" view="user/shippingAddress" model="shippingAddress">
-<transition on="submitShippingAddress" to="shippingDetails"/>
-</view-state>
-<action-state id="shippingDetails">
-<evaluate expression="orderWebflow.addShippingAddress(flowScope.order,shippingAddress)"></evaluate>
-<transition on="success" to="viewBillingDetails"/>
-</action-state>
-<view-state id="viewBillingDetails" view="user/billingAddress" model="billingAddress">
-<transition on="submitBillingAddress" to="billingDetails"/>
-<transition on="backToShippingAddress" to="cart_checkout"/>
-</view-state>
-<action-state id="billingDetails">
-<evaluate
-    expression="orderWebflow.addShippingAddress(flowScope.order,billingAddress)"></evaluate>
-<transition on="success" to="viewPaymentDetails"/>
-</action-state>
-<view-state id="viewPaymentDetails" view="user/payment" model="paymentMethod">
-<transition on="submitpaymentMethod" to="paymentDetails"/>
-</view-state>
-<action-state id="PaymentDetails">
-<evaluate
-    expression="orderWebflow.addShippingAddress(flowScope.order,paymentMethod)"></evaluate>
-<transition on="success" to="orderConfirm"/>
-</action-state>
-<view-state id="orderConfirm" view="user/orderConfirmed" model="order">
-<transition on="finalHome" to="toHome"/>
-</view-state>
-<end-state id="toHome" view="externalRedirect:contextRelative:/">
-</end-state>
-</flow>
+<view-state id="start" view="/user/cart" model="flowScope.cart">
+		<transition on="submit" to="login" />
+	</view-state>
+	
+	  <action-state id="login">
+ <evaluate expression="shoppingCart.getaddress()" result="flowScope.address"></evaluate> 
+		 <transition on="success" to="address" />
+		 </action-state>
+		 
+		 <view-state id="address" view="/user/billingAddress" model="flowScope.address">
+		
+		<transition on="submit" to="insertaddress" />
+	</view-state>
+	
+	<action-state id="insertaddress">
+ <evaluate expression="userController.insertaddress(flowScope.address,messageContext)" result="flowScope.address"></evaluate> 
+		 <transition on="success" to="getadd" /> 
+		
+		 </action-state>
+		 
+		 <action-state id="getadd">
+ <evaluate expression="userController.getadd()" result="flowScope.address"></evaluate> 
+		 <transition on="success" to="shipping1"/>  </action-state>
+	
+	 <view-state id="shipping1" view="/user/shippingAddress" model="flowScope.address">
+		
+		<transition on="submit" to="payment" />
+	</view-state> 
+	
+	
+	<view-state id="payment" view="/user/payment" model="flowScope.address">
+		
+		<transition on="submit" to="orderconfirm" />
+	</view-state>
+	
+	<view-state id="orderconfirm" view="/user/orderConfirmed" model="flowScope.address">
+		
+		<transition on="submit" to="toHome" />
+	</view-state>
+	
+	 
+	<end-state id="toHome" view="externalRedirect:home" />
+	
+	<global-transitions>
+		<transition on="home" to="toHome" />
+	 	<transition on="error" to="toException" />
+	</global-transitions> 
+</flow> 

@@ -12,7 +12,7 @@
 <br>
 	<h1>Add a Supplier</h1>
 
-	<c:url var="addAction" value="/manage_supplier_add/{supplier.id}"></c:url>
+	<c:url var="addAction" value="/manage_supplier_add"></c:url>
 
 	<form:form action="${addAction}" commandName="supplier">
 		<table>
@@ -24,7 +24,6 @@
 				 <c:choose>
 					<c:when test="${!empty supplier.sid}">
 						<td><form:input path="sid" disabled="true" readonly="true" />
-						<form:hidden path="sid" />
 						</td>
 					</c:when>
 

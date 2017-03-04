@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.UserDAO;
-
+import com.niit.shoppingcart.model.BillingAddress;
 import com.niit.shoppingcart.model.User;
 
 
@@ -154,6 +156,18 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
 	public User getUserDetails(String hql) {
     	return sessionFactory.getCurrentSession().get(User.class, hql);
+	}
+
+
+	public String insertAddress(BillingAddress address) {
+		System.out.println("insert address");
+		Session s=sessionFactory.openSession();
+		Transaction t=s.beginTransaction();
+		s.saveOrUpdate(address);
+		System.out.println("insert addresssss");
+		t.commit();
+		s.close();
+		return "success";
 	}
 
 

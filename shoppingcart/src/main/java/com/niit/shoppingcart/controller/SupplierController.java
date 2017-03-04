@@ -34,7 +34,7 @@ public class SupplierController {
 	@Autowired
 	private Supplier supplier;
 	
-	
+	String k;
 
 	@RequestMapping(value = "/manage_suppliers", method = RequestMethod.GET)
 	public String listCategories(Model model) {
@@ -46,22 +46,25 @@ public class SupplierController {
 		return "/home";
 	}
 
-	@RequestMapping(value = "/manage_supplier_add/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/manage_supplier_add", method = RequestMethod.POST)
 	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier, Model model) {
 		log.debug("Starting of the method addSupplier");
-		log.debug("id:" + supplier.getSid());
+		log.debug("id:"+ supplier.getSid());
+		System.out.println("abc is" +k);
 		
-		if (supplier.getSid()!= null) {
-			
+		if(supplier.getSid()!= null)
+		{
 			supplierDAO.save(supplier);
-			model.addAttribute("msg", "Successfully created the supplier");
-		} else {
-			
-			
-			supplierDAO.update(supplier);
-			model.addAttribute("msg", "updated the supplier");
 		}
-
+	
+		
+		
+		else
+		{
+			supplier.setSid(k);
+			supplierDAO.update(supplier);
+            model.addAttribute("msg", "updated the supplier");}
+		
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
 		model.addAttribute("isAdminClickedSuppliers", "true");
@@ -86,7 +89,7 @@ public class SupplierController {
 	@RequestMapping(value = "/manage_supplier_edit/{id}")
 	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editSupplier");
-		
+		k=id;
 		supplier = supplierDAO.get(id);
 		
 		model.addAttribute("supplier", supplier);

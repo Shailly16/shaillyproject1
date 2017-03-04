@@ -17,12 +17,14 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
+import com.niit.shoppingcart.model.Cart;
+import com.niit.shoppingcart.model.CartList;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Item;
 import com.niit.shoppingcart.model.MyCart;
-import com.niit.shoppingcart.model.Order;
-import com.niit.shoppingcart.model.Product;
 
+import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Shopping;
 import com.niit.shoppingcart.model.Supplier;
 
 import com.niit.shoppingcart.model.User;
@@ -70,8 +72,12 @@ public SessionFactory getSessionFactory(DataSource dataSource) {
 	sessionBuilder.addAnnotatedClass(Supplier.class);
 	sessionBuilder.addAnnotatedClass(Product.class);
 	sessionBuilder.addAnnotatedClass(Category.class);
-	sessionBuilder.addAnnotatedClass(MyCart.class);
-	sessionBuilder.addAnnotatedClass(Order.class);
+	sessionBuilder.addAnnotatedClass(Cart.class);
+	sessionBuilder.addAnnotatedClass(CartList.class);
+	sessionBuilder.addAnnotatedClass(Item.class);
+	sessionBuilder.addAnnotatedClass(Shopping.class);
+	/*sessionBuilder.addAnnotatedClass(MyCart.class);*/
+/*	sessionBuilder.addAnnotatedClass(Order.class);*/
 	sessionBuilder.scanPackages("com.niit.shoppingcart.model" );
 	
 	return sessionBuilder.buildSessionFactory();

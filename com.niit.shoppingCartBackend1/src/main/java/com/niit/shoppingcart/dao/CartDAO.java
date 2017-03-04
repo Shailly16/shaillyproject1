@@ -2,11 +2,12 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
+import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.MyCart;
 
 public interface CartDAO {
 	
-	//Cart getCartById(int cartId);
+	Cart getCartById(int cartId);
 
 	
 	

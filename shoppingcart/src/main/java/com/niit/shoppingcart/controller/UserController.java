@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.binding.message.MessageContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
@@ -27,7 +29,9 @@ import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.MyCart;
 import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.BillingAddress;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Item;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
 
@@ -84,7 +88,7 @@ public class UserController {
 		log.debug("Starting of the method validate");
 
 		// ModelAndView mv = new ModelAndView("/home");
-		ModelAndView mv = new ModelAndView("/admin/adminHome");
+		ModelAndView mv = new ModelAndView("/home");
 		user1 = userDAO.validate(userID, password);
 		// if the record exist with this userID and password it will return user
 		// details else will return null
@@ -199,5 +203,26 @@ public class UserController {
 		return "/home";
 
 	}
+	public Product initFlow(){
+		return product;
+	}
+	List<Item> cart = null;
+	
+	@RequestMapping("/user/cart")
+	 public String Order() {
+          return "redirect:/cart_checkout";
+}
+	 BillingAddress address;
+	 public String insertaddress(BillingAddress address,MessageContext messageContext) {
+		 System.out.println("user controller insert address");
+	 this.address=address;
+	 	String str=userDAO.insertAddress(address);
+	 	return str;
 
+	 	
+	 }
+	 public BillingAddress getadd()
+	 {
+	 	return address;
+	 }
 }
