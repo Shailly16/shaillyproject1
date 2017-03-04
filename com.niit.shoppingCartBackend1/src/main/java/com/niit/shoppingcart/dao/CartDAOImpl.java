@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,14 @@ import com.niit.shoppingcart.dao.CartDAO;
 @Repository
 public class CartDAOImpl implements CartDAO {
 	
+	
+	/*public Cart getCartById(int cartId) {
+		Session session=sessionFactory.getCurrentSession();
+		
+		return (Cart)session.get(Cart.class,new Integer(cartId));
+		
+	}	
+	*/
 	static Logger log = LoggerFactory.getLogger(CartDAOImpl.class);
 
 private SessionFactory sessionFactory;
@@ -40,17 +50,17 @@ private SessionFactory sessionFactory;
 	
 	@Transactional
 	public List<MyCart> list(String userID) {
-		log.debug("Starting of the method list");
+		/*log.debug("Starting of the method list");*/
 		String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        log.debug("Ending of the method list");
+        /*Log.debug("Ending of the method list");*/
         return query.list();
 	}
+	
 	
 	@Transactional
 	public void save(MyCart myCart) {
 		log.debug("Starting of the method : save ");
-		myCart.setId(getMaxId());
 		sessionFactory.getCurrentSession().save(myCart);
 		log.debug("Ending of the method : save ");
 	}
@@ -61,7 +71,7 @@ private SessionFactory sessionFactory;
 		 String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
 		 log.debug("hql"+hql);
 			
-	      Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	      Query query = sessionFactory.openSession().createQuery(hql);
 	      Long sum = (Long)query.uniqueResult();
 	      log.debug("sum="+sum);
 	      return sum;
@@ -69,7 +79,7 @@ private SessionFactory sessionFactory;
 	 }
 
 
-	private Long getMaxId() {
+	/*private Long getMaxId() {
 		
 		 log.debug("Starting of the getMaxId");
 		 Long maxID = 100L;
@@ -84,11 +94,11 @@ private SessionFactory sessionFactory;
 	       e.printStackTrace();}
 	
 	       return maxID;
+	*/
 	
+
 }
-
-
 	
 
 	
-}
+

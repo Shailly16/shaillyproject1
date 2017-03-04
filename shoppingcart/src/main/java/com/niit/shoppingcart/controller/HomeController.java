@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
@@ -40,6 +41,8 @@ public class HomeController {
 	@Autowired
 	private SupplierDAO supplierDAO;
 
+	
+	
 	@Autowired
 	private Supplier supplier;
 
@@ -106,20 +109,17 @@ public class HomeController {
 		return new ModelAndView("contact");
 	}
 
-	@ModelAttribute("contact")
-	public Contact contact()
-	{
-		return new Contact();
-	}
-	@RequestMapping("/addContact")
-	public String addContact(@ModelAttribute("contact") Contact contact , BindingResult result)
-	{
-		
 	
-		return "contact";
+	@RequestMapping(value = "/add contact", method = RequestMethod.POST)
+	public ModelAndView registerUser(@ModelAttribute Contact contact) {
+		log.debug("Starting of the method addContact");
+		ModelAndView mv = new ModelAndView("/home");
 		
+		
+		return mv;
 	}
-}
+	}
+
 	
 	
 	

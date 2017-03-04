@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,14 +21,26 @@ private static final long serialVersionUID = 1L;
 
 
 @Id
-private Long id;
+@GeneratedValue
+private int id;
 
 
 
 @Column(name="user_id")
 private String userID;
 
+private String pid;
 
+
+
+
+public String getPid() {
+	return pid;
+}
+
+public void setPid(String pid) {
+	this.pid = pid;
+}
 
 @Column(name="add_product")
 private String productName;
@@ -37,7 +51,9 @@ public double getPrice() {
 }
 
 public void setPrice(double price) {
+	
 	this.price = price;
+	System.out.println(price);
 }
 
 private char status;
@@ -46,11 +62,11 @@ private char status;
 @Column(name="add_date")
 private Date addedDate;
 
-public Long getId() {
+public int getId() {
 	return id;
 }
 
-public void setId(long id) {
+public void setId(int id) {
 	this.id = id;
 }
 
@@ -87,14 +103,14 @@ public void setAddedDate(Date addedDate) {
 	this.addedDate = addedDate;
 }
 
-public Long setId(Long maxId) {
+/*public Long setId(Long maxId) {
 	return maxId;
-	
+	*/
 }
 
 
 	
-}
+
 
 
 

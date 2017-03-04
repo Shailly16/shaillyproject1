@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.niit.shoppingcart.model.BillingAddress;
 import com.niit.shoppingcart.model.Order;
@@ -21,12 +22,25 @@ public class OrderWebflow {
 	@Autowired
 	Product product;
 	
-	public Order initFlow(){
+	
+	public Product initFlow(){
+		System.out.println("init flow");
+		return product;
+	}
+	
+	
+	@RequestMapping("/user/shippingAddress")
+	 public String Order() {
+		System.out.println("inside order method");
+         return "redirect:/cart_checkout";
+	}
+	
+	/*public Order initFlow(){
 		log.debug("Starting of initflow");
 		order = new Order();
 		log.debug("End of initflow");
 		return order;
-	}
+	}*/
 	public String addShippingAddress(Order order,ShippingAddress shippingAddress){
 		log.debug("Starting of addShippingAddress");
 		order.setShippingAddress(shippingAddress);

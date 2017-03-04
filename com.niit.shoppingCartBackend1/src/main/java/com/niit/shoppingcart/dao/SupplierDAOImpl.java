@@ -93,6 +93,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		s.flush();
 		t.commit();
 		return true;
+		
 	}
 	
 	@Transactional
@@ -122,6 +123,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 		log.debug("Starting of the method : get ");
 		String hql = "from supplier where id=" + "'"+ id+"'";
 		System.out.println(hql);
+		
 		return (Supplier)sessionFactory.getCurrentSession().get(Supplier.class, id);
 		
 		

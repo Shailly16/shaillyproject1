@@ -46,7 +46,7 @@ public class supplierTestCase {
 	 {
 		
 		int size=supplierDAO1.list().size();
-		Assert.assertEquals("length check",5,size);
+		Assert.assertEquals("length check",1,size);
 	 }
 	
 	

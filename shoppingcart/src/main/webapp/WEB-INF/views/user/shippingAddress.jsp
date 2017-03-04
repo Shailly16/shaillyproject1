@@ -53,7 +53,7 @@
 </div>
 </div>
 <div class="col-md-offset-3">
-<input type="submit" name="_eventId_submitShippingAddress" class="btn btn-md btn-success" value="Save">
+<input type="submit" name="_eventId_submitShippingAddress" class="btn btn-md btn-success" value="next">
 <input type="submit" name="_eventId_cancel" class="btn btn-md btn-danger" value="Cancel"></div>
 
 </div>

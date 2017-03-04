@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: com.niit.shoppingcart.userTestCase
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.026 sec <<< FAILURE!
-saveTestCase(com.niit.shoppingcart.userTestCase)  Time elapsed: 0.026 sec  <<< ERROR!
-org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["PRIMARY_KEY_27 ON PUBLIC.USER(ID) VALUES ( /* 33 */ 'US001' )"; SQL statement:
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.98 sec <<< FAILURE!
+saveTestCase(com.niit.shoppingcart.userTestCase)  Time elapsed: 0.034 sec  <<< ERROR!
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["PRIMARY_KEY_27 ON PUBLIC.USER(ID) VALUES ( /* 4 */ 'US001' )"; SQL statement:
 insert into User (contact, email, name, password, role, Id) values (?, ?, ?, ?, ?, ?) [23505-193]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:241)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)
@@ -15,7 +15,7 @@ insert into User (contact, email, name, password, role, Id) values (?, ?, ?, ?, 
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213)
-	at com.sun.proxy.$Proxy42.save(Unknown Source)
+	at com.sun.proxy.$Proxy46.save(Unknown Source)
 	at com.niit.shoppingcart.userTestCase.saveTestCase(userTestCase.java:66)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -72,7 +72,7 @@ Caused by: org.hibernate.exception.ConstraintViolationException: could not execu
 	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:65)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.doCommit(HibernateTransactionManager.java:582)
 	... 39 more
-Caused by: org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_27 ON PUBLIC.USER(ID) VALUES ( /* 33 */ 'US001' )"; SQL statement:
+Caused by: org.h2.jdbc.JdbcSQLException: Unique index or primary key violation: "PRIMARY_KEY_27 ON PUBLIC.USER(ID) VALUES ( /* 4 */ 'US001' )"; SQL statement:
 insert into User (contact, email, name, password, role, Id) values (?, ?, ?, ?, ?, ?) [23505-176]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
 	at org.h2.message.DbException.get(DbException.java:178)

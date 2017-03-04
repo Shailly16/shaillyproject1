@@ -46,6 +46,7 @@
   <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
    <property name="flowRegistry" ref="flowRegistry"/>
    </bean>
+ 
    <mvc:annotation-driven/>
    <mvc:resources mapping="/resources/**" location="/resources/" />
    

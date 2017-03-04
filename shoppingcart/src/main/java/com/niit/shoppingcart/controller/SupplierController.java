@@ -33,6 +33,8 @@ public class SupplierController {
 
 	@Autowired
 	private Supplier supplier;
+	
+	
 
 	@RequestMapping(value = "/manage_suppliers", method = RequestMethod.GET)
 	public String listCategories(Model model) {
@@ -45,15 +47,18 @@ public class SupplierController {
 	}
 
 	@RequestMapping(value = "/manage_supplier_add/{id}", method = RequestMethod.POST)
-	public String addSupplier(@PathVariable("id") String id, Supplier supplier, Model model) {
+	public String addSupplier(@ModelAttribute ("supplier") Supplier supplier, Model model) {
 		log.debug("Starting of the method addSupplier");
 		log.debug("id:" + supplier.getSid());
-		if (supplier.getSid().equals(supplierDAO.get(id))) {
+		
+		if (supplier.getSid()!= null) {
 			
-			supplierDAO.update(supplier);
+			supplierDAO.save(supplier);
 			model.addAttribute("msg", "Successfully created the supplier");
 		} else {
-			supplierDAO.save(supplier);
+			
+			
+			supplierDAO.update(supplier);
 			model.addAttribute("msg", "updated the supplier");
 		}
 
@@ -81,6 +86,7 @@ public class SupplierController {
 	@RequestMapping(value = "/manage_supplier_edit/{id}")
 	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editSupplier");
+		
 		supplier = supplierDAO.get(id);
 		
 		model.addAttribute("supplier", supplier);

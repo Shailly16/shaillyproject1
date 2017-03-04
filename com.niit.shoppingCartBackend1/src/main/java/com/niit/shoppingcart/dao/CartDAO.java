@@ -6,6 +6,10 @@ import com.niit.shoppingcart.model.MyCart;
 
 public interface CartDAO {
 	
+	//Cart getCartById(int cartId);
+
+	
+	
 	public List<MyCart> list(String id);
 	
 	public void save(MyCart MyCart);

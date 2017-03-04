@@ -39,6 +39,7 @@
 </table>
 <h2>Total cost : ${totalAmount}</h2>
 <br>
-<a href="cart_checkout">Checkout</a>
+ <a href="${session.getContextPath()}/shoppingcart/user/shippingAddress">next</a></div>
+<a href="shippingAddress">Checkout</a>
 </body>
 </html>

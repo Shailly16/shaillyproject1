@@ -18,5 +18,7 @@ public boolean save(Product product1);
 
 public boolean update(Product product1);
 
+
+
 }
 

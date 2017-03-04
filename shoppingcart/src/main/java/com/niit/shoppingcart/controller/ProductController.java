@@ -57,6 +57,8 @@ public class ProductController {
 	private SupplierDAO supplierDAO;
 
 	private Path path;
+	
+	String k;
 
 	@RequestMapping(value = "/manage_products", method = RequestMethod.GET)
 	public String listProducts(Model model) {
@@ -76,7 +78,8 @@ public class ProductController {
 			Model model, HttpServletRequest request) {
 		
 		log.debug("Starting of the method addProduct");
-		 
+		log.debug("id:"+ product.getId()); 
+		System.out.println("abc is" +k);
 		category= categoryDAO.getByName(product.getCategory().getName());
 		 supplier = supplierDAO.getByName(product.getSupplier().getName());
 		 
@@ -96,9 +99,15 @@ public class ProductController {
 		 //FileUtil.upload(path,file,product.getId()+".jpg");
 		 */
 
-		   
+		   if(product.getId()!= null)
+		   {
+			productDAO.save(product);}
+			else
+			{
+				product.setId(k);
+				categoryDAO.update(category);
+	            model.addAttribute("msg", "updated the product");}
 			
-			productDAO.save(product);
 		
 			MultipartFile image = product.getImage();
 			String rootDirectory = request.getSession().getServletContext().getRealPath("/");

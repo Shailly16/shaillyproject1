@@ -35,9 +35,11 @@
 				</p>
 				<h4>${product.price}Rupees</h4>
 				
-					<a href="<spring:url value="/myCart/add/${product.id}"/>" class="btn btn-warning btn-large"> <span
+					 <%-- <a href="<spring:url value="/myCart/add/${product.id}"/>" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span>Add To Cart
-					</a>
+					</a>  --%>
+					
+					<a href="${session.getContextPath()}/shoppingcart/order/${product.id}">add to cart</a></div>
 				
 			</div>
 		</div>

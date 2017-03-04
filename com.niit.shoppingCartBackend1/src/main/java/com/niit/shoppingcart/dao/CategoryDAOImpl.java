@@ -65,6 +65,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Transactional
 	public boolean save(Category category1) {
 		log.debug("Starting of the method : save ");
+		
 		try {
 			sessionFactory.getCurrentSession().save(category1);
 			log.debug("Ending of the method : save ");
@@ -80,13 +81,13 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	@Transactional
 	public boolean update(Category category1) {
-		log.debug("Starting of the method : save ");
+		log.debug("Starting of the method : update ");
 		Session s= sessionFactory.openSession();
 		Transaction t=s.beginTransaction();
 		Category sd= (Category)s.get(Category.class, category1.getCid());
 		sd.setCid(category1.getCid());
 		sd.setName(category1.getName());
-		sd.setAddress(category1.getAddress());
+		sd.setDescription(category1.getDescription());
 		s.saveOrUpdate(sd);
 		s.flush();
 		t.commit();

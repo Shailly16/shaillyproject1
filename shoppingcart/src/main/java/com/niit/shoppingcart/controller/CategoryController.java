@@ -25,6 +25,8 @@ public class CategoryController {
 	@Autowired
 	private Category category;
 	
+	String k;
+
 	@RequestMapping(value="/manage_categories", method = RequestMethod.GET)
 	public String listCategories(Model model){
 		log.debug("Starting of the method listCategories");
@@ -41,12 +43,22 @@ public class CategoryController {
 	public String addCategory(@ModelAttribute ("category") Category category, Model model){
 		log.debug("Starting of the method addCategory");
 		log.debug("id:"+ category.getCid());
-		if (categoryDAO.save(category) == true){
+		System.out.println("abc is" +k);
+		/*category.setCid(k);*/
+		if(category.getCid()!= null)
+		{
+			categoryDAO.save(category);
+		}
+	
 		
-		model.addAttribute("msg", "Successfully created/updated the category");}
+		/*if (categoryDAO.save(category) == true){
+		
+		model.addAttribute("msg", "Successfully created/updated the category");}*/
 		else
 		{
-			model.addAttribute("msg", "not able to create/update the category");}
+			category.setCid(k);
+			categoryDAO.update(category);
+            model.addAttribute("msg", "updated the category");}
 		
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", categoryDAO.list());
@@ -73,13 +85,14 @@ public class CategoryController {
 		
 	@RequestMapping(value = "/manage_category_edit/{id}")
 	public String editSupplier(@PathVariable("id") String id, Model model) throws Exception {
+		k=id;
 		log.debug("Starting of the method editcategory");
 		category = categoryDAO.get(id);
 		
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("isAdminClickedCategories", "true");
-		return "admin/category";
+		return "/admin/category";
 	}
 
 	  

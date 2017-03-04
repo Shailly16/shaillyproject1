@@ -18,8 +18,8 @@
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
                             <label>Name *</label>
-                            <form:input path="name" name="name" class="form-control" />
-                             <form:errors cssStyle="color:ff0000" path="name"></form:errors>
+                            <form:input path="Name" name="Name" class="form-control" />
+                             <form:errors cssStyle="color:ff0000" path="Name"></form:errors>
                         </div>
                         <div class="form-group">
                             <label>Email *</label>
@@ -48,8 +48,8 @@
                         </div>
                     </div>
                 </form:form> 
-            </div><!--/.row-->
-        </div><!--/.container-->
+            </div>
+        </div>
     </section>
 
 	</section>
