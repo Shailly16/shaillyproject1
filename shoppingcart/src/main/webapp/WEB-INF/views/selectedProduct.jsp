@@ -9,7 +9,8 @@
 <title>selected products</title>
 </head>
 <body>
-<c:set var="imagefolder" value="/resource/img/" />
+
+<c:set var="imagefolder" value="/resource/images/" />
 <table>
 <tr>
 <td><img alt="${selectedProduct.name}" src="${imageFolder}${selectedProduct.id}.jpg"></td>

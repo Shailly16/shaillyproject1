@@ -1,4 +1,4 @@
-package com.niit.shoppingcart.controller;
+/*package com.niit.shoppingcart.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -95,4 +95,4 @@ import com.niit.shoppingcart.model.Product;
        }
           
           }
-		
+		*/

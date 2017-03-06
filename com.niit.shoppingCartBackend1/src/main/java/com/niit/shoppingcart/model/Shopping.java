@@ -50,11 +50,15 @@ public class Shopping implements Serializable {
 
 	
 	public List<Item> getListitem() {
+	
 		return listitem;
 	}
 
 	
 	public void setListitem(List<Item> listitem) {
+		
+		
+		
 		this.listitem = listitem;
 	}
 

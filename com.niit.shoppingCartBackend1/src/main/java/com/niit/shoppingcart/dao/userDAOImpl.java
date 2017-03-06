@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.model.BillingAddress;
+import com.niit.shoppingcart.model.Address;
+import com.niit.shoppingcart.model.Contact;
 import com.niit.shoppingcart.model.User;
 
 
@@ -158,8 +159,8 @@ public class UserDAOImpl implements UserDAO {
     	return sessionFactory.getCurrentSession().get(User.class, hql);
 	}
 
-
-	public String insertAddress(BillingAddress address) {
+    @Transactional
+    public String insertAddress(Address address) {
 		System.out.println("insert address");
 		Session s=sessionFactory.openSession();
 		Transaction t=s.beginTransaction();
@@ -170,6 +171,19 @@ public class UserDAOImpl implements UserDAO {
 		return "success";
 	}
 
+        @Transactional
+        public boolean addContact(Contact contact) {
+		
+		try {
+			sessionFactory.getCurrentSession().save(contact);
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 
 	
 

@@ -148,7 +148,7 @@
 					<td>${product.category.name}</td>
 					<td>${product.supplier.name}</td>
 					<td>${product.stock}</td>
-					<td><img src="<c:url value='/resources/images/${product.getName()}.png'/>" height="50" width="50"/></td>
+					<td><img src="<c:url value='/resources/img/${product.getName()}.png'/>" height="50" width="50"/></td>
                      <td><a href="<c:url value='/manage_product_edit/${product.id}' />">Edit</a></td> 
 					
 					<td><a href="<c:url value='/manage_product_remove/${product.id}' />">Delete</a></td>

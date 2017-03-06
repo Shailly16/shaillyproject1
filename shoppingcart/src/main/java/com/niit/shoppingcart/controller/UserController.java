@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +22,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.model.MyCart;
+/*import com.niit.shoppingcart.model.MyCart;*/
 import com.niit.shoppingcart.model.Product;
-import com.niit.shoppingcart.model.BillingAddress;
+import com.niit.shoppingcart.model.Address;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Contact;
 import com.niit.shoppingcart.model.Item;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
@@ -49,9 +50,9 @@ public class UserController {
 	@Autowired
 	private CartDAO cartDAO;
 
-	@Autowired
+	/*@Autowired
 	private MyCart myCart;
-
+*/
 	@Autowired
 	private CategoryDAO categoryDAO;
 
@@ -65,6 +66,7 @@ public class UserController {
 	private Supplier supplier;
 
 	
+	private Address address;
 	@Autowired
 	private HttpSession session;
 	
@@ -115,12 +117,12 @@ public class UserController {
 			} else {
 				log.debug("Logged in as User");
 				mv.addObject("isAdmin", "false"); 
-				//myCart = cartDAO.list(userID);
+				/*//myCart = cartDAO.list(userID);
 				mv.addObject("myCart", myCart);
 				// Fetch the myCart list based on user ID
-				List<MyCart> cartList = cartDAO.list(password);
+				List<Cart> cartList = cartDAO.list(password);
 				mv.addObject("cartList", cartList);
-				mv.addObject("cartSize", cartList.size());
+				mv.addObject("cartSize", cartList.size());*/
 			}
 
 		} else {
@@ -204,25 +206,36 @@ public class UserController {
 
 	}
 	public Product initFlow(){
+		System.out.println("inside initflow");
 		return product;
 	}
 	List<Item> cart = null;
 	
-	@RequestMapping("/user/cart")
+	/*@RequestMapping("/cart")
 	 public String Order() {
-          return "redirect:/cart_checkout";
-}
-	 BillingAddress address;
-	 public String insertaddress(BillingAddress address,MessageContext messageContext) {
-		 System.out.println("user controller insert address");
+		System.out.println("inside order");
+     return "cart";
+	}*/
+     
+     
+	 public String insertAddress( Address address , MessageContext messageContext) {
+	 System.out.println("user controller insert address");
 	 this.address=address;
-	 	String str=userDAO.insertAddress(address);
+	 	String str= userDAO.insertAddress(address);
 	 	return str;
-
-	 	
-	 }
-	 public BillingAddress getadd()
+}
+	 public Address getadd()
 	 {
 	 	return address;
 	 }
+	
+	 @RequestMapping(value = "/addcontact" , method = RequestMethod.POST)
+		public String saveEmployee(@ModelAttribute("contact")Contact c,ModelMap map )
+		   {
+		userDAO.addContact(c);
+		  
+		  return "home";
+		 }
 }
+
+	

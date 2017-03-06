@@ -111,7 +111,7 @@ public class ProductController {
 		
 			MultipartFile image = product.getImage();
 			String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-			path = Paths.get(rootDirectory + "/resources/images/" + product.getName() + ".png");
+			path = Paths.get(rootDirectory + "/resources/img/" + product.getName() + ".png");
 			System.out.println(path);
 			if (image != null && !image.isEmpty()) {
 				try {

@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import org.springframework.context.annotation.ComponentScan;
 
 @Entity
-@ComponentScan
 public class Item implements Serializable{
 	/**
 	 * 
@@ -46,6 +45,7 @@ public class Item implements Serializable{
 
 	
 	public void setItemId(int itemId) {
+		System.out.println(itemId);
 		this.itemId = itemId;
 	}
 

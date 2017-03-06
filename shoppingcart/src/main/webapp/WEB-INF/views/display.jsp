@@ -13,12 +13,13 @@
   
 </head>
 <body>
+
 	
 	<section class="container">
 
 		<div class="row">
 			<div class="col-md-6">
-				<img src='<c:url value="/resources/images/${product.name}.png" />' alt="image" height="200" width="300" /> 
+				<img src='<c:url value="/resources/img/${product.name}.png" />' alt="image" height="200" width="100" /> 
 			</div>
 			<div class="col-md-6">
 

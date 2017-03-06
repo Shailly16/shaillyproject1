@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.model.Cart;
-import com.niit.shoppingcart.model.MyCart;
 import com.niit.shoppingcart.dao.CartDAO;
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -51,12 +50,12 @@ public class CartDAOImpl implements CartDAO {
 	
 	
 	
-	@Transactional
+	/*@Transactional
 	public List<MyCart> list(String userID) {
-		/*log.debug("Starting of the method list");*/
+		log.debug("Starting of the method list");
 		String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        /*Log.debug("Ending of the method list");*/
+        Log.debug("Ending of the method list");
         return query.list();
 	}
 	
@@ -82,7 +81,7 @@ public class CartDAOImpl implements CartDAO {
 		 
 	 }
 
-
+*/
 	/*private Long getMaxId() {
 		
 		 log.debug("Starting of the getMaxId");

@@ -1,56 +1,82 @@
-<%@ include file="header.jsp" %>
-	<section>
-	
-     <section id="contact-page">
-        <div class="container">
-        <h2>Contact Us</h2>
-        <p> Bellezza<br>
-            Building-25, Hiranandani-Andheri,Mumbai
-            Maharashtra-522631<br>
-            Contact No. 026-7826596315<br>
-            Email:bellezzaHouse@gmail.com</p>
-            <div class="center">        
-                <h3>Drop Your Message</h3>  
-            </div> 
-            <div class="row contact-wrap"> 
-                
-                <form:form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="addContact" commandName="contact">
-                    <div class="col-sm-5 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>Name *</label>
-                            <form:input path="Name" name="Name" class="form-control" />
-                             <form:errors cssStyle="color:ff0000" path="Name"></form:errors>
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <form:input path="email" name="email" class="form-control" required="required" />
-                        </div>
-                        <div class="form-group">
-                            <label>Subject</label>
-                            <form:input path="subject" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>Company Name</label>
-                            <form:input path="company" class="form-control" />
-                        </div>                        
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <label>Phone *</label>
-                            <form:input path="mobile" name="mobile" class="form-control" required="required" />
-                        </div>
-                        <div class="form-group">
-                            <label>Message *</label>
-                            <form:input path="message" id="message" required="required" class="form-control" />
-                        </div>                        
-                        <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit Message</button>
-                        </div>
-                    </div>
-                </form:form> 
+<%@include file="header.jsp" %>
+<link href="resources/bootstrap/css/contact.css" rel="stylesheet">
+
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h2 class="h2">
+                    Contact us <small>Feel free to contact us</small></h1>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-	</section>
-	<%@ include file="Footer.jsp" %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm">
+                <form:form action="addcontact" method="post" commandName="contact">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Subject</label>
+                            <select id="subject" name="subject" class="form-control" required="required">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="service">General Customer Service</option>
+                                <option value="suggestions">Suggestions</option>
+                                <option value="product">Product Support</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                            Send Message</button>
+                    </div>
+                </div>
+                </form:form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form:form>
+            <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+            <address>
+                <strong> Bellezza</strong><br>
+                 Building-25, Hiranandani-Andheri,Mumbai
+                 Maharashtra-522631<br>
+                <abbr title="Phone">
+                    Phone No:</abbr>
+                026-7826596315
+            </address>
+            <address>
+                
+                <a href="mailto:#">bellezzaHouse@gmail.com</a>
+            </address>
+            </form:form>
+        </div>
+    </div>
+</div>
+
+<%@include file="Footer.jsp" %>

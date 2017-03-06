@@ -1,64 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow
-                          http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
- 
-	<!-- <var name="shippingAddress"	class="com.niit.shoppingcart.model.ShippingAddress"/>	
-	<var name="billingAddress" class="com.niit.shoppingcart.model.BillingAddress"/>			  
-	<var name="Cart" class="com.niit.shoppingcart.model.Cart"/>			  
-	<var name="order" class="com.niit.shoppingcart.model.Order"/>			  
-	<var name="paymentMethod" class="com.niit.shoppingcart.model.PaymentMethod"/>	-->  		  
-	<var name="cart" class="com.niit.shoppingcart.model.Shopping"></var> 		 
-<var name="shoppingCart" class="com.niit.shoppingcart.webflow.ShoppingCart"></var> 
-<on-start>
- <evaluate expression="userController.initFlow()" result="flowScope.cart"/>
-</on-start>
-<view-state id="start" view="/user/cart" model="flowScope.cart">
-		<transition on="submit" to="login" />
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+
+
+	<var name="cart" class="com.niit.shoppingcart.model.Shopping"></var>
+
+	<on-start>
+		<evaluate expression="userController.initFlow()" result="flowScope.cart" />
+	</on-start>
+	<view-state id="start" view="cart" model="flowScope.cart">
+		<transition on="submit" to="cart1" />
 	</view-state>
-	
-	  <action-state id="login">
- <evaluate expression="shoppingCart.getaddress()" result="flowScope.address"></evaluate> 
-		 <transition on="success" to="address" />
-		 </action-state>
-		 
-		 <view-state id="address" view="/user/billingAddress" model="flowScope.address">
-		
+
+	<action-state id="cart1">
+		<evaluate expression="shoppingCart.getaddress()" result="flowScope.address"></evaluate>
+		<transition on="success" to="address" />
+	</action-state>
+
+	<view-state id="address" view="Address" model="flowScope.address">
+
 		<transition on="submit" to="insertaddress" />
 	</view-state>
-	
+
 	<action-state id="insertaddress">
- <evaluate expression="userController.insertaddress(flowScope.address,messageContext)" result="flowScope.address"></evaluate> 
-		 <transition on="success" to="getadd" /> 
-		
-		 </action-state>
-		 
-		 <action-state id="getadd">
- <evaluate expression="userController.getadd()" result="flowScope.address"></evaluate> 
-		 <transition on="success" to="shipping1"/>  </action-state>
-	
-	 <view-state id="shipping1" view="/user/shippingAddress" model="flowScope.address">
-		
-		<transition on="submit" to="payment" />
-	</view-state> 
-	
-	
-	<view-state id="payment" view="/user/payment" model="flowScope.address">
-		
-		<transition on="submit" to="orderconfirm" />
-	</view-state>
-	
-	<view-state id="orderconfirm" view="/user/orderConfirmed" model="flowScope.address">
-		
+		<evaluate
+			expression="userController.insertAddress(flowScope.address,messageContext)"
+			result="flowScope.address"></evaluate>
+		<transition on="success" to="getadd" />
+
+	</action-state>
+
+	<action-state id="getadd">
+		<evaluate expression="userController.getadd()" result="flowScope.address"></evaluate>
+		<transition on="success" to="orderconfirm" />
+
+	</action-state>
+
+
+
+	<view-state id="orderconfirm" view="user/orderConfirmed"
+		model="flowScope.address">
+
 		<transition on="submit" to="toHome" />
 	</view-state>
-	
-	 
+
+
 	<end-state id="toHome" view="externalRedirect:home" />
-	
+
 	<global-transitions>
 		<transition on="home" to="toHome" />
-	 	<transition on="error" to="toException" />
-	</global-transitions> 
-</flow> 
+		<transition on="error" to="toException" />
+	</global-transitions>
+</flow>  

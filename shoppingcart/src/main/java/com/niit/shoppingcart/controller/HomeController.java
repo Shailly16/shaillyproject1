@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
-import com.niit.shoppingcart.dao.ContactDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 
@@ -102,21 +101,12 @@ public class HomeController {
 		return "/home";
 	}
 	
-	@RequestMapping(value = "/contact")
-	public ModelAndView contactPage() {
+	@RequestMapping("/contact")
+	public ModelAndView Contactus()
+	{
+		ModelAndView m=new ModelAndView("/contact");
 		
-		
-		return new ModelAndView("contact");
-	}
-
-	
-	@RequestMapping(value = "/add contact", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute Contact contact) {
-		log.debug("Starting of the method addContact");
-		ModelAndView mv = new ModelAndView("/home");
-		
-		
-		return mv;
+	return m;
 	}
 	}
 

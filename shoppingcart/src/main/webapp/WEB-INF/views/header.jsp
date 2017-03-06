@@ -32,7 +32,7 @@
        <c:if test="${!empty loggedInUser}">
        <span class="glyphicon glyphicon-shopping-cart"></span>
        <c:if test="${isAdmin==false}">
-       <a href="myCart">MyCart</a><i class="fa fa-shopping-cart">${cartSize}</i>
+      <li><a href="cart_checkout"><span class="glyphicon glyphicon-shopping-cart"></span>${cartSize}</a></li>
       </c:if>
       <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
      <!-- <li><a href=j_spring_security_logout><span class="glyphicon glyphicon-log-out"></span>Logout</a></li> -->

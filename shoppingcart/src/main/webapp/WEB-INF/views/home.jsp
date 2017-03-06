@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Bezzella:Beauty Shop</title>
 </head>
 <body >
 <%@ include file="./header.jsp" %>
@@ -59,15 +59,15 @@
 <%@ include file="./admin/adminHome.jsp" %>
 <%@ include file="./admin/category.jsp" %>
 </c:if>
-<%-- <c:if test="${isAdminClickedProducts==true}">
+<c:if test="${isAdminClickedProducts==true}">
 <%@ include file="./admin/adminHome.jsp" %>
-<%@ include file="./product1.jsp" %>
-</c:if> --%> 
+<%@ include file="./admin/product.jsp" %>
+</c:if> 
 <c:if test="${isAdminClickedSuppliers==true}">
 <%@ include file="./admin/adminHome.jsp" %>
 <%@ include file="./admin/supplier.jsp" %>
 </c:if>
-
+ 
 <br>
  <%@ include file="./Footer.jsp" %>
 </body>

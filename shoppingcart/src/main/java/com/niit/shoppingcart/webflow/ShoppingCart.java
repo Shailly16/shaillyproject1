@@ -15,11 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.niit.shoppingcart.dao.ProductDAO;
-import com.niit.shoppingcart.model.BillingAddress;
+import com.niit.shoppingcart.model.Address;
 import com.niit.shoppingcart.model.Item;
-import com.niit.shoppingcart.model.ShippingAddress;
 import com.niit.shoppingcart.model.Shopping;
 
 @Controller
@@ -31,24 +29,27 @@ public class ShoppingCart {
 	Shopping cart1;
 	
 	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/order/{id}")
 	public String ordernow(@PathVariable(value = "id") String id, ModelMap mm, HttpSession session) {
 System.out.println("product id is "+id);
 		if (session.getAttribute("cart1") == null) {
 			System.out.println("cart value is null");
-			List<Item> listcart = new ArrayList();
+			List<Item> listcart = new ArrayList<Item>();
 			cart1 = new Shopping();
 
 			listcart.add(new Item(productdao.get(id),1));
+			Iterator i=listcart.iterator();
+			while(i.hasNext())
+			{
+				Item f=(Item)i.next();
+				System.out.println("quanity is  " +f.getQuantity());
+				System.out.println("proudct id is  " +f.getP());
+			}
 			cart1.setListitem(listcart);
+			System.out.println("Add" +cart1.getCartId());
 			session.setAttribute("cart", cart1);
-		} else {
+		} 
+		else {
 			System.out.println("cart value is not null");
 			cart1 = (Shopping) session.getAttribute("cart");
 			List<Item> listcart = cart1.getListitem();
@@ -87,9 +88,20 @@ System.out.println("redirect");
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable(value = "id") String id, HttpSession session,Model m) {
 		cart1 = (Shopping) session.getAttribute("cart1");
+System.out.println("cart id is " +id);
 
+System.out.println("shooping"+cart1.getCartId());
 		List<Item> listcart = (List<Item>) cart1.getListitem();
 
+		Iterator<Item> i=listcart.iterator();
+		while(i.hasNext())
+		{
+			Item o=(Item)i.next();
+			System.out.println("valueof" +o);
+		}
+		
+		
+		
 		int index = isExisting(id, listcart);
 		listcart.remove(index);
 		cart1.setListitem(listcart);
@@ -102,13 +114,20 @@ System.out.println("redirect");
 	
 	}
 	
-public BillingAddress getaddress() {
+/*public BillingAddress getaddress() {
 		System.out.println("inside shopping caet");
 		
 		return new BillingAddress();
 
 	}
+	*/
 	
+     public Address getaddress() {
+		System.out.println("get address");
+		
+		return new Address();
+
+	}
 	
 	@SuppressWarnings("unchecked")
 	private int isExisting(String id, List<Item> pcart)
@@ -120,6 +139,10 @@ public BillingAddress getaddress() {
 				return i;
 		return -1;
 	}
+	
+	
+	
+
 
 
 }

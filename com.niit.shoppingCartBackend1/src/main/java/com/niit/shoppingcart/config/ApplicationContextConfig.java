@@ -17,12 +17,12 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shoppingcart.model.Address;
 import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.CartList;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Contact;
 import com.niit.shoppingcart.model.Item;
-import com.niit.shoppingcart.model.MyCart;
-
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Shopping;
 import com.niit.shoppingcart.model.Supplier;
@@ -76,6 +76,9 @@ public SessionFactory getSessionFactory(DataSource dataSource) {
 	sessionBuilder.addAnnotatedClass(CartList.class);
 	sessionBuilder.addAnnotatedClass(Item.class);
 	sessionBuilder.addAnnotatedClass(Shopping.class);
+	sessionBuilder.addAnnotatedClass(Address.class);
+	sessionBuilder.addAnnotatedClass(Contact.class);
+	
 	/*sessionBuilder.addAnnotatedClass(MyCart.class);*/
 /*	sessionBuilder.addAnnotatedClass(Order.class);*/
 	sessionBuilder.scanPackages("com.niit.shoppingcart.model" );

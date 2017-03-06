@@ -44,9 +44,9 @@
    <property name="flowExecutor" ref="flowExecutor"/>
  </bean>
   <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-   <property name="flowRegistry" ref="flowRegistry"/>
-   </bean>
- 
+		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="0" />
+	</bean>
    <mvc:annotation-driven/>
    <mvc:resources mapping="/resources/**" location="/resources/" />
    

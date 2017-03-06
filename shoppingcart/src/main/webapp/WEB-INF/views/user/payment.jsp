@@ -8,5 +8,10 @@
 </head>
 <body>
 
+
+<input type="submit" name="_eventid_last" value="Next"><br>
+<input type="submit" name="_eventid_backorder" value="Edit">
+
+
 </body>
 </html>
