@@ -6,17 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bezzella:Beauty Shop</title>
+<style>
+body
+{
+    background: url('${pageContext.request.contextPath}/resources/img/background.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+</style>
 </head>
 <body >
 <%@ include file="./header.jsp" %>
-<%@ include file="./user/Courosal.jsp"%>
+<%@ include file="./Courosal.jsp"%>
 <br>
 <br>
 
    <div class="container">
   
-   <c:forEach items="${categoryList}" var="category">
-   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> ${category.name} <span class="caret"></span></a>
+<c:forEach items="${categoryList}" var="category">
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> ${category.name} <span class="caret"></span></a>
    <ul class="dropdown-menu" role="menu">
      
 						<c:forEach items="${productList}" var="product">
@@ -29,7 +39,7 @@
 					 </ul> 
 			</c:forEach> 
      </div>
-    <hr color="blue" width="100" >
+    <hr color="black" width="100" >
 	${category.products}
 	 
 <c:if test="${!empty logoutMessage}">
@@ -67,8 +77,6 @@
 <%@ include file="./admin/adminHome.jsp" %>
 <%@ include file="./admin/supplier.jsp" %>
 </c:if>
- 
-<br>
  <%@ include file="./Footer.jsp" %>
 </body>
 </html>

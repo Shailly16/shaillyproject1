@@ -14,12 +14,13 @@
 </head>
 <body>
 
+	<%@ include file="./header.jsp" %>
 	
-	<section class="container">
+	<div class="container">
 
-		<div class="row">
+		 <div class="row"> 
 			<div class="col-md-6">
-				<img src='<c:url value="/resources/img/${product.name}.png" />' alt="image" height="200" width="100" /> 
+				<img src='<c:url value="/resources/img/${product.name}.png" />' alt="image" height="200" width="160" /> 
 			</div>
 			<div class="col-md-6">
 
@@ -40,10 +41,11 @@
 						class="glyphicon-shopping-cart glyphicon"> </span>Add To Cart
 					</a>  --%>
 					
-					<a href="${session.getContextPath()}/shoppingcart/order/${product.id}">add to cart</a></div>
+	<a href="${session.getContextPath()}/shoppingcart/Order/${product.id}" class="btn btn-danger btn-large"> <span
+	class="glyphicon-shopping-cart glyphicon"></span> Add To Cart</a></div>
 				
 			</div>
 		</div>
-	</section>
+	
 </body>
 </html>

@@ -1,5 +1,9 @@
 package com.niit.shoppingcart.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
@@ -51,16 +56,26 @@ public class AdminController {
 
 	@RequestMapping("manageProducts")
 	public ModelAndView products() {
+		Gson gson=new Gson();
 		log.debug("Starting of the method products");
 		ModelAndView mv = new ModelAndView("admin/product");
 		
 		mv.addObject("isAdminClickedProducts", "true");
 		mv.addObject("product", product);
-		mv.addObject("productList", productDAO.list());
+			mv.addObject("productList", productDAO.list());
+		
+		
+			List<Product> l=productDAO.list();
+			
 		mv.addObject("category", category);
 		mv.addObject("categoryList", categoryDAO.list());
 		mv.addObject("supplier", supplier);
 		mv.addObject("supplierList", supplierDAO.list());
+		
+		
+	/*String j=gson.toJson(l);
+		mv.addObject("access",j);*/
+		
 		log.debug("Ending of the method products");
 		return mv;
 	}
@@ -75,5 +90,5 @@ public class AdminController {
 		log.debug("Ending of the method suppliers");
 		return mv;
 	}
-
+	
 }

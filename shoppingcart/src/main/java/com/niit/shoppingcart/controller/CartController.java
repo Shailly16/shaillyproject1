@@ -1,4 +1,4 @@
-/*package com.niit.shoppingcart.controller;
+package com.niit.shoppingcart.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
-import com.niit.shoppingcart.model.MyCart;
+import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.Product;
 
 @Controller
@@ -27,8 +27,8 @@ import com.niit.shoppingcart.model.Product;
 		@Autowired
 		private CartDAO cartDAO;
 		
-		@Autowired
-		private MyCart myCart;
+		
+		private Cart myCart;
 		
 		@Autowired
 		private ProductDAO productDAO;
@@ -36,9 +36,10 @@ import com.niit.shoppingcart.model.Product;
 		private Product product;
 		
 		@RequestMapping(value="/myCart", method = RequestMethod.GET)
-		public String myCart(Model model,HttpSession session){
+		public String myCart(Model model,HttpSession session)
+		{
 			log.debug("Starting of the method myCart");
-			model.addAttribute("myCart", new MyCart());
+			model.addAttribute("myCart", new Cart());
 			String loggedInUserid = (String) session.getAttribute("loggedInUserID");
 			
 			if(loggedInUserid == null){
@@ -60,10 +61,14 @@ import com.niit.shoppingcart.model.Product;
 			}
 				
 			    log.debug("End of the method myCart");
-			    return "/home";}
+			    return "/home";
+		
+		}
+
+}
 
 		
-          @RequestMapping(value = "/myCart/add/{id}", method = RequestMethod.GET)
+      /*  @RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
           public ModelAndView addToCart(@PathVariable("id")String id, HttpSession session, Model model) {
 	      log.debug("Starting of the method addToCart");
 	      Product product= productDAO.get(id);
@@ -92,7 +97,7 @@ import com.niit.shoppingcart.model.Product;
 			
 	
 		
-       }
+       }*/
           
-          }
-		*/
+          
+		

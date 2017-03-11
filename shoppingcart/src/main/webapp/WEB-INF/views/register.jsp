@@ -13,6 +13,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Registeration Page</title>
 <style >
+
+body
+{
+    background: url('${pageContext.request.contextPath}/resources/img/login wallpaper.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
 #playground-container {
     height: 500px;
     overflow: hidden !important;

@@ -169,6 +169,16 @@ public class ProductController {
 	}
 	
 	
+	@RequestMapping(value = "/productsByCategory")
+	public String getproductsByCategory(@RequestParam(name="searchCondition") String searchCondition,Model model)
+			throws Exception {
+		log.debug("Starting of the method getproductsByCategory");
+		
+       model.addAttribute("productList", product);
+       model.addAttribute("searchCondition", searchCondition);
+		log.debug("Ending of the method getselectedProduct");
+		return "redirect:/manageProducts";
+	}
 	
 	
 	

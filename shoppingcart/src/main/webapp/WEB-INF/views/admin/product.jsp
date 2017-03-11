@@ -3,12 +3,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script> 
 <title>Insert title here</title>
+
 </head>
-<body>
-<%@ include file="../header.jsp" %>
+
+ <%@ include file="../header.jsp" %> 
 <h1>Add a product</h1>
+
+<script> 
+var prod;
+var app=angular.module("searchApp",[]).controller("TableCtrl",function($scope)
+                    {
+            
+             $scope.prod=${access};
+                    });
+
+</script>
+
+
+
+
+<body ng-app="searchApp">
+ {{3+5}}
+<div class="container" ng-controller="TableCtrl">
+  <div class="search"> 
+  <div class ="col-sm-8"></div>
+  <div class="col-sm-4">
+    <input type="search" ng-model="searchText" class="form-control" id="inputSearch" 
+
+placeholder="Search Here" /></div>
+</div>
+</div>
+
 
 <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
 <form:form action="${addAction}" commandName="product" enctype="multipart/form-data" method="post">
@@ -126,7 +162,13 @@
 <br>
 <h3>Product List</h3>
 <c:if test="${!empty productList}">
-		<table class="tg" border="1" style="padding-left:200px;">
+<!-- <div class="panel-body ">
+			<div class="form-group">
+			    <input type="text" class="search form-control" placeholder="Filter Products">
+			</div> 
+			<table border=1 class="table table-striped table-hover table-responsive results">
+				 -->
+		<table class="tg" border="1" style="padding-left:200px;"> 
 			<tr>
 				<th width="80">Product ID</th>
 				<th width="120">Product Name</th>
@@ -139,7 +181,8 @@
 				<th width="60">Edit</th>
 				<th width="60">Delete</th>
 			</tr>
-			<c:forEach items="${productList}" var="product">
+			 <c:forEach items="${productList}" var="product"> 
+			<!-- <tr ng-repeat="product in prod|filter:searchText"> -->
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.name}</td>
@@ -148,14 +191,17 @@
 					<td>${product.category.name}</td>
 					<td>${product.supplier.name}</td>
 					<td>${product.stock}</td>
+					
 					<td><img src="<c:url value='/resources/img/${product.getName()}.png'/>" height="50" width="50"/></td>
                      <td><a href="<c:url value='/manage_product_edit/${product.id}' />">Edit</a></td> 
 					
 					<td><a href="<c:url value='/manage_product_remove/${product.id}' />">Delete</a></td>
-				</tr>
+					</tr>
+				
         </tbody>
-    </c:forEach>
-    </table>
+    </c:forEach> 
+  </table>
+   
  </c:if>  
  <br>
 	<br>

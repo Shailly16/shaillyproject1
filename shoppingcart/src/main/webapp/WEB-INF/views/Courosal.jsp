@@ -16,8 +16,10 @@
    .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
       width: 100%;
-     margin:auto;
-    max-height: 300px;} 
+    
+    max-height: 200px;
+    
+    } 
 </style>
 </head>
 <body>

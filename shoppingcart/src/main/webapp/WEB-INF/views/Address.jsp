@@ -1,7 +1,11 @@
-<style>
-/* body {
-	background: #eee !important;
-} */
+<html><style>
+body
+{
+    background: url('${pageContext.request.contextPath}/resources/img/shail.jpeg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
 .wrapper {
 	margin-top: 80px;
 	margin-bottom: 80px;
@@ -10,7 +14,7 @@
 	max-width: 580px;
 	padding: 15px 35px 45px;
 	margin: 0 auto;
-	background-color: pink;
+	background-color: white;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .form-signin-heading {
@@ -22,14 +26,14 @@
 
 <div>
 	<%@ include file="header.jsp"%>
-</div>
+
 
 
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
 <div>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+	 <p>&nbsp;</p>
+	<p>&nbsp;</p> 
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 
@@ -107,14 +111,15 @@
 
 	</div>
 
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 </div>
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-
 <div>
 	<%@ include file="Footer.jsp"%>
 </div>
+</html>

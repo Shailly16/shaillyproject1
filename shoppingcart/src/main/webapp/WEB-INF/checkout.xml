@@ -41,7 +41,7 @@
 
 
 
-	<view-state id="orderconfirm" view="user/orderConfirmed"
+	<view-state id="orderconfirm" view="orderConfirmed"
 		model="flowScope.address">
 
 		<transition on="submit" to="toHome" />

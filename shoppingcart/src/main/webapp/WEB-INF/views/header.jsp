@@ -26,13 +26,21 @@
     <li class="active"><a href="contact">ContactUs</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+    
        <c:if test="${empty loggedInUser}">
+       
       <li><a href="login1"><span class="glyphicon glyphicon-user"></span>Login</a></li>
       </c:if>
        <c:if test="${!empty loggedInUser}">
+       <li><a href="">Welcome ${pageContext.request.userPrincipal.name}</a></li>
+       <!-- <li><a href="">Welcome Admin</a></li> -->
        <span class="glyphicon glyphicon-shopping-cart"></span>
+       
+       
        <c:if test="${isAdmin==false}">
+      <%-- <li><a href="">Welcome ${pageContext.request.userPrincipal.name}</a></li> --%>
       <li><a href="cart_checkout"><span class="glyphicon glyphicon-shopping-cart"></span>${cartSize}</a></li>
+      
       </c:if>
       <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
      <!-- <li><a href=j_spring_security_logout><span class="glyphicon glyphicon-log-out"></span>Logout</a></li> -->
@@ -43,6 +51,10 @@
       
      
     </ul>
+    
+						
+			
+    
    
     </div>
     </div>

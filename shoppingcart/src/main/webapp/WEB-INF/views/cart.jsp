@@ -11,14 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<br>
-	<br>
-	<br>
+<%@ include file="./header.jsp" %>
+<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4"></div>
-			<div class="col-md-5">MY CART</div>
+			<div class="col-md-5"><h3>MY CART</h3></div>
 			<div class="col-md-3"></div>
 		</div>
 
@@ -59,9 +57,9 @@
 									<td>${product.p.price}</td>
 									<td>${product.quantity}</td>
 									<td>${product.p.price* product.quantity}</td>
-									<td><a class="btn btn-danger"
+									<%-- <td><a class="btn btn-danger"
 										href="<c:url value='${session.getContextPath()}/delete/${product.p.id}' />">Delete
-											<span class="glyphicon glyphicon-remove-sign"></span>
+											<span class="glyphicon glyphicon-remove-sign"></span> --%>
 									</a></td>
 								</tr>
 							</c:forEach>
@@ -75,10 +73,10 @@
 							<td></td>
 							<td></td>
 
-							<br>
-							<br>
-							<td><b>Total Amount::</td>
-							<td><b>${sum}</td>
+							<br/>
+							<br/>
+							<td><b>Total Amount::</b></td>
+							<td><b>${sum}</b></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -86,6 +84,8 @@
 								type="submit" value="Next" /></td>
 					</table>
 					</sf:form>
+			</div>
+			</div>
 			</div>
 
 			<br>

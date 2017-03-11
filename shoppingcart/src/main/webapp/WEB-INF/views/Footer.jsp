@@ -14,10 +14,13 @@
 <body>
 <div class="navbar navbar-default  navbar-inverse">
     <div class="container">
-      <p class="navbar-text pull-centre"> © 2017 - Site Built By Shailly Garg </p>
+      <p class="navbar-text <!-- pull-centre -->"> © 2017 - Site Built By Shailly Garg </p>
      
  </div>
  </div>
 </body>
 </html> 
 
+
+ 
+ 

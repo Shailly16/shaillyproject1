@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.niit.shoppingcart.dao.CartItemDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.model.Address;
 import com.niit.shoppingcart.model.Item;
@@ -25,60 +27,47 @@ import com.niit.shoppingcart.model.Shopping;
 public class ShoppingCart {
 	
 	@Autowired
+	CartItemDAO p;
+	
+	@Autowired
 	ProductDAO productdao;
-	Shopping cart1;
+	Shopping cart;
+	Item item;
 	
 	
-	@RequestMapping("/order/{id}")
-	public String ordernow(@PathVariable(value = "id") String id, ModelMap mm, HttpSession session) {
-System.out.println("product id is "+id);
-		if (session.getAttribute("cart1") == null) {
-			System.out.println("cart value is null");
-			List<Item> listcart = new ArrayList<Item>();
-			cart1 = new Shopping();
+	
+	@RequestMapping("/Order/{pid}")
+	public String ordernow(@PathVariable(value = "pid") String pid, ModelMap mm, HttpSession session) {
 
-			listcart.add(new Item(productdao.get(id),1));
-			Iterator i=listcart.iterator();
-			while(i.hasNext())
-			{
-				Item f=(Item)i.next();
-				System.out.println("quanity is  " +f.getQuantity());
-				System.out.println("proudct id is  " +f.getP());
-			}
-			cart1.setListitem(listcart);
-			System.out.println("Add" +cart1.getCartId());
-			session.setAttribute("cart", cart1);
-		} 
-		else {
-			System.out.println("cart value is not null");
-			cart1 = (Shopping) session.getAttribute("cart");
-			List<Item> listcart = cart1.getListitem();
-			Iterator i=listcart.iterator();
-			while(i.hasNext())
-			{
-				Item f=(Item)i.next();
-				System.out.println("quanity is  " +f.getQuantity());
-				System.out.println("proudct id is  " +f.getP());
-			}
+		if (session.getAttribute("cart") == null) {
+			List<Item> listcart = new ArrayList();
+			cart = new Shopping();
+
+			listcart.add(new Item(productdao.get(pid), 1));
+			cart.setListitem(listcart);
+			session.setAttribute("cart", cart);
+		} else {
+			cart = (Shopping) session.getAttribute("cart");
+			List<Item> listcart = cart.getListitem();
 			// using method isExisting here
-			int index = isExisting(id, listcart);
+			int index = isExisting(pid, listcart);
 			if (index == -1)
-				listcart.add(new Item(productdao.get(id),1));
+				listcart.add(new Item(productdao.get(pid), 1));
 			else {
 				int quantity = listcart.get(index).getQuantity() + 1;
 				listcart.get(index).setQuantity(quantity);
 			}
-			cart1.setListitem(listcart);
-			session.setAttribute("cart", cart1);
-		}
+			cart.setListitem(listcart);
+			session.setAttribute("cart", cart);
+		} 
 System.out.println("redirect");
-		return "redirect:/cart_checkout"; 
+		return "redirect:/cart_checkout"; // page name
 	}
 
 	public Shopping initFlow() {
 		// System.out.println(product.getPname());
 		System.out.println("Data sply to flow");
-		return cart1;
+		return cart;
 
 	}
 	
@@ -87,13 +76,21 @@ System.out.println("redirect");
 	
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable(value = "id") String id, HttpSession session,Model m) {
-		cart1 = (Shopping) session.getAttribute("cart1");
-System.out.println("cart id is " +id);
+		cart = (Shopping) session.getAttribute("cart1");
+         System.out.println("cart id is " +id);
+         item.setP(productdao.get(id));
+         p.removeCartItem(item);
+         
+         return "redirect:cart_checkout";
+         
+         
+	}
+         
 
-System.out.println("shooping"+cart1.getCartId());
-		List<Item> listcart = (List<Item>) cart1.getListitem();
-
-		Iterator<Item> i=listcart.iterator();
+         //System.out.println("shopping" +cart.getCartId());
+		/*List<Item> listcart =  cart.getListitem();
+*/
+		/*Iterator<Item> i=listcart.iterator();
 		while(i.hasNext())
 		{
 			Item o=(Item)i.next();
@@ -103,16 +100,19 @@ System.out.println("shooping"+cart1.getCartId());
 		
 		
 		int index = isExisting(id, listcart);
-		listcart.remove(index);
-		cart1.setListitem(listcart);
+		listcart.remove(index);*/
+		/*for (int i= 0;i<listcart.size();i++) {
+		    listcart.remove(i);
+		}
+		cart.setListitem(listcart);
 
-		session.setAttribute("cart", cart1);
+		session.setAttribute("cart", cart);
 		System.out.println("delete");
 	
 		
 	return "redirect:cart_checkout";
 	
-	}
+	}*/
 	
 /*public BillingAddress getaddress() {
 		System.out.println("inside shopping caet");
