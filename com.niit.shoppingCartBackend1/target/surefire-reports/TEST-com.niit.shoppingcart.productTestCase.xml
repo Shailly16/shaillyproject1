@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="1" name="com.niit.shoppingcart.productTestCase" time="0.177" errors="0" skipped="0">
+<testsuite tests="4" failures="1" name="com.niit.shoppingcart.productTestCase" time="0.149" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_05\jre\bin"/>
@@ -27,9 +27,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8.1"/>
-    <property name="classworlds.conf" value="F:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8935661642030420052.tmp"/>
+    <property name="classworlds.conf" value="F:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2166386084261146421.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_05\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/lib/amd64;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;C:\Program Files\Java\jdk1.8.0_05\bin;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;;C:\Users\pavelion\Desktop;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_05\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_05/bin/../jre/lib/amd64;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Java\jdk1.8.0_05\bin;C:\Users\pavelion\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\cmd;;C:\Users\pavelion\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -61,8 +61,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.niit.shoppingcart.productTestCase" name="getAllproductTestCase" time="0.044">
-    <failure message="length check expected:&lt;1&gt; but was:&lt;3&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: length check expected:&lt;1&gt; but was:&lt;3&gt;
+  <testcase classname="com.niit.shoppingcart.productTestCase" name="getAllproductTestCase" time="0.047">
+    <failure message="length check expected:&lt;4&gt; but was:&lt;6&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: length check expected:&lt;4&gt; but was:&lt;6&gt;
 	at junit.framework.Assert.fail(Assert.java:57)
 	at junit.framework.Assert.failNotEquals(Assert.java:329)
 	at junit.framework.Assert.assertEquals(Assert.java:78)
@@ -139,6 +139,144 @@ Hibernate:
         category0_.cid=?
 Hibernate: 
     select
+        category0_.cid as cid1_1_0_,
+        category0_.description as descript2_1_0_,
+        category0_.name as name3_1_0_,
+        products1_.category_id as category2_4_1_,
+        products1_.ID as ID1_4_1_,
+        products1_.ID as ID1_4_2_,
+        products1_.category_id as category2_4_2_,
+        products1_.description as descript3_4_2_,
+        products1_.name as name4_4_2_,
+        products1_.price as price5_4_2_,
+        products1_.stock as stock6_4_2_,
+        products1_.supplier_id as supplier7_4_2_,
+        supplier2_.sid as sid1_6_3_,
+        supplier2_.address as address2_6_3_,
+        supplier2_.name as name3_6_3_ 
+    from
+        Category category0_ 
+    left outer join
+        Product products1_ 
+            on category0_.cid=products1_.category_id 
+    left outer join
+        Supplier supplier2_ 
+            on products1_.supplier_id=supplier2_.sid 
+    where
+        category0_.cid=?
+Hibernate: 
+    select
+        category0_.cid as cid1_1_0_,
+        category0_.description as descript2_1_0_,
+        category0_.name as name3_1_0_,
+        products1_.category_id as category2_4_1_,
+        products1_.ID as ID1_4_1_,
+        products1_.ID as ID1_4_2_,
+        products1_.category_id as category2_4_2_,
+        products1_.description as descript3_4_2_,
+        products1_.name as name4_4_2_,
+        products1_.price as price5_4_2_,
+        products1_.stock as stock6_4_2_,
+        products1_.supplier_id as supplier7_4_2_,
+        supplier2_.sid as sid1_6_3_,
+        supplier2_.address as address2_6_3_,
+        supplier2_.name as name3_6_3_ 
+    from
+        Category category0_ 
+    left outer join
+        Product products1_ 
+            on category0_.cid=products1_.category_id 
+    left outer join
+        Supplier supplier2_ 
+            on products1_.supplier_id=supplier2_.sid 
+    where
+        category0_.cid=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_4_0_,
+        products0_.ID as ID1_4_0_,
+        products0_.ID as ID1_4_1_,
+        products0_.category_id as category2_4_1_,
+        products0_.description as descript3_4_1_,
+        products0_.name as name4_4_1_,
+        products0_.price as price5_4_1_,
+        products0_.stock as stock6_4_1_,
+        products0_.supplier_id as supplier7_4_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_4_0_,
+        products0_.ID as ID1_4_0_,
+        products0_.ID as ID1_4_1_,
+        products0_.category_id as category2_4_1_,
+        products0_.description as descript3_4_1_,
+        products0_.name as name4_4_1_,
+        products0_.price as price5_4_1_,
+        products0_.stock as stock6_4_1_,
+        products0_.supplier_id as supplier7_4_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_4_0_,
+        products0_.ID as ID1_4_0_,
+        products0_.ID as ID1_4_1_,
+        products0_.category_id as category2_4_1_,
+        products0_.description as descript3_4_1_,
+        products0_.name as name4_4_1_,
+        products0_.price as price5_4_1_,
+        products0_.stock as stock6_4_1_,
+        products0_.supplier_id as supplier7_4_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
+        products0_.supplier_id as supplier7_4_0_,
+        products0_.ID as ID1_4_0_,
+        products0_.ID as ID1_4_1_,
+        products0_.category_id as category2_4_1_,
+        products0_.description as descript3_4_1_,
+        products0_.name as name4_4_1_,
+        products0_.price as price5_4_1_,
+        products0_.stock as stock6_4_1_,
+        products0_.supplier_id as supplier7_4_1_,
+        category1_.cid as cid1_1_2_,
+        category1_.description as descript2_1_2_,
+        category1_.name as name3_1_2_ 
+    from
+        Product products0_ 
+    inner join
+        Category category1_ 
+            on products0_.category_id=category1_.cid 
+    where
+        products0_.supplier_id=?
+Hibernate: 
+    select
         products0_.supplier_id as supplier7_4_0_,
         products0_.ID as ID1_4_0_,
         products0_.ID as ID1_4_1_,
@@ -159,19 +297,19 @@ Hibernate:
     where
         products0_.supplier_id=?
 </system-out>
-    <system-err>Mar 03, 2017 6:44:11 PM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3506d826: startup date [Fri Mar 03 18:44:11 IST 2017]; root of context hierarchy
-Mar 03, 2017 6:44:11 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+    <system-err>Mar 15, 2017 11:48:50 AM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@f4c0e4e: startup date [Wed Mar 15 11:48:50 IST 2017]; root of context hierarchy
+Mar 15, 2017 11:48:50 AM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
 INFO: Loaded JDBC driver: org.h2.Driver
-Mar 03, 2017 6:44:11 PM org.hibernate.dialect.Dialect &lt;init&gt;
+Mar 15, 2017 11:48:50 AM org.hibernate.dialect.Dialect &lt;init&gt;
 INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-Mar 03, 2017 6:44:11 PM org.springframework.orm.hibernate5.HibernateTransactionManager afterPropertiesSet
-INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@422b8438] of Hibernate SessionFactory for HibernateTransactionManager
-Mar 03, 2017 6:44:11 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
+Mar 15, 2017 11:48:50 AM org.springframework.orm.hibernate5.HibernateTransactionManager afterPropertiesSet
+INFO: Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@39651a82] of Hibernate SessionFactory for HibernateTransactionManager
+Mar 15, 2017 11:48:50 AM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
 INFO: HHH000397: Using ASTQueryTranslatorFactory
 </system-err>
   </testcase>
-  <testcase classname="com.niit.shoppingcart.productTestCase" name="saveTestCase" time="0.035"/>
+  <testcase classname="com.niit.shoppingcart.productTestCase" name="saveTestCase" time="0.034"/>
   <testcase classname="com.niit.shoppingcart.productTestCase" name="getproductTestCase" time="0"/>
-  <testcase classname="com.niit.shoppingcart.productTestCase" name="updateTestCase" time="0.098"/>
+  <testcase classname="com.niit.shoppingcart.productTestCase" name="updateTestCase" time="0.068"/>
 </testsuite>

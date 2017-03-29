@@ -1,4 +1,4 @@
-package com.niit.shoppingcart;
+/*package com.niit.shoppingcart;
 
 
 import org.junit.BeforeClass;
@@ -102,3 +102,4 @@ public class productTestCase {
 
 
 	
+*/

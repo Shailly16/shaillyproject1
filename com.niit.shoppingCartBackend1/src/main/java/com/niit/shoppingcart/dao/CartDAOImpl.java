@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.dao;
 
+
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -50,28 +51,29 @@ public class CartDAOImpl implements CartDAO {
 	
 	
 	
-	/*@Transactional
-	public List<MyCart> list(String userID) {
+	@Transactional
+	public List<Cart> list(String UserID) {
 		log.debug("Starting of the method list");
-		String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
+		String hql = "from Cart where userID="+"'"+UserID+"'"+" and status="+ "'N'";
+		
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        Log.debug("Ending of the method list");
+        log.debug("Ending of the method list");
         return query.list();
 	}
 	
 	
 	@Transactional
-	public void save(MyCart myCart) {
+	public void save(Cart myCart) {
 		log.debug("Starting of the method : save ");
 		sessionFactory.getCurrentSession().save(myCart);
 		log.debug("Ending of the method : save ");
 	}
 	
 	@Transactional
-	 public long getTotalAmount(String userID)
+	 public long getTotalAmount(String UserID)
 	 {
 		 log.debug("Starting of the getTotalAmount");
-		 String hql = "from MyCart where userID="+"'"+userID+"'"+" and status="+ "'N'";
+		 String hql = "from Cart where UserID="+"'"+UserID+"'"+" and status="+ "'N'";
 		 log.debug("hql"+hql);
 			
 	      Query query = sessionFactory.openSession().createQuery(hql);
@@ -81,7 +83,18 @@ public class CartDAOImpl implements CartDAO {
 		 
 	 }
 
-*/
+    @Transactional
+	public void delete(Cart MyCart) {
+		log.debug("Starting of the method : delete");
+		sessionFactory.getCurrentSession().delete(MyCart);
+		log.debug("Ending of the method : delete ");
+		
+	}
+
+}
+	
+
+
 	/*private Long getMaxId() {
 		
 		 log.debug("Starting of the getMaxId");
@@ -100,7 +113,7 @@ public class CartDAOImpl implements CartDAO {
 	*/
 	
 
-}
+
 	
 
 	

@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.dao;
 
+
 import java.util.List;
 
 import com.niit.shoppingcart.model.Cart;
@@ -11,10 +12,14 @@ public interface CartDAO {
 
 	
 	
-	/*public List<MyCart> list(String id);
+	public List<Cart> list(String id);
 	
-	public void save(MyCart MyCart);
+	public void save(Cart MyCart);
+	
+	public void delete(Cart MyCart);
+	
+	
 	
 	public long getTotalAmount(String id);
-*/
+
 }

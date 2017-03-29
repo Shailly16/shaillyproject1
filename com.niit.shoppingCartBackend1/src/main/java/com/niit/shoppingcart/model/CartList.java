@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class CartList {
-	
+
 	List<Item> cart;
 
 	public List<Item> getCart() {
@@ -20,7 +20,6 @@ public class CartList {
 		super();
 		this.cart = cart;
 	}
-	
-	
-
 }
+	
+	

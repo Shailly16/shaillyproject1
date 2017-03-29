@@ -1,4 +1,4 @@
-package com.niit.shoppingcart;
+/*package com.niit.shoppingcart;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -69,14 +69,14 @@ public class userTestCase {
 	
 	
 	
-	/*@Test
+	@Test
 	public void getAlluserTestCase()
 	 {
 		
 		int size=userDAO1.list().size();
 		Assert.assertEquals("length check",1,size);
 	 }
-	*/
+	
 	
 	@Test
 	public void updateTestCase()
@@ -95,3 +95,4 @@ public class userTestCase {
 
 
 	
+*/

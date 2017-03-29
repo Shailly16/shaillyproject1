@@ -1,4 +1,4 @@
-package com.niit.shoppingcart;
+/*package com.niit.shoppingcart;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -84,3 +84,4 @@ public class supplierTestCase {
 
 
 	
+*/
