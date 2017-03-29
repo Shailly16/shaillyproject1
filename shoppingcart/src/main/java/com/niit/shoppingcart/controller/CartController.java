@@ -58,14 +58,15 @@ import com.niit.shoppingcart.model.Product;
 				model.addAttribute("myCart", cartDAO.list(loggedInUserid));
 				model.addAttribute("totalAmount", cartDAO.getTotalAmount(loggedInUserid));
 				model.addAttribute("displayCart", "true");
-			}
+				}
 				
 			    log.debug("End of the method myCart");
 			    return "/home";
 		
 		}
 
-}
+		}
+
 
 		
       /*  @RequestMapping(value = "/order/{id}", method = RequestMethod.GET)

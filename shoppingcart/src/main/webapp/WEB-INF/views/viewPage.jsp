@@ -1,75 +1,74 @@
-
+<html>
+<head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script> 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-         rel = "stylesheet">
-      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<!-- JQuery (for searchCondition-->
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="resource/js/bootstrap.min.js"></script>
+  <script>
+$(window).load(function() {
+searchTable($('#search').val());
+});
 
-<link
-	href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"
-	rel="stylesheet">
+$(document).ready(function() {
+$('#search').keyup(function() {
+searchTable($(this).val());
+});
+});
 
-<script>
-
-var prod;
-var app=angular.module("searchApp",[]).controller("TableCtrl",function($scope)
-                    {
-            
-             $scope.prod=${products};
-                    });
- 
- 
-
-
-
+function searchTable(inputVal) {
+var table = $('#productList');
+table.find('tr').each(function(index, row) {
+var allCells = $(row).find('td');
+if (allCells.length > 0) {
+var found = false;
+allCells.each(function(index, td) {
+var regExp = new RegExp(inputVal, 'i');
+if (regExp.test($(td).text())) {
+found = true;
+return false;
+}
+});
+if (found == true)
+$(row).show();
+else
+$(row).hide();
+}
+});
+}
 </script>
-
- <body ng-app="searchApp">
- 
- <div class="container" ng-controller="TableCtrl">
-  <div class="search"> 
-  <div class ="col-sm-8"></div>
-  <div class="col-sm-4">
-    <input type="search" ng-model="searchText" class="form-control" id="inputSearch" 
-
-placeholder="Search Here" />
+  </head>
+  <body>
+<section data-ng-app="myApp">
+<div class="table responsive">
+<div class="table">
+<div style="height: 50px; padding-left: 200px; width: 500px;">
+<label>Search Element <input type="text" id="search"
+data-ng-model="search" value="${param.item}"
+data-ng-init="search='${param.item}'"></label>
 </div>
-</div>
+<br>
+<h3>Product List</h3>
 
- <c:if test="${!empty products}"> 
-<!-- <!-- <div class="panel-body ">
-			<div class="form-group">
-			    <input type="text" class="search form-control" placeholder="Filter Products">
-			</div> 
-			<table border=1 class="table table-striped table-hover table-responsive results"> -->
-				
-		<table class="tg"  style="padding-left:200px;"> 
+<c:if test="${!empty productList}">
+
+		<table class="tg" border="1" style="padding-left:200px;" id="productList"> 
 			<tr>
 				<th width="80">Product ID</th>
-				<th width="80">Product Name</th>
-				<th width="300">Product Description</th>
+				<th width="120">Product Name</th>
+				<th width="200">Product Description</th>
 				<th width="80">Price</th>
-				<th width="80">Product Category</th>
-				<th width="80">Product Supplier</th>
+				<th width="120">Product Category</th>
+				<th width="120">Product Supplier</th>
 				<th width="60">Stock</th>
 				
 				
-			</tr> 
-			  <c:forEach items="${products}" var="product">  --%>
-			<table>
-			 <tr ng-repeat="product in prod"> 
+			</tr>
+			 <c:forEach items="${productList}" var="product"> 
+			<!-- <tr ng-repeat="product in prod|filter:searchText"> -->
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.name}</td>
@@ -78,10 +77,14 @@ placeholder="Search Here" />
 					<td>${product.category.name}</td>
 					<td>${product.supplier.name}</td>
 					<td>${product.stock}</td>
-					</tr>
-					</tr> 
-					</table>
-					</c:forEach>
-					</table>
-					</c:if>
 					
+
+ </tr>
+ </c:forEach>
+ </table>
+ </c:if>
+ </div>
+ </div>
+ </section>
+ </body>
+ </html>

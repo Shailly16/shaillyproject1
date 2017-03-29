@@ -129,7 +129,7 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping("/viewPage")
+	/*@RequestMapping("/viewPage")
 	public ModelAndView list(Model model)
 	{
 		List<Product> retrive=productDAO.list();
@@ -148,7 +148,18 @@ public class HomeController {
 	
 	
 	
-}
+}*/
+	
+	@RequestMapping
+	public ModelAndView list(Model model)
+	{
+		
+	     log.debug("starting of the list");
+		ModelAndView mv = new ModelAndView("/viewPage");
+		model.addAttribute("productList",productdao.list());
+		return mv;
+	}
+	
 	
 }	
 	

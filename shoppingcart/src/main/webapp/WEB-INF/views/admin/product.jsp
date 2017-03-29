@@ -2,48 +2,58 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script> 
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 <title>Insert title here</title>
+<%@ include file="../header.jsp" %> 
 
-</head>
 
- <%@ include file="../header.jsp" %> 
-<h1>Add a product</h1>
+<br>
+<script>
+$(window).load(function() {
+searchTable($('#search').val());
+});
 
-<script> 
-var prod;
-var app=angular.module("searchApp",[]).controller("TableCtrl",function($scope)
-                    {
-            
-             $scope.prod=${access};
-                    });
+$(document).ready(function() {
+$('#search').keyup(function() {
+searchTable($(this).val());
+});
+});
 
+function searchTable(inputVal) {
+var table = $('#products');
+table.find('tr').each(function(index, row) {
+var allCells = $(row).find('td');
+if (allCells.length > 0) {
+var found = false;
+allCells.each(function(index, td) {
+var regExp = new RegExp(inputVal, 'i');
+if (regExp.test($(td).text())) {
+found = true;
+return false;
+}
+});
+if (found == true)
+$(row).show();
+else
+$(row).hide();
+}
+});
+}
 </script>
 
 
+ 
+<h1>Add a product</h1>
 
 
-<body ng-app="searchApp">
- {{3+5}}
-<div class="container" ng-controller="TableCtrl">
-  <div class="search"> 
-  <div class ="col-sm-8"></div>
-  <div class="col-sm-4">
-    <input type="search" ng-model="searchText" class="form-control" id="inputSearch" 
 
-placeholder="Search Here" /></div>
-</div>
-</div>
+
+
 
 
 <c:url var="addAction" value="/manage_product_add?${_csrf.parameterName}=${_csrf.token}"></c:url>
@@ -160,15 +170,20 @@ placeholder="Search Here" /></div>
      </table> 
  </form:form>
 <br>
+<section data-ng-app="myApp">
+<div class="table responsive">
+<div class="table">
+<div style="height: 50px; padding-left: 200px; width: 500px;">
+<label>Search Element <input type="text" id="search"
+data-ng-model="search" value="${param.item}"
+data-ng-init="search='${param.item}'"></label>
+</div>
+<br>
 <h3>Product List</h3>
+
 <c:if test="${!empty productList}">
-<!-- <div class="panel-body ">
-			<div class="form-group">
-			    <input type="text" class="search form-control" placeholder="Filter Products">
-			</div> 
-			<table border=1 class="table table-striped table-hover table-responsive results">
-				 -->
-		<table class="tg" border="1" style="padding-left:200px;"> 
+
+		<table class="tg" border="1" style="padding-left:200px;" id="products"> 
 			<tr>
 				<th width="80">Product ID</th>
 				<th width="120">Product Name</th>
@@ -202,7 +217,12 @@ placeholder="Search Here" /></div>
     </c:forEach> 
   </table>
    
- </c:if>  
+ </c:if>
+
+ </div>
+</div>    
+</section>
+  
  <br>
 	<br>
 	<br>
@@ -212,11 +232,10 @@ placeholder="Search Here" /></div>
 	<br>
 	
 	<%@ include file="../Footer.jsp" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
- <script src="resource/bootstrap/js/bootstrap.min.js"></script>
+
+ 
        
         
-    
 
-</body>
+
 </html>

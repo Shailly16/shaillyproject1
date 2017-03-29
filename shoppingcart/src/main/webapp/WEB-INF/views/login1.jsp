@@ -17,6 +17,7 @@ body
 {
     background: url('${pageContext.request.contextPath}/resources/img/login wallpaper.jpg') fixed;
     background-size: cover;
+    
     padding: 0;
     margin: 0;
 }
