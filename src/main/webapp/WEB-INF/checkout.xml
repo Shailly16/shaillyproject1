@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+
+
+	<var name="cart" class="com.niit.shoppingcart.model.Shopping"></var>
+
+	<on-start>
+		<evaluate expression="userController.initFlow()" result="flowScope.cart" />
+	</on-start>
+	<view-state id="start" view="cart" model="flowScope.cart">
+		<transition on="submit" to="cart1" />
+	</view-state>
+
+	<action-state id="cart1">
+		<evaluate expression="shoppingCart.getaddress()" result="flowScope.address"></evaluate>
+		<transition on="success" to="address" />
+	</action-state>
+
+	<view-state id="address" view="Address" model="flowScope.address">
+
+		<transition on="submit" to="insertaddress" />
+	</view-state>
+
+	<action-state id="insertaddress">
+		<evaluate
+			expression="userController.insertAddress(flowScope.address,messageContext)"
+			result="flowScope.address"></evaluate>
+		<transition on="success" to="getadd" />
+
+	</action-state>
+
+	<action-state id="getadd">
+		<evaluate expression="userController.getadd()" result="flowScope.address"></evaluate>
+		<transition on="success" to="orderconfirm" />
+
+	</action-state>
+
+
+
+	<view-state id="orderconfirm" view="orderConfirmed"
+		model="flowScope.address">
+
+		<transition on="submit" to="toHome" />
+	</view-state>
+
+
+	<end-state id="toHome" view="externalRedirect:home" />
+
+	<global-transitions>
+		<transition on="home" to="toHome" />
+		<transition on="error" to="toException" />
+	</global-transitions>
+</flow>  
