@@ -91,6 +91,15 @@ public class CartDAOImpl implements CartDAO {
 		
 	}
 
+
+	public void updateCart(Cart myCart) {
+		 
+			log.debug("Starting of the method : update ");
+			sessionFactory.getCurrentSession().update(myCart);
+			log.debug("Ending of the method : update ");
+		
+	}
+
 }
 	
 

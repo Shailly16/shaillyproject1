@@ -1,6 +1,8 @@
 package com.niit.shoppingcart.dao;
 
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,6 +60,12 @@ public class CartItemDAOImpl implements CartItemDAO
 
         return (Item) query.uniqueResult();
     }
+	
+	public void updateItem(Item cartitem) {
+		Session session=sessionFactory.getCurrentSession();
+		session.saveOrUpdate(cartitem);
+		
+	}
 
 	
    

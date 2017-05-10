@@ -30,7 +30,7 @@ public class Shopping implements Serializable {
 
 	/**
 	 * @return the cartId
-	 */
+	
 	public int getCartId() {
 		return cartId;
 	}

@@ -1,25 +1,32 @@
 package com.niit.shoppingcart.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-public class Cart {
+@Entity
+public class Cart implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	
-	private String UserID;
-	
+	private int cartid;
 	@OneToOne
-	public String getUserID() {
+	private User UserID;
+	
+	
+	public User getUserID(){ 
 		return UserID;
 	}
 	
@@ -31,17 +38,17 @@ public class Cart {
 	public void setStatus(char status) {
 		this.status = status;
 	}
-	public void setUserID(String userID) {
+	public void setUserID(User userID) {
 		UserID = userID;
 	}
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Item> cartItems;
+	List<Item> cartItems;
 	
 	public int getId() {
-		return id;
+		return cartid;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.cartid = id;
 	}
 	public double getTotalAmount() {
 		return TotalAmount;

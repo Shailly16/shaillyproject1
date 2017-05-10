@@ -2,8 +2,6 @@ package com.niit.shoppingcart.model;
 
 import java.util.List;
 
-
-
 public class CartList {
 
 	List<Item> cart;
