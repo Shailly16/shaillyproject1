@@ -144,7 +144,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/manage_product_edit/{id}")
-	public String editProduct(@PathVariable("id") int id, Model model) throws Exception {
+	public String editProduct(@PathVariable("id") String id, Model model) throws Exception {
 		log.debug("Starting of the method editProduct");
 		k=id;
 		product = productDAO.get(id);
@@ -159,7 +159,7 @@ public class ProductController {
 	
 
 	@RequestMapping(value = "/display/{id}")
-	public String getSelectedProduct(@PathVariable("id") int id,Model model)
+	public String getSelectedProduct(@PathVariable("id") String id,Model model)
 			throws Exception {
 		log.debug("Starting of the method getselectedProduct");
 		product = productDAO.get(id);
@@ -169,17 +169,16 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value = "/app")
-	public String Search(@ModelAttribute("product") Product product, Model model)
+	@RequestMapping(value = "/productsByCategory")
+	public String getproductsByCategory(@RequestParam(name="searchCondition") String searchCondition,Model model)
 			throws Exception {
-		log.debug("Starting of the method Search");
-		model.addAttribute("product", new Product());
-		model.addAttribute("productList", this.productDAO.list());
-		model.addAttribute("supplierList", this.supplierDAO.list());
-		model.addAttribute("categoryList", this.categoryDAO.list());
-    
-		log.debug("Ending of the method Search");
-		return "/app";
+		log.debug("Starting of the method getproductsByCategory");
+		
+       model.addAttribute("productList", product);
+       model.addAttribute("searchCondition", searchCondition);
+		log.debug("Ending of the method getselectedProduct");
+		return "redirect:/manageProducts";
+	}
 	
 	
 	
