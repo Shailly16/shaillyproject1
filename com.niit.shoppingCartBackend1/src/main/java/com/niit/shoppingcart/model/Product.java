@@ -28,7 +28,7 @@ public class Product implements Serializable
 	private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "ID")
-    private String id;
+    private int id;
 	private String name;
 	private String description;
 	private double price;
@@ -91,10 +91,10 @@ public class Product implements Serializable
 	
 	
    
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
